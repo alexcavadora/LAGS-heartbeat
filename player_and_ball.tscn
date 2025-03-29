@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bx0msm0hagnj0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_usv2u"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_go726"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1gj5y"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tj5lm"]
+
+[node name="Player" type="CharacterBody3D"]
+motion_mode = 1
+
+[node name="Ball" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ball"]
+shape = SubResource("SphereShape3D_usv2u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ball"]
+mesh = SubResource("SphereMesh_go726")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_1gj5y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_tj5lm")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
