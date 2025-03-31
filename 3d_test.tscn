@@ -1,6 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://bbls7m2phko18"]
+[gd_scene load_steps=7 format=3 uid="uid://bbls7m2phko18"]
 
 [ext_resource type="PackedScene" uid="uid://bx0msm0hagnj0" path="res://player_and_ball.tscn" id="1_g22v7"]
+[ext_resource type="Script" uid="uid://bdd3erwlvffxt" path="res://ui.gd" id="2_mac0m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mac0m"]
+bg_color = Color(0.0583, 0.144778, 0.53, 0.34902)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5o3kl"]
+bg_color = Color(0.278431, 0.831373, 0.780392, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_g22v7"]
 
@@ -9,14 +28,8 @@
 [node name="test_level" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("1_g22v7")]
+unique_name_in_owner = true
 axis_lock_linear_y = true
-spring_force = 2000.0
-max_distance = 8.0
-spring_damping = 0.7
-move_speed = 7.0
-acceleration = 50.0
-deceleration = 35.0
-pull_acceleration = 2000.0
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 8, 7.33)
@@ -24,6 +37,31 @@ fov = 54.7
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Player/Camera3D"]
 light_energy = 0.5
+
+[node name="UI" type="Control" parent="Player/Camera3D"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 3
+script = ExtResource("2_mac0m")
+
+[node name="ProgressBar" type="ProgressBar" parent="Player/Camera3D/UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_top = 20.0
+offset_right = 160.0
+offset_bottom = 47.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_mac0m")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5o3kl")
+max_value = 2.0
 
 [node name="tilesito" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.560677, 0, 0)
