@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bx0msm0hagnj0"]
+[gd_scene load_steps=6 format=3 uid="uid://bx0msm0hagnj0"]
+
+[ext_resource type="Script" uid="uid://2ihggwsefmxj" path="res://player_chained.gd" id="1_go726"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_usv2u"]
 
@@ -10,14 +12,18 @@
 
 [node name="Player" type="CharacterBody3D"]
 motion_mode = 1
+script = ExtResource("1_go726")
 
-[node name="Ball" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, 0)
+[node name="Heart" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.5, 0)
+top_level = true
+mass = 5.0
+gravity_scale = 0.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ball"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Heart"]
 shape = SubResource("SphereShape3D_usv2u")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ball"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Heart"]
 mesh = SubResource("SphereMesh_go726")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
