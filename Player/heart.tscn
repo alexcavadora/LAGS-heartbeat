@@ -1,29 +1,46 @@
-[gd_scene load_steps=6 format=3 uid="uid://buiitvt4ugobf"]
+[gd_scene load_steps=7 format=3 uid="uid://buiitvt4ugobf"]
 
 [ext_resource type="PackedScene" uid="uid://c700l20getk" path="res://Components/hitbox.tscn" id="1_3eagn"]
 [ext_resource type="Script" uid="uid://cvrvktu70oidx" path="res://Player/heart.gd" id="1_ecjjo"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_usv2u"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ecjjo"]
+height = 1.5
+radius = 0.75
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6vxin"]
 albedo_color = Color(1, 0.110945, 0.220234, 1)
 
-[sub_resource type="SphereMesh" id="SphereMesh_go726"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_qq1u4"]
 material = SubResource("StandardMaterial3D_6vxin")
+bottom_radius = 0.75
+height = 1.5
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qq1u4"]
+height = 1.5
+radius = 0.75
 
 [node name="Heart" type="RigidBody3D"]
 top_level = true
 collision_layer = 2
-collision_mask = 2
+collision_mask = 0
 axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_z = true
 mass = 5.0
 gravity_scale = 0.0
 script = ExtResource("1_ecjjo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_usv2u")
+shape = SubResource("CylinderShape3D_ecjjo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_go726")
+mesh = SubResource("CylinderMesh_qq1u4")
 
 [node name="Hitbox" parent="." instance=ExtResource("1_3eagn")]
+collision_priority = 2.0
+
+[node name="CollisionShape3D" parent="Hitbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00305176, 0)
+shape = SubResource("CylinderShape3D_qq1u4")
+
+[editable path="Hitbox"]

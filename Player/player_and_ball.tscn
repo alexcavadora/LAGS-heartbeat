@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://bx0msm0hagnj0"]
 
 [ext_resource type="Script" uid="uid://2ihggwsefmxj" path="res://Player/player_chained.gd" id="1_go726"]
-[ext_resource type="PackedScene" uid="uid://buiitvt4ugobf" path="res://Player/heart.tscn" id="2_6vxin"]
 [ext_resource type="PackedScene" uid="uid://2rx00tnl0vje" path="res://Components/health.tscn" id="3_6vxin"]
+[ext_resource type="Script" uid="uid://cdipvm40fl5bn" path="res://Components/pusher.gd" id="4_152px"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1gj5y"]
 
@@ -10,6 +10,7 @@
 albedo_color = Color(1, 0.761958, 0.262711, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_tj5lm"]
+height = 1.5
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1x3f0"]
 radius = 5.0
@@ -20,20 +21,13 @@ axis_lock_angular_y = true
 axis_lock_angular_z = true
 motion_mode = 1
 script = ExtResource("1_go726")
-a_magnitude = 400.0
-
-[node name="Heart" parent="." instance=ExtResource("2_6vxin")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.29369, 0.5, 2.71247)
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_1gj5y")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.744904, 0)
 material_override = SubResource("StandardMaterial3D_1x3f0")
 mesh = SubResource("CapsuleMesh_tj5lm")
 
@@ -47,6 +41,7 @@ mesh = SubResource("CapsuleMesh_tj5lm")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 monitoring = false
 monitorable = false
+script = ExtResource("4_152px")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pusher"]
 shape = SubResource("SphereShape3D_1x3f0")
@@ -55,4 +50,6 @@ debug_color = Color(2.62313e-06, 0.643121, 0.205187, 0.733333)
 [node name="Timer" type="Timer" parent="Pusher"]
 wait_time = 0.5
 
+[connection signal="attack" from="." to="Pusher" method="_on_player_attack"]
 [connection signal="body_entered" from="Pusher" to="." method="_on_pusher_body_entered"]
+[connection signal="body_entered" from="Pusher" to="Pusher" method="_on_body_entered"]

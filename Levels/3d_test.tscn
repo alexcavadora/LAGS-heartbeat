@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bbls7m2phko18"]
+[gd_scene load_steps=12 format=3 uid="uid://bbls7m2phko18"]
 
 [ext_resource type="PackedScene" uid="uid://bx0msm0hagnj0" path="res://Player/player_and_ball.tscn" id="1_6q36a"]
 [ext_resource type="Script" uid="uid://bydtmfnv5gj6u" path="res://Levels/level.gd" id="1_c2igh"]
 [ext_resource type="Script" uid="uid://bdd3erwlvffxt" path="res://UI/ui.gd" id="2_c2igh"]
 [ext_resource type="PackedScene" uid="uid://3qevbhnxt5xg" path="res://Enemies/box.tscn" id="4_kgbxp"]
+[ext_resource type="PackedScene" uid="uid://buiitvt4ugobf" path="res://Player/heart.tscn" id="4_usu0y"]
+[ext_resource type="PackedScene" uid="uid://dwhxov4hp4hhg" path="res://Enemies/chasing_enemy.tscn" id="6_gs7ah"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mac0m"]
 bg_color = Color(0.0583, 0.144778, 0.53, 0.34902)
@@ -33,10 +35,12 @@ size = Vector3(1, 3, 30)
 [node name="test_level" type="Node3D"]
 script = ExtResource("1_c2igh")
 
-[node name="Player" parent="." instance=ExtResource("1_6q36a")]
+[node name="Player" parent="." node_paths=PackedStringArray("corazon") groups=["Player"] instance=ExtResource("1_6q36a")]
 unique_name_in_owner = true
 axis_lock_linear_y = true
-a_magnitude = 100.0
+corazon = NodePath("Heart")
+s_max_distance = 6.0
+c_regen_speed = 0.1
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 8, 7.33)
@@ -84,6 +88,18 @@ offset_bottom = 26.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Cooldown"
+
+[node name="Heart" parent="Player" node_paths=PackedStringArray("follow") instance=ExtResource("4_usu0y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.442, 0.75, -2.797)
+follow = NodePath("..")
+string_max_distance = 16.0
+
+[node name="Heart2" parent="Player" node_paths=PackedStringArray("follow") instance=ExtResource("4_usu0y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.16935, 0.75, 0.958253)
+follow = NodePath("../Heart")
+string_max_distance = 6.0
+s_damping = 1.0
+p_deceleration = 60.0
 
 [node name="tilesito" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.560677, 0, 0)
@@ -2710,35 +2726,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.87225, 0.5, 8.27186)
 [node name="Box16" parent="." instance=ExtResource("4_kgbxp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.51879, 0.5, -9.10349)
 
-[node name="Box17" parent="." instance=ExtResource("4_kgbxp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.81282, 0.5, 10.9363)
-
-[node name="Box2" parent="." instance=ExtResource("4_kgbxp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.16873, 0.5, -3.51567)
-
-[node name="Box3" parent="." instance=ExtResource("4_kgbxp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.16873, 0.5, 1.80497)
-
-[node name="Box4" parent="." instance=ExtResource("4_kgbxp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.90587, 0.5, 1.80497)
-
-[node name="Box5" parent="." instance=ExtResource("4_kgbxp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.392233, 0.5, -7.69606)
-
-[node name="Box6" parent="." instance=ExtResource("4_kgbxp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.15881, 0.5, -0.194722)
-
-[node name="Box7" parent="." instance=ExtResource("4_kgbxp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.21942, 0.5, -0.141715)
-
-[node name="Box8" parent="." instance=ExtResource("4_kgbxp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.58179, 0.5, -0.108189)
-
-[node name="Box9" parent="." instance=ExtResource("4_kgbxp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.94876, 0.5, -0.0609469)
-
-[node name="Box10" parent="." instance=ExtResource("4_kgbxp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0154, 0.5, -0.0989646)
+[node name="Box18" parent="." instance=ExtResource("4_kgbxp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.55297, 0.5, -3.59737)
 
 [node name="Wall" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.902096, -0.0341563, 0.00287056)
@@ -2775,3 +2764,24 @@ collision_mask = 7
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.8577, 1, 0)
 shape = SubResource("BoxShape3D_kgbxp")
+
+[node name="Enemy" parent="." instance=ExtResource("6_gs7ah")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.36172, 0.500001, -3.46227)
+
+[node name="Enemy2" parent="." instance=ExtResource("6_gs7ah")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.94825, 0.500001, 3.13858)
+
+[node name="Enemy3" parent="." instance=ExtResource("6_gs7ah")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.59604, 0.500001, 5.31537)
+
+[node name="Enemy4" parent="." instance=ExtResource("6_gs7ah")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9386, 0.5, -7.79505)
+
+[node name="Enemy5" parent="." instance=ExtResource("6_gs7ah")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.14809, 0.5, -10.2368)
+
+[node name="Enemy6" parent="." instance=ExtResource("6_gs7ah")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.61397, 0.5, 7.54651)
+
+[node name="Enemy7" parent="." instance=ExtResource("6_gs7ah")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.906629, 0.5, 12.0176)

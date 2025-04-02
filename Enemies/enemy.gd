@@ -4,8 +4,12 @@ extends RigidBody3D
 @onready var hitbox: Area3D = $Hitbox
 @onready var enemy_health: ProgressBar = $SubViewport/Control/Enemy_health
 @onready var particles: GPUParticles3D = $GPUParticles3D
+@onready var mesh: MeshInstance3D = $Mesh
+
+var PlayerNode : Eye
 
 func _ready() -> void:
+	PlayerNode = get_tree().get_first_node_in_group("Player")
 	enemy_health.max_value = health.health
 	enemy_health.value = health.health
 

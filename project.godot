@@ -21,6 +21,7 @@ window/stretch/mode="canvas_items"
 [global_group]
 
 enemy="enemies that get hit by the heart"
+Player=""
 
 [input]
 

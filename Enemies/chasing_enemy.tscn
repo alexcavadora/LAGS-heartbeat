@@ -1,22 +1,22 @@
-[gd_scene load_steps=14 format=3 uid="uid://3qevbhnxt5xg"]
+[gd_scene load_steps=14 format=3 uid="uid://dwhxov4hp4hhg"]
 
-[ext_resource type="PackedScene" uid="uid://2rx00tnl0vje" path="res://Components/health.tscn" id="1_7ushe"]
-[ext_resource type="Script" uid="uid://chx5k8fykuvl5" path="res://Enemies/enemy.gd" id="1_xbarb"]
-[ext_resource type="PackedScene" uid="uid://c700l20getk" path="res://Components/hitbox.tscn" id="2_5gsve"]
-[ext_resource type="PackedScene" uid="uid://bwle4a3xvat5g" path="res://Components/movement.tscn" id="4_kc5n5"]
+[ext_resource type="Script" uid="uid://chx5k8fykuvl5" path="res://Enemies/enemy.gd" id="1_5q8ye"]
+[ext_resource type="PackedScene" uid="uid://2rx00tnl0vje" path="res://Components/health.tscn" id="2_wb176"]
+[ext_resource type="PackedScene" uid="uid://c700l20getk" path="res://Components/hitbox.tscn" id="3_dljoa"]
+[ext_resource type="PackedScene" uid="uid://bwle4a3xvat5g" path="res://Components/movement.tscn" id="4_dgrtn"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_6q36a"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_thj6v"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xbarb"]
-albedo_color = Color(0.392, 0.584, 0.929, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kc5n5"]
+albedo_color = Color(0.794902, 0.432133, 0, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_ijwdr"]
-material = SubResource("StandardMaterial3D_xbarb")
+[sub_resource type="BoxMesh" id="BoxMesh_5v0v4"]
+material = SubResource("StandardMaterial3D_kc5n5")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_xbarb"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_0bmwx"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xbarb"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qa3c4"]
 bg_color = Color(0.84, 0.84, 0.84, 1)
 border_color = Color(0.91, 0.91, 0.91, 1)
 corner_radius_top_left = 5
@@ -24,7 +24,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kc5n5"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kq5jf"]
 bg_color = Color(0.79, 0.1264, 0.1264, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
@@ -32,7 +32,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 corner_detail = 12
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xbarb"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wlnk3"]
 emission_shape_scale = Vector3(0.5, 0.5, 0.5)
 emission_shape = 3
 emission_box_extents = Vector3(1, 1, 1)
@@ -47,38 +47,35 @@ collision_mode = 1
 collision_friction = 0.05
 collision_bounce = 0.35
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kc5n5"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xbarb"]
 albedo_color = Color(1, 0.826865, 0.348468, 1)
 
-[sub_resource type="SphereMesh" id="SphereMesh_kc5n5"]
-material = SubResource("StandardMaterial3D_kc5n5")
+[sub_resource type="SphereMesh" id="SphereMesh_pm8q8"]
+material = SubResource("StandardMaterial3D_xbarb")
 radius = 0.1
 height = 0.05
 
-[node name="Box" type="RigidBody3D" groups=["enemy"]]
+[node name="Enemy" type="RigidBody3D"]
 collision_layer = 7
 collision_mask = 7
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-mass = 0.5
-script = ExtResource("1_xbarb")
+script = ExtResource("1_5q8ye")
+metadata/_custom_type_script = "uid://chx5k8fykuvl5"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_6q36a")
+shape = SubResource("BoxShape3D_thj6v")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_ijwdr")
+mesh = SubResource("BoxMesh_5v0v4")
 
-[node name="Health" parent="." instance=ExtResource("1_7ushe")]
+[node name="Health" parent="." instance=ExtResource("2_wb176")]
 health = 30
 
-[node name="Hitbox" parent="." instance=ExtResource("2_5gsve")]
+[node name="Hitbox" parent="." instance=ExtResource("3_dljoa")]
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.730542, 0.0164162)
 billboard = 1
-texture = SubResource("ViewportTexture_xbarb")
+texture = SubResource("ViewportTexture_0bmwx")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
@@ -104,8 +101,8 @@ visible = false
 layout_mode = 0
 offset_right = 100.0
 offset_bottom = 15.0
-theme_override_styles/background = SubResource("StyleBoxFlat_xbarb")
-theme_override_styles/fill = SubResource("StyleBoxFlat_kc5n5")
+theme_override_styles/background = SubResource("StyleBoxFlat_qa3c4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_kq5jf")
 show_percentage = false
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
@@ -116,13 +113,14 @@ one_shot = true
 explosiveness = 0.6
 fixed_fps = 60
 collision_base_size = 0.1
-process_material = SubResource("ParticleProcessMaterial_xbarb")
-draw_pass_1 = SubResource("SphereMesh_kc5n5")
+process_material = SubResource("ParticleProcessMaterial_wlnk3")
+draw_pass_1 = SubResource("SphereMesh_pm8q8")
 
-[node name="Movement" parent="." instance=ExtResource("4_kc5n5")]
-speed = 0.0
+[node name="Movement" parent="." instance=ExtResource("4_dgrtn")]
+speed = 10.0
 
 [connection signal="just_hit" from="Health" to="." method="_on_health_just_hit"]
+[connection signal="just_hit" from="Health" to="Movement" method="_on_health_just_hit"]
 [connection signal="just_hit" from="Health" to="Movement" method="_on_hit_received"]
 [connection signal="finish_hit" from="Hitbox" to="." method="_on_hitbox_finish_hit"]
 [connection signal="finish_hit" from="Hitbox" to="Health" method="_on_hitbox_finish_hit"]
