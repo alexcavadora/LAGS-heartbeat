@@ -4,16 +4,12 @@ var damage = 0
 signal finish_hit()
 @onready var enemy = $".."
 
-func _physics_process(_delta: float) -> void:
-	if is_hurting == true and !get_parent().is_class("Eye"):
-		damage = get_parent().linear_velocity.length()
-
 func hurting(state):
 	is_hurting = state
 	monitoring = state
 
 func hurt_timer(time):
-	time = min(1.5, time)
+	time = min(2, time)
 	#print(time)
 	if !is_hurting:
 		hurting(true)
@@ -23,6 +19,8 @@ func hurt_timer(time):
 	
 
 func _on_body_entered(body: RigidBody3D) -> void:
+	if is_hurting == true and !enemy.is_class("Eye"):
+		damage = (enemy.linear_velocity - body.linear_velocity).length()
 	if body.is_in_group("enemy") and damage > 0:
 		body.health.hit(damage)
 		body.hitbox.hurt_timer(damage)

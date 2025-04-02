@@ -25,7 +25,7 @@ func _physics_process(delta: float) -> void:
 
 
 func get_pulled(delta):
-	var exceed = min (distance - string_max_distance, string_max_distance * 1.5)
+	var exceed = min (distance - string_max_distance, string_max_distance)
 	var direction = to_target.normalized()
 	var force = direction * exceed * s_force * -1.0
 	var velocity = Vector3(linear_velocity.x, 0, linear_velocity.z)

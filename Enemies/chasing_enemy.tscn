@@ -5,12 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://c700l20getk" path="res://Components/hitbox.tscn" id="3_dljoa"]
 [ext_resource type="PackedScene" uid="uid://bwle4a3xvat5g" path="res://Components/movement.tscn" id="4_dgrtn"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_thj6v"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_5q8ye"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kc5n5"]
 albedo_color = Color(0.794902, 0.432133, 0, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_5v0v4"]
+[sub_resource type="SphereMesh" id="SphereMesh_5q8ye"]
 material = SubResource("StandardMaterial3D_kc5n5")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_0bmwx"]
@@ -55,17 +55,21 @@ material = SubResource("StandardMaterial3D_xbarb")
 radius = 0.1
 height = 0.05
 
-[node name="Enemy" type="RigidBody3D"]
+[node name="Chaser" type="RigidBody3D" groups=["enemy"]]
 collision_layer = 7
 collision_mask = 7
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 3.0
 script = ExtResource("1_5q8ye")
 metadata/_custom_type_script = "uid://chx5k8fykuvl5"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_thj6v")
+shape = SubResource("SphereShape3D_5q8ye")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_5v0v4")
+mesh = SubResource("SphereMesh_5q8ye")
 
 [node name="Health" parent="." instance=ExtResource("2_wb176")]
 health = 30
@@ -117,11 +121,12 @@ process_material = SubResource("ParticleProcessMaterial_wlnk3")
 draw_pass_1 = SubResource("SphereMesh_pm8q8")
 
 [node name="Movement" parent="." instance=ExtResource("4_dgrtn")]
-speed = 10.0
+speed = 30.0
 
 [connection signal="just_hit" from="Health" to="." method="_on_health_just_hit"]
-[connection signal="just_hit" from="Health" to="Movement" method="_on_health_just_hit"]
 [connection signal="just_hit" from="Health" to="Movement" method="_on_hit_received"]
 [connection signal="finish_hit" from="Hitbox" to="." method="_on_hitbox_finish_hit"]
 [connection signal="finish_hit" from="Hitbox" to="Health" method="_on_hitbox_finish_hit"]
 [connection signal="finish_hit" from="Hitbox" to="Movement" method="_on_hit_ended"]
+
+[editable path="Hitbox"]

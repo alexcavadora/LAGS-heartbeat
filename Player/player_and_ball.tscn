@@ -39,6 +39,8 @@ mesh = SubResource("CapsuleMesh_tj5lm")
 
 [node name="Pusher" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 4
+collision_mask = 4
 monitoring = false
 monitorable = false
 script = ExtResource("4_152px")

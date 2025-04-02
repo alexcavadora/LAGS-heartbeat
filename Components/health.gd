@@ -1,7 +1,7 @@
 extends Node
 @export var health = 10
 signal just_hit(health)
-
+signal dead()
 func hit(damage: float):
 	health = max(health - damage, 0)
 	if health < 0:
@@ -13,5 +13,6 @@ func hit(damage: float):
 
 func _on_hitbox_finish_hit() -> void:
 	if health == 0:
+		dead.emit()
 		#print("removing")
 		get_parent().queue_free()

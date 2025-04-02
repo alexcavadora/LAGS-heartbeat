@@ -3,12 +3,17 @@ extends Area3D
 @export var a_magnitude = 20.0
 @onready var cooldown: Timer = $Timer
 
-func _on_body_entered(body: Node3D) -> void:
-	var force = (body.global_position - global_position).normalized() * a_magnitude
-	body.apply_central_force(force)
+func _on_body_entered(body: Enemy) -> void:
+	
+	var force = (body.global_position - global_position).normalized() *a_magnitude* body.mass
+	print(force)
+	body.apply_central_impulse(force)
+	body.hitbox.hurt_timer(1)
 
 func _on_player_attack() -> void:
 	if cooldown.paused:
 		cooldown.start()
+		print(monitoring)
 		monitoring = true
+		await get_tree().create_timer(0.1).timeout
 		monitoring = false

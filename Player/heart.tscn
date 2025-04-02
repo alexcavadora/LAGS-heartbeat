@@ -22,7 +22,7 @@ radius = 0.75
 [node name="Heart" type="RigidBody3D"]
 top_level = true
 collision_layer = 2
-collision_mask = 0
+collision_mask = 128
 axis_lock_linear_y = true
 axis_lock_angular_x = true
 axis_lock_angular_z = true

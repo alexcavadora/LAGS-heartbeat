@@ -6,6 +6,7 @@ extends RigidBody3D
 @onready var particles: GPUParticles3D = $GPUParticles3D
 @onready var mesh: MeshInstance3D = $Mesh
 
+@onready var max_health = health.health
 var PlayerNode : Eye
 
 func _ready() -> void:
@@ -18,8 +19,10 @@ func active(state):
 	hitbox.hurting(state)
 
 
-func _on_health_just_hit(health: Variant) -> void:
-	enemy_health.value = health
+func _on_health_just_hit(life: Variant) -> void:
+	if life == max_health:
+		return
+	enemy_health.value = life
 	enemy_health.show()
 	particles.emitting = true
 	if enemy_health.value == 0:

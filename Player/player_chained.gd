@@ -56,6 +56,12 @@ func _physics_process(delta):
 		cooldown = min(cooldown + c_regen_speed, c_max)
 	#print(cooldown)
 	move_and_slide()
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		
+		if collider is RigidBody3D:
+			collider.apply_central_impulse(-collision.get_normal()* collider.mass/2)
 
 func pull_heart(delta):
 	var to_corazon = corazon.global_position - center.global_position
@@ -68,7 +74,7 @@ func pull_heart(delta):
 
 func get_pulled(delta):
 	var to_player = center.global_position - corazon.global_position
-	var distance = to_player.length()
+	var distance = min(to_player.length(), s_max_distance * 1.2)
 
 	if distance > s_max_distance:
 		var exceed = distance - s_max_distance
@@ -76,8 +82,8 @@ func get_pulled(delta):
 		var force = direction * exceed * s_force * -1.0
 		var horizontal_velocity = Vector3(velocity.x, 0, velocity.z)
 		force -= horizontal_velocity * s_damping
-		velocity.x += force.x * delta
-		velocity.z += force.z * delta
+		velocity.x = min(velocity.x + force.x * delta, force.x * 0.04)
+		velocity.z = min(velocity.z + force.z * delta, force.z * 0.04)
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_pressed("pull_spring"):
