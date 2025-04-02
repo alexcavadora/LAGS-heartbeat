@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c7ry2e1o13obe"]
 
-[ext_resource type="Script" uid="uid://cwphfsyk6rera" path="res://look_at.gd" id="1_37kl0"]
+[ext_resource type="Script" uid="uid://cwphfsyk6rera" path="res://trash/look_at.gd" id="1_37kl0"]
 
 [node name="Node2D" type="Node2D"]
 

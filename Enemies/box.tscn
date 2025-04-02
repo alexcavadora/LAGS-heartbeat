@@ -1,0 +1,120 @@
+[gd_scene load_steps=13 format=3 uid="uid://3qevbhnxt5xg"]
+
+[ext_resource type="PackedScene" uid="uid://2rx00tnl0vje" path="res://Components/health.tscn" id="1_7ushe"]
+[ext_resource type="Script" uid="uid://chx5k8fykuvl5" path="res://Enemies/enemy.gd" id="1_xbarb"]
+[ext_resource type="PackedScene" uid="uid://c700l20getk" path="res://Components/hitbox.tscn" id="2_5gsve"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6q36a"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c2igh"]
+albedo_color = Color(0.439524, 0.703549, 0.789877, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_c2igh"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xbarb"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xbarb"]
+bg_color = Color(0.84, 0.84, 0.84, 1)
+border_color = Color(0.91, 0.91, 0.91, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kc5n5"]
+bg_color = Color(0.79, 0.1264, 0.1264, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 12
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xbarb"]
+emission_shape_scale = Vector3(0.5, 0.5, 0.5)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+inherit_velocity_ratio = 0.609
+spread = 127.952
+turbulence_noise_scale = 5.405
+turbulence_noise_speed_random = 2.9
+turbulence_influence_max = 0.151
+turbulence_initial_displacement_min = 6.4
+turbulence_initial_displacement_max = 6.4
+collision_mode = 1
+collision_friction = 0.05
+collision_bounce = 0.35
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xbarb"]
+albedo_color = Color(1, 0.826865, 0.348468, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_kc5n5"]
+material = SubResource("StandardMaterial3D_xbarb")
+radius = 0.1
+height = 0.05
+
+[node name="Box" type="RigidBody3D" groups=["enemy"]]
+collision_layer = 7
+collision_mask = 7
+mass = 0.5
+script = ExtResource("1_xbarb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_6q36a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_c2igh")
+mesh = SubResource("BoxMesh_c2igh")
+
+[node name="Health" parent="." instance=ExtResource("1_7ushe")]
+health = 30
+
+[node name="Hitbox" parent="." instance=ExtResource("2_5gsve")]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.730542, 0.0164162)
+billboard = 1
+texture = SubResource("ViewportTexture_xbarb")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(100, 75)
+
+[node name="Control" type="Control" parent="SubViewport"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -20.0
+offset_right = -10.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="Enemy_health" type="ProgressBar" parent="SubViewport/Control"]
+visible = false
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 15.0
+theme_override_styles/background = SubResource("StyleBoxFlat_xbarb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_kc5n5")
+show_percentage = false
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0133696, -0.00199164, 0.00657907)
+emitting = false
+amount = 15
+one_shot = true
+explosiveness = 0.6
+fixed_fps = 60
+collision_base_size = 0.1
+process_material = SubResource("ParticleProcessMaterial_xbarb")
+draw_pass_1 = SubResource("SphereMesh_kc5n5")
+
+[connection signal="just_hit" from="Health" to="." method="_on_health_just_hit"]
+[connection signal="finish_hit" from="Hitbox" to="." method="_on_hitbox_finish_hit"]
+[connection signal="finish_hit" from="Hitbox" to="Health" method="_on_hitbox_finish_hit"]
