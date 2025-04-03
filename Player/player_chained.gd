@@ -82,14 +82,14 @@ func get_pulled(delta):
 		var force = direction * exceed * s_force * -1.0
 		var horizontal_velocity = Vector3(velocity.x, 0, velocity.z)
 		force -= horizontal_velocity * s_damping
-		velocity.x = min(velocity.x + force.x * delta, force.x * 0.1)
-		velocity.z = min(velocity.z + force.z * delta, force.z * 0.1)
+		velocity.x = min(velocity.x + force.x * delta, force.x * 0.07)
+		velocity.z = min(velocity.z + force.z * delta, force.z * 0.07)
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_pressed("pull_spring"):
 		#print("pulling")
-		is_pulling = true
 		corazon.pulled = true
+		is_pulling = true
 	elif Input.is_action_just_released("pull_spring"):
 		is_pulling = false
 		corazon.pulled = false

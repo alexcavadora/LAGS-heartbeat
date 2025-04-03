@@ -4,4 +4,3 @@ extends Control
 
 func _process(_rdelta: float) -> void:
 	cooldown.value = player.cooldown
-	

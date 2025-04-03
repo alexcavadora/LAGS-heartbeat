@@ -72,7 +72,7 @@ shape = SubResource("SphereShape3D_5q8ye")
 mesh = SubResource("SphereMesh_5q8ye")
 
 [node name="Health" parent="." instance=ExtResource("2_wb176")]
-health = 30
+health = 60
 
 [node name="Hitbox" parent="." instance=ExtResource("3_dljoa")]
 
@@ -121,7 +121,7 @@ process_material = SubResource("ParticleProcessMaterial_wlnk3")
 draw_pass_1 = SubResource("SphereMesh_pm8q8")
 
 [node name="Movement" parent="." instance=ExtResource("4_dgrtn")]
-speed = 30.0
+speed = 35.0
 
 [connection signal="just_hit" from="Health" to="." method="_on_health_just_hit"]
 [connection signal="just_hit" from="Health" to="Movement" method="_on_hit_received"]

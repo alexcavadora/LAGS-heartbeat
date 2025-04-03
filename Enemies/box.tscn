@@ -74,7 +74,7 @@ shape = SubResource("BoxShape3D_6q36a")
 mesh = SubResource("BoxMesh_ijwdr")
 
 [node name="Health" parent="." instance=ExtResource("1_7ushe")]
-health = 30
+health = 50
 
 [node name="Hitbox" parent="." instance=ExtResource("2_5gsve")]
 collision_priority = 0.5
