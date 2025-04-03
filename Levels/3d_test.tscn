@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bbls7m2phko18"]
+[gd_scene load_steps=18 format=3 uid="uid://bbls7m2phko18"]
 
 [ext_resource type="PackedScene" uid="uid://bx0msm0hagnj0" path="res://Player/player.tscn" id="1_6q36a"]
 [ext_resource type="Script" uid="uid://bydtmfnv5gj6u" path="res://Levels/level.gd" id="1_c2igh"]
@@ -57,6 +57,19 @@ corner_radius_bottom_left = 20
 [sub_resource type="BoxShape3D" id="BoxShape3D_kgbxp"]
 size = Vector3(1, 3, 30)
 
+[sub_resource type="Gradient" id="Gradient_gs7ah"]
+offsets = PackedFloat32Array(0, 0.343434, 0.686869, 1)
+colors = PackedColorArray(0, 0.188235, 0.231373, 1, 0.5, 0.235, 0.235, 1, 1, 0.807843, 0.588235, 1, 0.945098, 0.94902, 0.854902, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3on5e"]
+gradient = SubResource("Gradient_gs7ah")
+
+[sub_resource type="Environment" id="Environment_53w0m"]
+background_mode = 1
+volumetric_fog_enabled = true
+adjustment_enabled = true
+adjustment_color_correction = SubResource("GradientTexture1D_3on5e")
+
 [node name="test_level" type="Node3D"]
 script = ExtResource("1_c2igh")
 
@@ -70,9 +83,6 @@ c_regen_speed = 0.1
 [node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 8, 7.33)
 fov = 54.7
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Player/Camera3D"]
-light_energy = 0.5
 
 [node name="UI" type="Control" parent="Player/Camera3D"]
 layout_mode = 3
@@ -2876,3 +2886,13 @@ collision_mask = 135
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Wall4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.8577, 1, 0)
 shape = SubResource("BoxShape3D_kgbxp")
+
+[node name="Post-Process" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Post-Process"]
+environment = SubResource("Environment_53w0m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Post-Process"]
+transform = Transform3D(1, 0, 0, 0, 0.858065, 0.513541, 0, -0.513541, 0.858065, 0, 7.20663, 0)
+light_energy = 0.5
+shadow_enabled = true
