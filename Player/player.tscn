@@ -55,3 +55,4 @@ wait_time = 0.5
 [connection signal="attack" from="." to="Pusher" method="_on_player_attack"]
 [connection signal="body_entered" from="Pusher" to="." method="_on_pusher_body_entered"]
 [connection signal="body_entered" from="Pusher" to="Pusher" method="_on_body_entered"]
+[connection signal="timeout" from="Pusher/Timer" to="Pusher" method="_on_timer_timeout"]

@@ -47,6 +47,7 @@ func _physics_process(delta):
 	if !is_pulling or cooldown <= 0:
 		p_current_pull_force = 0.0
 		p_current_speed = p_move_speed
+		corazon.pulled = false
 	elif is_pulling and cooldown > 0:
 		cooldown = max(cooldown -c_drain_speed, 0)
 		p_current_speed = p_move_speed / 2
@@ -61,7 +62,7 @@ func _physics_process(delta):
 		var collider = collision.get_collider()
 		
 		if collider is RigidBody3D:
-			collider.apply_central_impulse(-collision.get_normal()* collider.mass/2)
+			collider.apply_central_impulse(-collision.get_normal()* collider.mass)
 
 func pull_heart(delta):
 	var to_corazon = corazon.global_position - center.global_position

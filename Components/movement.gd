@@ -32,4 +32,5 @@ func _on_hit_ended():
 
 
 func _on_dead() -> void:
-	enemy.set_collision_layer_value(1,false)
+	enemy.set_collision_mask_value(1, false)
+	enemy.set_collision_mask_value(2, false)

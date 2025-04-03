@@ -10,6 +10,7 @@ extends RigidBody3D
 var to_target 
 var distance 
 var pulled = false
+
 func _physics_process(delta: float) -> void:
 	if linear_velocity.x == 0 and linear_velocity.z == 0:
 		active(false)

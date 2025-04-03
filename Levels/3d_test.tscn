@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://bbls7m2phko18"]
 
-[ext_resource type="PackedScene" uid="uid://bx0msm0hagnj0" path="res://Player/players.tscn" id="1_6q36a"]
+[ext_resource type="PackedScene" uid="uid://bx0msm0hagnj0" path="res://Player/player.tscn" id="1_6q36a"]
 [ext_resource type="Script" uid="uid://bydtmfnv5gj6u" path="res://Levels/level.gd" id="1_c2igh"]
 [ext_resource type="Script" uid="uid://bdd3erwlvffxt" path="res://UI/ui.gd" id="2_c2igh"]
 [ext_resource type="PackedScene" uid="uid://3qevbhnxt5xg" path="res://Enemies/box.tscn" id="4_kgbxp"]
@@ -39,6 +39,7 @@ script = ExtResource("1_c2igh")
 unique_name_in_owner = true
 axis_lock_linear_y = true
 corazon = NodePath("Heart")
+s_max_distance = 7.0
 c_regen_speed = 0.1
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
@@ -92,17 +93,8 @@ text = "Cooldown"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.807, 0.75, -0.0687333)
 mass = 10.0
 follow = NodePath("..")
-string_max_distance = 9.0
 s_force = 1000.0
-p_deceleration = 20.0
-
-[node name="Heart2" parent="Player" node_paths=PackedStringArray("follow") instance=ExtResource("4_usu0y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.27648, 0.75, 1.14792)
-mass = 10.0
-follow = NodePath("../Heart")
-string_max_distance = 3.0
-s_force = 500.0
-p_deceleration = 65.0
+p_deceleration = 45.0
 
 [node name="tilesito" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.560677, 0, 0)
@@ -2710,6 +2702,7 @@ size = Vector3(29.2659, 1.11591, 30.2412)
 
 [node name="Box" parent="." instance=ExtResource("4_kgbxp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.41, 0.5, -3.453)
+gravity_scale = 1.0
 
 [node name="Box2" parent="." instance=ExtResource("4_kgbxp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.78051, 0.5, -0.0389771)
@@ -2746,6 +2739,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.55297, 0.5, -3.59737)
 
 [node name="Wall" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.902096, -0.0341563, 0.00287056)
+visible = false
 collision_layer = 135
 collision_mask = 135
 
@@ -2755,6 +2749,7 @@ shape = SubResource("BoxShape3D_kgbxp")
 
 [node name="Wall2" type="StaticBody3D" parent="."]
 transform = Transform3D(-0.00254174, -0.000105, -0.999997, -0.00169059, 0.999999, -0.000100717, 0.999995, 0.00169033, -0.00254191, 0, 0, -2.59529)
+visible = false
 collision_layer = 135
 collision_mask = 135
 
@@ -2764,6 +2759,7 @@ shape = SubResource("BoxShape3D_kgbxp")
 
 [node name="Wall3" type="StaticBody3D" parent="."]
 transform = Transform3D(-0.999995, -0.00169033, 0.00254196, -0.00169059, 0.999999, -0.000100717, -0.00254178, -0.000105, -0.999997, 0.909363, 0, 0.38668)
+visible = false
 collision_layer = 135
 collision_mask = 135
 
@@ -2773,6 +2769,7 @@ shape = SubResource("BoxShape3D_kgbxp")
 
 [node name="Wall4" type="StaticBody3D" parent="."]
 transform = Transform3D(0.00254183, 0.000105, 0.999997, -0.00169059, 0.999999, -0.000100717, -0.999995, -0.00169033, 0.002542, 0, 0, 2.74571)
+visible = false
 collision_layer = 135
 collision_mask = 135
 
