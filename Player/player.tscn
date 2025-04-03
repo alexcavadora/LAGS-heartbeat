@@ -32,6 +32,7 @@ material_override = SubResource("StandardMaterial3D_1x3f0")
 mesh = SubResource("CapsuleMesh_tj5lm")
 
 [node name="Health" parent="." instance=ExtResource("3_6vxin")]
+health = 100
 
 [node name="Attack" type="Node" parent="."]
 
