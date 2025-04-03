@@ -20,7 +20,7 @@ func hurt_timer(time):
 
 func _on_body_entered(body: RigidBody3D) -> void:
 	if is_hurting == true and !enemy.is_class("Eye"):
-		damage = (enemy.linear_velocity - body.linear_velocity).length()
+		damage = max((enemy.linear_velocity - body.linear_velocity).length(),enemy.linear_velocity.length())
 	if body.is_in_group("enemy") and damage > 0:
 		body.health.hit(damage)
 		body.hitbox.hurt_timer(damage)

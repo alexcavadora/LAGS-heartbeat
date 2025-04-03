@@ -4,14 +4,13 @@ extends Area3D
 @onready var cooldown: Timer = $Timer
 
 func _on_body_entered(body: Enemy) -> void:
-	
 	var force = (body.global_position - global_position).normalized() *a_magnitude* body.mass
-	print(force)
+	#print(force)
 	body.apply_central_impulse(force)
 	body.hitbox.hurt_timer(1)
 
 func _on_player_attack() -> void:
-	if cooldown.paused:
+	if cooldown.time_left == 0:
 		cooldown.start()
 		print(monitoring)
 		monitoring = true
