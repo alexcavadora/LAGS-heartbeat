@@ -37,7 +37,6 @@ shape = SubResource("CylinderShape3D_ecjjo")
 mesh = SubResource("CylinderMesh_qq1u4")
 
 [node name="Hitbox" parent="." instance=ExtResource("1_3eagn")]
-collision_priority = 2.0
 
 [node name="CollisionShape3D" parent="Hitbox" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00305176, 0)
