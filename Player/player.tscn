@@ -615,7 +615,7 @@ visible = false
 shape = SubResource("CapsuleShape3D_1gj5y")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.744904, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 material_override = SubResource("StandardMaterial3D_1x3f0")
 mesh = SubResource("SphereMesh_btcbx")
 
@@ -642,7 +642,7 @@ debug_color = Color(2.62313e-06, 0.643121, 0.205187, 0.733333)
 wait_time = 0.5
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0.966383, 0.494472)
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0.7, 0.494)
 pixel_size = 0.006
 shaded = true
 texture_filter = 2
