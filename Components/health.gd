@@ -13,6 +13,7 @@ func hit(damage: float):
 		return
 	elif IE_frames and hit_ready:
 		hit_ready = false
+		
 		timer.start(attack_cooldown)
 	
 	health = max(health - damage, 0)
