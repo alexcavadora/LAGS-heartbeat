@@ -5,17 +5,14 @@ extends Control
 @onready var hp_bar: ProgressBar = $Panel/Health 
 
 @export var update_interval: float = 0.05  # How often to update the UI (in seconds)
-@export var speed_unit: String = "m/s"     # The unit to display for speed
+@export var speed_unit: String = "m/s" 
 
 var _elapsed_time: float = 0
 
 func _ready() -> void:
 	_update_ui_colors()
 
-
-
 func _update_ui_colors() -> void:
-
 	if cooldown_bar.value < cooldown_bar.max_value * 0.25:
 		cooldown_bar.modulate = Color(1, 0.3, 0.3) 
 	else:

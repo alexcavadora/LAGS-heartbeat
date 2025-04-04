@@ -93,6 +93,7 @@ func _process_chain_physics(delta: float) -> void:
 	
 	if !is_pulling and cooldown < c_max:
 		cooldown = min(cooldown + c_regen_speed, c_max)
+		updated_energy.emit(cooldown)
 
 func _pull_heart(delta: float) -> void:
 	var to_corazon = corazon.global_position - center.global_position

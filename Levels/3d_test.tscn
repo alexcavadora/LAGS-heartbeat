@@ -106,6 +106,7 @@ grow_horizontal = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_mac0m")
 theme_override_styles/fill = SubResource("StyleBoxFlat_5o3kl")
 max_value = 2.0
+value = 2.0
 show_percentage = false
 
 [node name="Label" type="Label" parent="Player/Camera3D/UI/Cooldown"]
@@ -397,3 +398,6 @@ mesh = ExtResource("7_3on5e")
 
 [node name="Chaser2" parent="." instance=ExtResource("8_53w0m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2131, 1, -2.13304)
+
+[connection signal="updated_energy" from="Player" to="Player/Camera3D/UI" method="_on_player_cooldown_changed"]
+[connection signal="updated_health" from="Player" to="Player/Camera3D/UI" method="_on_player_cooldown_changed"]
