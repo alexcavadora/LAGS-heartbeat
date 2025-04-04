@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://3qevbhnxt5xg" path="res://Enemies/box.tscn" id="4_kgbxp"]
 [ext_resource type="PackedScene" uid="uid://buiitvt4ugobf" path="res://Player/heart.tscn" id="4_usu0y"]
 [ext_resource type="PackedScene" uid="uid://dwhxov4hp4hhg" path="res://Enemies/chasing_enemy.tscn" id="6_gs7ah"]
-[ext_resource type="ArrayMesh" uid="uid://b2wsmqyfygn3e" path="res://assets/Hexagons/untitled.obj" id="7_3on5e"]
+[ext_resource type="ArrayMesh" uid="uid://bedr3ao35l02s" path="res://assets/Hexagons/untitled.obj" id="7_3on5e"]
 [ext_resource type="PackedScene" uid="uid://tf7en6eqi5no" path="res://Enemies/Embrio.tscn" id="8_53w0m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mac0m"]
@@ -75,12 +75,11 @@ script = ExtResource("1_c2igh")
 
 [node name="Player" parent="." node_paths=PackedStringArray("corazon") groups=["Player"] instance=ExtResource("1_6q36a")]
 unique_name_in_owner = true
-axis_lock_linear_y = true
 corazon = NodePath("Heart")
 c_regen_speed = 0.1
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 8, 7.33)
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 8, 7.85)
 fov = 54.7
 
 [node name="UI" type="Control" parent="Player/Camera3D"]
@@ -162,14 +161,6 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Health"
 horizontal_alignment = 1
-
-[node name="SPEED" type="Label" parent="Player/Camera3D/UI"]
-layout_mode = 0
-offset_right = 278.0
-offset_bottom = 147.0
-text = "X
-Z
-"
 
 [node name="Heart" parent="Player" node_paths=PackedStringArray("follow") instance=ExtResource("4_usu0y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.91436, 0.75, 5.4977)
