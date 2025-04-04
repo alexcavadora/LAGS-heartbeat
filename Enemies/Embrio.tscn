@@ -1,16 +1,16 @@
-[gd_scene load_steps=20 format=3 uid="uid://tf7en6eqi5no"]
+[gd_scene load_steps=19 format=3 uid="uid://tf7en6eqi5no"]
 
 [ext_resource type="Script" uid="uid://chx5k8fykuvl5" path="res://Enemies/enemy.gd" id="1_0um8n"]
 [ext_resource type="PackedScene" uid="uid://2rx00tnl0vje" path="res://Components/health.tscn" id="2_d02l1"]
 [ext_resource type="PackedScene" uid="uid://c700l20getk" path="res://Components/hitbox.tscn" id="3_5sfr7"]
+[ext_resource type="Material" uid="uid://jbpqhrul7rwc" path="res://particles/DeathParticles.tres" id="4_0um8n"]
 [ext_resource type="PackedScene" uid="uid://bwle4a3xvat5g" path="res://Components/movement.tscn" id="4_wtllu"]
 [ext_resource type="PackedScene" uid="uid://d2j44bib6ji13" path="res://Components/attacker.tscn" id="5_m25qf"]
-[ext_resource type="Texture2D" uid="uid://duxqkdia4cfdw" path="res://assets/Enemies/Mantis/Mantis_Attack.png" id="6_3d5lj"]
-[ext_resource type="Texture2D" uid="uid://bo0l7j35oxe4s" path="res://assets/Enemies/Mantis/Mantis_Attack_1.png" id="7_yo47y"]
-[ext_resource type="Texture2D" uid="uid://bqe56h6h1jf75" path="res://assets/Enemies/Mantis/Mantis_Muerte.png" id="8_3vj60"]
-[ext_resource type="Texture2D" uid="uid://pbawxpiki8ny" path="res://assets/Enemies/Mantis/Idle_Mantis_1.png" id="9_qykd3"]
-[ext_resource type="Texture2D" uid="uid://bmkdk2pri57bc" path="res://assets/Enemies/Mantis/Idle_Mantis_2.png" id="10_xmx7b"]
-[ext_resource type="Texture2D" uid="uid://dm06dxvfwbwk7" path="res://assets/Enemies/Mantis/Mantis.png" id="11_wccxq"]
+[ext_resource type="Texture2D" uid="uid://dh23vatylvqcu" path="res://assets/Enemies/embryo/embryo_attack_3.png" id="6_hp0sm"]
+[ext_resource type="Texture2D" uid="uid://bygdghqxkh0y" path="res://assets/Enemies/embryo/embryo_attack_4.png" id="7_0um8n"]
+[ext_resource type="Texture2D" uid="uid://hgrjdqo77srr" path="res://assets/Enemies/embryo/embryo_attack.png" id="8_d02l1"]
+[ext_resource type="Texture2D" uid="uid://xi8wksskxlgx" path="res://assets/Enemies/embryo/embryo_idle.png" id="9_5sfr7"]
+[ext_resource type="Texture2D" uid="uid://giiala4drxpf" path="res://assets/Enemies/embryo/embryo_stunned.png" id="10_wtllu"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5q8ye"]
 
@@ -30,21 +30,6 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 corner_detail = 12
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wlnk3"]
-emission_shape_scale = Vector3(0.5, 0.5, 0.5)
-emission_shape = 3
-emission_box_extents = Vector3(1, 1, 1)
-inherit_velocity_ratio = 0.609
-spread = 127.952
-turbulence_noise_scale = 5.405
-turbulence_noise_speed_random = 2.9
-turbulence_influence_max = 0.151
-turbulence_initial_displacement_min = 6.4
-turbulence_initial_displacement_max = 6.4
-collision_mode = 1
-collision_friction = 0.05
-collision_bounce = 0.35
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xbarb"]
 albedo_color = Color(1, 0.826865, 0.348468, 1)
 
@@ -53,14 +38,14 @@ material = SubResource("StandardMaterial3D_xbarb")
 radius = 0.1
 height = 0.05
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_dgrtn"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_m25qf"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_3d5lj")
+"texture": ExtResource("6_hp0sm")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_yo47y")
+"texture": ExtResource("7_0um8n")
 }],
 "loop": false,
 "name": &"Attack",
@@ -68,7 +53,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_3vj60")
+"texture": ExtResource("8_d02l1")
 }],
 "loop": true,
 "name": &"Die",
@@ -76,10 +61,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("9_qykd3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_xmx7b")
+"texture": ExtResource("9_5sfr7")
 }],
 "loop": true,
 "name": &"Moving",
@@ -87,7 +69,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("11_wccxq")
+"texture": ExtResource("10_wtllu")
 }],
 "loop": true,
 "name": &"Stun",
@@ -145,12 +127,13 @@ show_percentage = false
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0133696, -0.00199164, 0.00657907)
 emitting = false
-amount = 15
+amount = 30
+lifetime = 2.0
 one_shot = true
 explosiveness = 0.6
 fixed_fps = 60
 collision_base_size = 0.1
-process_material = SubResource("ParticleProcessMaterial_wlnk3")
+process_material = ExtResource("4_0um8n")
 draw_pass_1 = SubResource("SphereMesh_pm8q8")
 
 [node name="Movement" parent="." instance=ExtResource("4_wtllu")]
@@ -159,13 +142,13 @@ speed = 35.0
 [node name="Attacker" parent="." instance=ExtResource("5_m25qf")]
 
 [node name="AnimatedSprite" type="AnimatedSprite3D" parent="."]
-pixel_size = 0.0025
+pixel_size = 0.001
 billboard = 1
 shaded = true
 alpha_cut = 1
 texture_filter = 2
-sprite_frames = SubResource("SpriteFrames_dgrtn")
-animation = &"Stun"
+sprite_frames = SubResource("SpriteFrames_m25qf")
+animation = &"Attack"
 autoplay = "Moving"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]

@@ -17,6 +17,7 @@ var distance = 0
 @export var p_pull_acceleration: float = 2000
 var p_current_pull_force: float = 0.0 
 var p_current_speed = p_move_speed
+@onready var pivot: Node3D = $pivot
 
 #cooldown variables
 @export var c_max : float = 2
@@ -28,16 +29,21 @@ var cooldown = c_max
 signal attack()
 
 func _physics_process(delta):
+	
+	pivot.global_position = global_position
 	to_player = center.global_position - corazon.global_position
 	distance = to_player.length()
 	# movement
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction = Vector3(input_dir.x, 0, input_dir.y).normalized()
+	
 	if direction:
+		pivot.look_at(-direction*20000)
+		var final_dir = direction
 		if distance > s_max_distance:
-			direction = -to_player.normalized()
-		velocity.x = move_toward(velocity.x, direction.x * p_current_speed, p_acceleration * delta)
-		velocity.z = move_toward(velocity.z, direction.z * p_current_speed, p_acceleration * delta)
+			final_dir = -to_player.normalized()
+		velocity.x = move_toward(velocity.x, final_dir.x * p_current_speed, p_acceleration * delta)
+		velocity.z = move_toward(velocity.z, final_dir.z * p_current_speed, p_acceleration * delta)
 	else:
 		velocity.x = move_toward(velocity.x, 0, p_deceleration * delta)
 		velocity.z = move_toward(velocity.z, 0, p_deceleration * delta)

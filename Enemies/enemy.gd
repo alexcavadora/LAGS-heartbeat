@@ -5,6 +5,7 @@ extends RigidBody3D
 @onready var enemy_health: ProgressBar = $SubViewport/Control/Enemy_health
 @onready var particles: GPUParticles3D = $GPUParticles3D
 @onready var animated_sprite : AnimatedSprite3D
+@export var attacker: Attacker
 
 @onready var max_health = health.health
 var PlayerNode : Eye
@@ -17,8 +18,8 @@ func _ready() -> void:
 	enemy_health.value = health.health
 
 func active(state):
-	#print(hitbox.monitoring)
 	hitbox.hurting(state)
+	
 
 
 func _on_health_just_hit(life: Variant) -> void:
@@ -32,12 +33,15 @@ func _on_health_just_hit(life: Variant) -> void:
 		enemy_health.hide()
 	if animated_sprite != null:
 		animated_sprite.play("Stun")
-	
-	
-	
+		#print(hitbox.monitoring)
+	if attacker:
+		attacker.monitoring = false
 
 
 func _on_hitbox_finish_hit() -> void:
 	if animated_sprite != null:
 		animated_sprite.play("Moving")
 	particles.emitting = false
+		#print(hitbox.monitoring)
+	if attacker:
+		attacker.monitoring = true
