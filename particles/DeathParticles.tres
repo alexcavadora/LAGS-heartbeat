@@ -1,0 +1,17 @@
+[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://jbpqhrul7rwc"]
+
+[resource]
+emission_shape_scale = Vector3(0.5, 0.5, 0.5)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+inherit_velocity_ratio = 0.609
+spread = 127.952
+initial_velocity_max = 5.0
+turbulence_noise_scale = 5.405
+turbulence_noise_speed_random = 2.9
+turbulence_influence_max = 0.151
+turbulence_initial_displacement_min = 6.4
+turbulence_initial_displacement_max = 6.4
+collision_mode = 1
+collision_friction = 0.05
+collision_bounce = 0.35
