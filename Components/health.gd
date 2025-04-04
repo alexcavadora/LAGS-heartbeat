@@ -13,23 +13,15 @@ func hit(damage: float):
 		return
 	elif IE_frames and hit_ready:
 		hit_ready = false
-		
 		timer.start(attack_cooldown)
 	
 	health = max(health - damage, 0)
-	if health < 0:
-		health = 0
 	just_hit.emit(health)
-	# print(get_parent(), "hit for: ", damage, "health: ", health)
-	# print(health)
-	# print(health)
-
+	
 func _on_hitbox_finish_hit() -> void:
 	if health == 0:
 		dead.emit()
-		#print("removing")
 		get_parent().queue_free()
-
 
 func _on_timer_timeout() -> void:
 	hit_ready = true
