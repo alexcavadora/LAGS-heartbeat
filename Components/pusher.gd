@@ -15,7 +15,7 @@ func _on_player_attack() -> void:
 	if attack_ready:
 		attack_ready = false
 		cooldown.start()
-		print(monitoring)
+		#print(monitoring)
 		monitoring = true
 		await get_tree().create_timer(0.1).timeout
 		monitoring = false

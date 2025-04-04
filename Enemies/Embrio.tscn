@@ -1,16 +1,16 @@
-[gd_scene load_steps=20 format=3 uid="uid://dwhxov4hp4hhg"]
+[gd_scene load_steps=20 format=3 uid="uid://tf7en6eqi5no"]
 
-[ext_resource type="Script" uid="uid://chx5k8fykuvl5" path="res://Enemies/enemy.gd" id="1_5q8ye"]
-[ext_resource type="PackedScene" uid="uid://2rx00tnl0vje" path="res://Components/health.tscn" id="2_wb176"]
-[ext_resource type="PackedScene" uid="uid://c700l20getk" path="res://Components/hitbox.tscn" id="3_dljoa"]
-[ext_resource type="PackedScene" uid="uid://bwle4a3xvat5g" path="res://Components/movement.tscn" id="4_dgrtn"]
-[ext_resource type="PackedScene" uid="uid://d2j44bib6ji13" path="res://Components/attacker.tscn" id="5_wb176"]
-[ext_resource type="Texture2D" uid="uid://duxqkdia4cfdw" path="res://assets/Enemies/Mantis/Mantis_Attack.png" id="6_0bmwx"]
-[ext_resource type="Texture2D" uid="uid://pbawxpiki8ny" path="res://assets/Enemies/Mantis/Idle_Mantis_1.png" id="6_dljoa"]
-[ext_resource type="Texture2D" uid="uid://bmkdk2pri57bc" path="res://assets/Enemies/Mantis/Idle_Mantis_2.png" id="7_dgrtn"]
-[ext_resource type="Texture2D" uid="uid://bo0l7j35oxe4s" path="res://assets/Enemies/Mantis/Mantis_Attack_1.png" id="7_qa3c4"]
-[ext_resource type="Texture2D" uid="uid://bqe56h6h1jf75" path="res://assets/Enemies/Mantis/Mantis_Muerte.png" id="8_kq5jf"]
-[ext_resource type="Texture2D" uid="uid://dm06dxvfwbwk7" path="res://assets/Enemies/Mantis/Mantis.png" id="11_qa3c4"]
+[ext_resource type="Script" uid="uid://chx5k8fykuvl5" path="res://Enemies/enemy.gd" id="1_0um8n"]
+[ext_resource type="PackedScene" uid="uid://2rx00tnl0vje" path="res://Components/health.tscn" id="2_d02l1"]
+[ext_resource type="PackedScene" uid="uid://c700l20getk" path="res://Components/hitbox.tscn" id="3_5sfr7"]
+[ext_resource type="PackedScene" uid="uid://bwle4a3xvat5g" path="res://Components/movement.tscn" id="4_wtllu"]
+[ext_resource type="PackedScene" uid="uid://d2j44bib6ji13" path="res://Components/attacker.tscn" id="5_m25qf"]
+[ext_resource type="Texture2D" uid="uid://duxqkdia4cfdw" path="res://assets/Enemies/Mantis/Mantis_Attack.png" id="6_3d5lj"]
+[ext_resource type="Texture2D" uid="uid://bo0l7j35oxe4s" path="res://assets/Enemies/Mantis/Mantis_Attack_1.png" id="7_yo47y"]
+[ext_resource type="Texture2D" uid="uid://bqe56h6h1jf75" path="res://assets/Enemies/Mantis/Mantis_Muerte.png" id="8_3vj60"]
+[ext_resource type="Texture2D" uid="uid://pbawxpiki8ny" path="res://assets/Enemies/Mantis/Idle_Mantis_1.png" id="9_qykd3"]
+[ext_resource type="Texture2D" uid="uid://bmkdk2pri57bc" path="res://assets/Enemies/Mantis/Idle_Mantis_2.png" id="10_xmx7b"]
+[ext_resource type="Texture2D" uid="uid://dm06dxvfwbwk7" path="res://assets/Enemies/Mantis/Mantis.png" id="11_wccxq"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5q8ye"]
 
@@ -57,10 +57,10 @@ height = 0.05
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_0bmwx")
+"texture": ExtResource("6_3d5lj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_qa3c4")
+"texture": ExtResource("7_yo47y")
 }],
 "loop": false,
 "name": &"Attack",
@@ -68,7 +68,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_kq5jf")
+"texture": ExtResource("8_3vj60")
 }],
 "loop": true,
 "name": &"Die",
@@ -76,10 +76,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_dljoa")
+"texture": ExtResource("9_qykd3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_dgrtn")
+"texture": ExtResource("10_xmx7b")
 }],
 "loop": true,
 "name": &"Moving",
@@ -87,7 +87,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("11_qa3c4")
+"texture": ExtResource("11_wccxq")
 }],
 "loop": true,
 "name": &"Stun",
@@ -104,16 +104,16 @@ axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
 mass = 3.0
-script = ExtResource("1_5q8ye")
+script = ExtResource("1_0um8n")
 metadata/_custom_type_script = "uid://chx5k8fykuvl5"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_5q8ye")
 
-[node name="Health" parent="." instance=ExtResource("2_wb176")]
+[node name="Health" parent="." instance=ExtResource("2_d02l1")]
 health = 60
 
-[node name="Hitbox" parent="." instance=ExtResource("3_dljoa")]
+[node name="Hitbox" parent="." instance=ExtResource("3_5sfr7")]
 
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
@@ -153,10 +153,10 @@ collision_base_size = 0.1
 process_material = SubResource("ParticleProcessMaterial_wlnk3")
 draw_pass_1 = SubResource("SphereMesh_pm8q8")
 
-[node name="Movement" parent="." instance=ExtResource("4_dgrtn")]
+[node name="Movement" parent="." instance=ExtResource("4_wtllu")]
 speed = 35.0
 
-[node name="Attacker" parent="." instance=ExtResource("5_wb176")]
+[node name="Attacker" parent="." instance=ExtResource("5_m25qf")]
 
 [node name="AnimatedSprite" type="AnimatedSprite3D" parent="."]
 pixel_size = 0.0025

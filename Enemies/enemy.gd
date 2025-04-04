@@ -4,12 +4,14 @@ extends RigidBody3D
 @onready var hitbox: Area3D = $Hitbox
 @onready var enemy_health: ProgressBar = $SubViewport/Control/Enemy_health
 @onready var particles: GPUParticles3D = $GPUParticles3D
-@onready var mesh: MeshInstance3D = $Mesh
+@onready var animated_sprite : AnimatedSprite3D
 
 @onready var max_health = health.health
 var PlayerNode : Eye
 
 func _ready() -> void:
+	
+	animated_sprite = find_child("AnimatedSprite")
 	PlayerNode = get_tree().get_first_node_in_group("Player")
 	enemy_health.max_value = health.health
 	enemy_health.value = health.health
@@ -24,10 +26,18 @@ func _on_health_just_hit(life: Variant) -> void:
 		return
 	enemy_health.value = life
 	enemy_health.show()
+	particles.restart()
 	particles.emitting = true
 	if enemy_health.value == 0:
 		enemy_health.hide()
+	if animated_sprite != null:
+		animated_sprite.play("Stun")
+	
+	
+	
 
 
 func _on_hitbox_finish_hit() -> void:
+	if animated_sprite != null:
+		animated_sprite.play("Moving")
 	particles.emitting = false
