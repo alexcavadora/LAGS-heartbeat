@@ -74,7 +74,6 @@ script = ExtResource("1_s105c")
 
 [node name="Player" parent="." node_paths=PackedStringArray("corazon") groups=["Player"] instance=ExtResource("2_o2oq2")]
 unique_name_in_owner = true
-axis_lock_linear_y = true
 corazon = NodePath("Heart")
 c_regen_speed = 0.1
 
@@ -93,6 +92,22 @@ size_flags_horizontal = 6
 size_flags_vertical = 3
 script = ExtResource("3_hd1u5")
 
+[node name="Label" type="Label" parent="Player/Camera3D/UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -39.0
+offset_top = -1030.0
+offset_right = 39.0
+offset_bottom = -1007.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Energy"
+horizontal_alignment = 1
+
 [node name="Cooldown" type="ProgressBar" parent="Player/Camera3D/UI"]
 layout_mode = 1
 anchors_preset = 5
@@ -106,23 +121,8 @@ grow_horizontal = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_mac0m")
 theme_override_styles/fill = SubResource("StyleBoxFlat_5o3kl")
 max_value = 2.0
+value = 2.0
 show_percentage = false
-
-[node name="Label" type="Label" parent="Player/Camera3D/UI/Cooldown"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -39.0
-offset_top = 3.0
-offset_right = 39.0
-offset_bottom = 26.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Energy"
-horizontal_alignment = 1
 
 [node name="Panel" type="Panel" parent="Player/Camera3D/UI"]
 layout_mode = 1
@@ -136,6 +136,22 @@ offset_bottom = 1.0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_53w0m")
 
+[node name="Label" type="Label" parent="Player/Camera3D/UI/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -38.0
+offset_top = -38.0
+offset_right = 40.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Health"
+horizontal_alignment = 1
+
 [node name="Health" type="ProgressBar" parent="Player/Camera3D/UI/Panel"]
 layout_mode = 1
 offset_left = 6.0
@@ -145,22 +161,6 @@ offset_bottom = 39.0
 theme_override_styles/background = SubResource("StyleBoxFlat_gs7ah")
 theme_override_styles/fill = SubResource("StyleBoxFlat_3on5e")
 value = 100.0
-
-[node name="Label" type="Label" parent="Player/Camera3D/UI/Panel/Health"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -39.0
-offset_top = 3.0
-offset_right = 39.0
-offset_bottom = 26.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Health"
-horizontal_alignment = 1
 
 [node name="Heart" parent="Player" node_paths=PackedStringArray("follow") instance=ExtResource("4_3k01p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.91436, 0.75, 5.4977)
@@ -2831,3 +2831,6 @@ environment = SubResource("Environment_53w0m")
 transform = Transform3D(1, 0, 0, 0, 0.858065, 0.513541, 0, -0.513541, 0.858065, 0, 7.20663, 0)
 light_energy = 0.5
 shadow_enabled = true
+
+[connection signal="updated_energy" from="Player" to="Player/Camera3D/UI" method="_on_player_cooldown_changed"]
+[connection signal="updated_health" from="Player" to="Player/Camera3D/UI" method="_on_player_health_changed"]

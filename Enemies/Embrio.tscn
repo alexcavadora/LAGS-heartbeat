@@ -6,11 +6,11 @@
 [ext_resource type="Material" uid="uid://jbpqhrul7rwc" path="res://particles/DeathParticles.tres" id="4_0um8n"]
 [ext_resource type="PackedScene" uid="uid://bwle4a3xvat5g" path="res://Components/movement.tscn" id="4_wtllu"]
 [ext_resource type="PackedScene" uid="uid://d2j44bib6ji13" path="res://Components/attacker.tscn" id="5_m25qf"]
-[ext_resource type="Texture2D" uid="uid://dh23vatylvqcu" path="res://assets/Enemies/embryo/embryo_attack_3.png" id="6_hp0sm"]
-[ext_resource type="Texture2D" uid="uid://bygdghqxkh0y" path="res://assets/Enemies/embryo/embryo_attack_4.png" id="7_0um8n"]
-[ext_resource type="Texture2D" uid="uid://hgrjdqo77srr" path="res://assets/Enemies/embryo/embryo_attack.png" id="8_d02l1"]
-[ext_resource type="Texture2D" uid="uid://xi8wksskxlgx" path="res://assets/Enemies/embryo/embryo_idle.png" id="9_5sfr7"]
-[ext_resource type="Texture2D" uid="uid://giiala4drxpf" path="res://assets/Enemies/embryo/embryo_stunned.png" id="10_wtllu"]
+[ext_resource type="Texture2D" uid="uid://b5ja4hm1mrsgn" path="res://assets/Enemies/embryo/embryo_attack_3.png" id="6_hp0sm"]
+[ext_resource type="Texture2D" uid="uid://py22be6wb8f3" path="res://assets/Enemies/embryo/embryo_attack_4.png" id="7_0um8n"]
+[ext_resource type="Texture2D" uid="uid://capi235xpp2mq" path="res://assets/Enemies/embryo/embryo_attack.png" id="8_d02l1"]
+[ext_resource type="Texture2D" uid="uid://cmya1xvgms48" path="res://assets/Enemies/embryo/embryo_idle.png" id="9_5sfr7"]
+[ext_resource type="Texture2D" uid="uid://b3bglfdmlbh68" path="res://assets/Enemies/embryo/embryo_stunned.png" id="10_wtllu"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5q8ye"]
 
