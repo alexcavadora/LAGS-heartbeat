@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://be8hl4weaft7d"]
+[gd_scene load_steps=18 format=3 uid="uid://be8hl4weaft7d"]
 
 [ext_resource type="Script" uid="uid://bydtmfnv5gj6u" path="res://Levels/level.gd" id="1_fjysl"]
 [ext_resource type="PackedScene" uid="uid://bx0msm0hagnj0" path="res://Player/player.tscn" id="2_y6c2c"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bumwcljyyl83x" path="res://Scenes/fixed_hex.tscn" id="5_qbn24"]
 [ext_resource type="PackedScene" uid="uid://cqk5n14hafk01" path="res://Components/dialog_box.tscn" id="6_j4cnv"]
 [ext_resource type="Script" uid="uid://05wfyw363rdi" path="res://Components/tutorial_component.gd" id="6_l2662"]
+[ext_resource type="PackedScene" uid="uid://deo5mpbd2emu5" path="res://Scenes/string.tscn" id="8_fjysl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mac0m"]
 bg_color = Color(0.0583, 0.144778, 0.53, 0.34902)
@@ -246,6 +247,11 @@ InputEnable = true
 Typetime = 0.05
 Quickypetime = 0.005
 Dialog = PackedStringArray("Good, its working...", "Try moving with WASD", "Okay that looks about right...", "Now, you may have noticed that string pulling you", "Try pressing and holding the SPACEBAR to pull ", "That thing is your heart and you can hit enemies with it", "Start getting used to swinging that thing around, you will need it to survive", "You can also knock back enemies by pressing the Q button", "You learn quick...", "Now, lets see you hack some stuff", "Get close to the edge and your heart will take it from there", "Wait for it...", "See? Now you can keep trying to hack the whole system", "")
+
+[node name="String" parent="." node_paths=PackedStringArray("PointA", "PointB") instance=ExtResource("8_fjysl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.278732, 5.38965, 0.62126)
+PointA = NodePath("../Player")
+PointB = NodePath("../Player/Heart")
 
 [connection signal="updated_energy" from="Player" to="Player/Camera3D/UI" method="_on_player_cooldown_changed"]
 [connection signal="Done" from="TutorialComponent/DialogBox" to="TutorialComponent" method="_on_dialog_box_done"]
