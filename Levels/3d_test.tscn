@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://3qevbhnxt5xg" path="res://Enemies/box.tscn" id="4_kgbxp"]
 [ext_resource type="PackedScene" uid="uid://buiitvt4ugobf" path="res://Player/heart.tscn" id="4_usu0y"]
 [ext_resource type="PackedScene" uid="uid://dwhxov4hp4hhg" path="res://Enemies/chasing_enemy.tscn" id="6_gs7ah"]
-[ext_resource type="ArrayMesh" uid="uid://bedr3ao35l02s" path="res://assets/Hexagons/untitled.obj" id="7_3on5e"]
+[ext_resource type="ArrayMesh" uid="uid://dtox841xh5uxq" path="res://assets/Hexagons/untitled.obj" id="7_3on5e"]
 [ext_resource type="PackedScene" uid="uid://tf7en6eqi5no" path="res://Enemies/Embrio.tscn" id="8_53w0m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mac0m"]

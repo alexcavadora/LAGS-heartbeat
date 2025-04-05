@@ -1,0 +1,156 @@
+[gd_scene load_steps=9 format=3 uid="uid://bumwcljyyl83x"]
+
+[ext_resource type="Script" uid="uid://bbgg47aoc0e30" path="res://Scenes/hex_template.gd" id="1_xiguj"]
+[ext_resource type="ArrayMesh" uid="uid://dtox841xh5uxq" path="res://assets/Hexagons/untitled.obj" id="2_1ov2o"]
+[ext_resource type="Script" uid="uid://bleawlaewp1wf" path="res://Scenes/HexAnimationComponent.gd" id="3_1ov2o"]
+[ext_resource type="PackedScene" uid="uid://v0oj5afjxrn8" path="res://Scenes/animation_player_Hex.tscn" id="3_88adk"]
+[ext_resource type="Script" uid="uid://dw4lnwe5u1hdq" path="res://Scenes/WallComponent.gd" id="3_jtwai"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_j4cnv"]
+points = PackedVector3Array(-0.000169575, 5, 1, 0.866025, 5, 0.499804, -0.866025, 5, 0.499804, -0.000169575, -5, 1, 0.866025, -5, 0.499804, 0.866025, 5, -0.500196, -0.866025, 5, -0.500196, -0.866025, -5, 0.499804, 0.866025, -5, -0.500196, -0.000169575, 5, -1, -0.866025, -5, -0.500196, -0.000169575, -5, -1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_24y5s"]
+size = Vector3(12, 150, 0.244)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0is2r"]
+size = Vector3(16.905, 150, 3)
+
+[node name="FixedHex" type="Node3D" node_paths=PackedStringArray("Animations", "Targets")]
+script = ExtResource("1_xiguj")
+Animations = NodePath("AnimationHex")
+Targets = {
+"Target1": null,
+"Target2": null,
+"Target3": null,
+"Target4": null,
+"Target5": null,
+"Target6": null
+}
+
+[node name="Hex" type="StaticBody3D" parent="."]
+
+[node name="Model" type="MeshInstance3D" parent="Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+mesh = ExtResource("2_1ov2o")
+skeleton = NodePath("../..")
+
+[node name="Colision" type="CollisionShape3D" parent="Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+shape = SubResource("ConvexPolygonShape3D_j4cnv")
+debug_fill = false
+
+[node name="Wall" type="Node3D" parent="Hex"]
+
+[node name="Walls" type="StaticBody3D" parent="Hex/Wall"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+
+[node name="WallUpR" type="CollisionShape3D" parent="Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+script = ExtResource("3_jtwai")
+
+[node name="UpR" type="Area3D" parent="Hex/Wall/Walls/WallUpR"]
+transform = Transform3D(0.866026, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866026, 0.0698758, -0.321898, 10.121)
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Hex/Wall/Walls/WallUpR/UpR"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, -20.5084, -10)
+shape = SubResource("BoxShape3D_0is2r")
+debug_color = Color(0.3587, 0.530444, 0.841466, 0.42)
+
+[node name="WallMidR" type="CollisionShape3D" parent="Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+script = ExtResource("3_jtwai")
+
+[node name="MidR" type="Area3D" parent="Hex/Wall/Walls/WallMidR"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.45856e-07, -0.321898, -10.2)
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Hex/Wall/Walls/WallMidR/MidR"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11, -20.5084, 0)
+shape = SubResource("BoxShape3D_0is2r")
+debug_color = Color(0.3587, 0.530444, 0.841466, 0.42)
+
+[node name="WallLowR" type="CollisionShape3D" parent="Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+script = ExtResource("3_jtwai")
+
+[node name="LowR" type="Area3D" parent="Hex/Wall/Walls/WallLowR"]
+transform = Transform3D(0.866026, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866026, 0.0698758, -0.321898, -10.121)
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Hex/Wall/Walls/WallLowR/LowR"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, -20.5084, 10)
+shape = SubResource("BoxShape3D_0is2r")
+debug_color = Color(0.3587, 0.530444, 0.841466, 0.42)
+
+[node name="WallLowL" type="CollisionShape3D" parent="Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+script = ExtResource("3_jtwai")
+
+[node name="LowL" type="Area3D" parent="Hex/Wall/Walls/WallLowL"]
+transform = Transform3D(0.866026, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866026, -0.0698758, -0.321898, -10.121)
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Hex/Wall/Walls/WallLowL/LowL"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, -20.5084, 10)
+shape = SubResource("BoxShape3D_0is2r")
+debug_color = Color(0.3587, 0.530444, 0.841466, 0.42)
+
+[node name="WallMidL" type="CollisionShape3D" parent="Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+script = ExtResource("3_jtwai")
+
+[node name="MidL" type="Area3D" parent="Hex/Wall/Walls/WallMidL"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.45856e-07, -0.321898, 10.2)
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Hex/Wall/Walls/WallMidL/MidL"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11, -20.5084, 0)
+shape = SubResource("BoxShape3D_0is2r")
+debug_color = Color(0.3587, 0.530444, 0.841466, 0.42)
+
+[node name="WallUpL" type="CollisionShape3D" parent="Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+script = ExtResource("3_jtwai")
+
+[node name="UpL" type="Area3D" parent="Hex/Wall/Walls/WallUpL"]
+transform = Transform3D(0.866026, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866026, -0.0698758, -0.321898, 10.121)
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Hex/Wall/Walls/WallUpL/UpL"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, -20.5084, -10)
+shape = SubResource("BoxShape3D_0is2r")
+debug_color = Color(0.3587, 0.530444, 0.841466, 0.42)
+
+[node name="AnimationPlayer" parent="." instance=ExtResource("3_88adk")]
+
+[node name="AnimationHex" type="Node3D" parent="." node_paths=PackedStringArray("animation_player")]
+script = ExtResource("3_1ov2o")
+animation_player = NodePath("../AnimationPlayer")
+
+[connection signal="AnimToggle" from="." to="AnimationHex" method="_on_fixed_hex_anim_toggle"]
+[connection signal="LastDetected" from="Hex/Wall/Walls/WallUpR" to="." method="lastwall"]
+[connection signal="body_entered" from="Hex/Wall/Walls/WallUpR/UpR" to="." method="_on_up_r_body_entered"]
+[connection signal="body_exited" from="Hex/Wall/Walls/WallUpR/UpR" to="." method="_on_up_r_body_exited"]
+[connection signal="LastDetected" from="Hex/Wall/Walls/WallMidR" to="." method="lastwall"]
+[connection signal="body_entered" from="Hex/Wall/Walls/WallMidR/MidR" to="." method="_on_mid_r_body_entered"]
+[connection signal="body_exited" from="Hex/Wall/Walls/WallMidR/MidR" to="." method="_on_mid_r_body_exited"]
+[connection signal="LastDetected" from="Hex/Wall/Walls/WallLowR" to="." method="lastwall"]
+[connection signal="body_entered" from="Hex/Wall/Walls/WallLowR/LowR" to="." method="_on_low_r_body_entered"]
+[connection signal="body_exited" from="Hex/Wall/Walls/WallLowR/LowR" to="." method="_on_low_r_body_exited"]
+[connection signal="LastDetected" from="Hex/Wall/Walls/WallLowL" to="." method="lastwall"]
+[connection signal="body_entered" from="Hex/Wall/Walls/WallLowL/LowL" to="." method="_on_low_l_body_entered"]
+[connection signal="body_exited" from="Hex/Wall/Walls/WallLowL/LowL" to="." method="_on_low_l_body_exited"]
+[connection signal="LastDetected" from="Hex/Wall/Walls/WallMidL" to="." method="lastwall"]
+[connection signal="body_entered" from="Hex/Wall/Walls/WallMidL/MidL" to="." method="_on_mid_l_body_entered"]
+[connection signal="body_exited" from="Hex/Wall/Walls/WallMidL/MidL" to="." method="_on_mid_l_body_exited"]
+[connection signal="LastDetected" from="Hex/Wall/Walls/WallUpL" to="." method="lastwall"]
+[connection signal="body_entered" from="Hex/Wall/Walls/WallUpL/UpL" to="." method="_on_up_l_body_entered"]
+[connection signal="body_exited" from="Hex/Wall/Walls/WallUpL/UpL" to="." method="_on_up_l_body_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

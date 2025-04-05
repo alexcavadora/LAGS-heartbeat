@@ -1,0 +1,151 @@
+[gd_scene load_steps=2 format=3 uid="uid://fnvs7y1btss0"]
+
+[ext_resource type="Script" uid="uid://dv1tyb5i3nsus" path="res://Scenes/options_menu.gd" id="1_5qxbs"]
+
+[node name="Sprite2D" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_5qxbs")
+
+[node name="Brightnes" type="HSlider" parent="."]
+offset_left = 130.0
+offset_top = 100.0
+offset_right = 568.0
+offset_bottom = 155.0
+size_flags_horizontal = 4
+min_value = -1.0
+max_value = 2.0
+step = 0.05
+tick_count = 4
+ticks_on_borders = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Brightnes"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 28.0
+offset_top = -13.5
+offset_right = 265.0
+offset_bottom = 26.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 25
+text = "Brightness"
+
+[node name="Contrast" type="HSlider" parent="."]
+offset_left = 130.0
+offset_top = 183.0
+offset_right = 568.0
+offset_bottom = 238.0
+size_flags_horizontal = 4
+min_value = -1.0
+max_value = 2.0
+step = 0.05
+tick_count = 4
+ticks_on_borders = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Contrast"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 28.0
+offset_top = -13.5
+offset_right = 196.0
+offset_bottom = 26.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 25
+text = "Contrast
+"
+
+[node name="Saturation" type="HSlider" parent="."]
+offset_left = 132.0
+offset_top = 275.0
+offset_right = 570.0
+offset_bottom = 330.0
+size_flags_horizontal = 4
+min_value = -1.0
+max_value = 2.0
+step = 0.05
+tick_count = 4
+ticks_on_borders = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Saturation"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 28.0
+offset_top = -13.5
+offset_right = 256.0
+offset_bottom = 26.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 25
+text = "Saturation"
+
+[node name="RESET" type="Button" parent="."]
+offset_left = 841.0
+offset_top = 179.0
+offset_right = 1082.0
+offset_bottom = 247.0
+theme_override_font_sizes/font_size = 25
+text = "RESET VALUES"
+
+[node name="Fullscreen" type="CheckBox" parent="."]
+offset_left = 145.0
+offset_top = 415.0
+offset_right = 252.0
+offset_bottom = 446.0
+theme_override_font_sizes/font_size = 25
+text = "Fullscreen"
+
+[node name="Exclusive" type="CheckBox" parent="."]
+visible = false
+offset_left = 405.0
+offset_top = 415.0
+offset_right = 799.0
+offset_bottom = 455.0
+theme_override_font_sizes/font_size = 25
+text = "Exclusive Fullscreen"
+
+[node name="CRT" type="CheckBox" parent="."]
+offset_left = 145.0
+offset_top = 473.0
+offset_right = 252.0
+offset_bottom = 513.0
+theme_override_font_sizes/font_size = 25
+button_pressed = true
+text = "Shader
+
+"
+
+[node name="Back" type="Button" parent="."]
+offset_left = 867.0
+offset_top = 481.0
+offset_right = 1004.0
+offset_bottom = 536.0
+theme_override_font_sizes/font_size = 25
+text = "Back"
+
+[node name="QUIT" type="Button" parent="."]
+offset_left = 670.0
+offset_top = 484.0
+offset_right = 807.0
+offset_bottom = 539.0
+theme_override_font_sizes/font_size = 25
+text = "QUIT"
+
+[connection signal="pressed" from="RESET" to="." method="_on_reset_pressed"]
+[connection signal="toggled" from="Fullscreen" to="." method="_on_fullscreen_toggled"]
+[connection signal="toggled" from="Exclusive" to="." method="_on_exclusive_toggled"]
+[connection signal="toggled" from="CRT" to="." method="_on_crt_toggled"]
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="QUIT" to="." method="_on_quit_pressed"]

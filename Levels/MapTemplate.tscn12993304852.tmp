@@ -205,13 +205,25 @@ shadow_opacity = 0.25
 [node name="FixedHex0" parent="." node_paths=PackedStringArray("Targets") instance=ExtResource("5_qbn24")]
 Targets = {
 "Target1": NodePath("../FixedHex1"),
+"Target2": NodePath("../FixedHex2"),
+"Target3": null,
+"Target4": null,
+"Target5": null,
+"Target6": NodePath("../FixedHex6")
+}
+Up = true
+
+[node name="FixedHex1" parent="." node_paths=PackedStringArray("Targets") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2, 0, -9.01)
+Targets = {
+"Target1": null,
 "Target2": null,
 "Target3": null,
 "Target4": null,
 "Target5": null,
 "Target6": null
 }
-Up = true
+Downed = true
 
 [node name="FixedHex2" parent="." node_paths=PackedStringArray("Targets") instance=ExtResource("5_qbn24")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4, 0, 0)
@@ -225,8 +237,8 @@ Targets = {
 }
 Downed = true
 
-[node name="FixedHex1" parent="." node_paths=PackedStringArray("Targets") instance=ExtResource("5_qbn24")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2, 0, -9.05)
+[node name="FixedHex5" parent="." node_paths=PackedStringArray("Targets") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4, 0, 0)
 Targets = {
 "Target1": null,
 "Target2": null,
@@ -237,15 +249,22 @@ Targets = {
 }
 Downed = true
 
-[node name="TutorialComponent" type="Node3D" parent="." node_paths=PackedStringArray("Dialog")]
+[node name="FixedHex6" parent="." node_paths=PackedStringArray("Targets") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2, 0, -9.01)
+Targets = {
+"Target1": null,
+"Target2": null,
+"Target3": null,
+"Target4": null,
+"Target5": null,
+"Target6": null
+}
+Downed = true
+
+[node name="TutorialComponent" type="Node3D" parent="."]
 script = ExtResource("6_l2662")
-Dialog = NodePath("DialogBox")
 
 [node name="DialogBox" parent="TutorialComponent" instance=ExtResource("6_j4cnv")]
-InputEnable = true
-Typetime = 0.05
-Quickypetime = 0.005
-Dialog = PackedStringArray("Good, its working...", "Try moving with WASD", "Okay that looks about right...", "Now, you may have noticed that string pulling you", "Try pressing and holding the SPACEBAR to pull ", "That thing is your heart and you can hit enemies with it", "Start getting used to swinging that thing around, you will need it to survive", "You can also knock back enemies by pressing the Q button", "You learn quick...", "Now, lets see you hack some stuff", "Get close to the edge and your heart will take it from there", "Wait for it...", "See? Now you can keep trying to hack the whole system", "")
+Dialog = PackedStringArray("Hello...", "Try moving with WASD")
 
 [connection signal="updated_energy" from="Player" to="Player/Camera3D/UI" method="_on_player_cooldown_changed"]
-[connection signal="Done" from="TutorialComponent/DialogBox" to="TutorialComponent" method="_on_dialog_box_done"]
