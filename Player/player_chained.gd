@@ -1,8 +1,8 @@
 class_name Eye extends CharacterBody3D
 
 @onready var center: CollisionShape3D = $CollisionShape3D
-@onready var pivot: Node3D = $pivot
 @onready var health: Node = $Health
+@onready var pivot: Node3D = $pivot
 
 @export var corazon: heart
 
@@ -39,12 +39,12 @@ signal updated_energy(energy)
 signal attack()
 
 func _ready() -> void:
-	pivot.global_position = global_position
+	#pivot.global_position = global_position
 	p_current_speed = p_move_speed
 	cooldown = c_max
 
 func _physics_process(delta: float) -> void:
-	pivot.global_position = global_position
+	#pivot.global_position = global_position
 	to_player = center.global_position - corazon.global_position
 	distance = to_player.length()
 	
@@ -61,7 +61,7 @@ func _process_movement(delta: float) -> void:
 	
 	if _direction != _zero_vector:
 		pivot.look_at(-_direction * 20000 + global_position)
-		
+		#pivot.rotate()
 		var final_dir = _direction
 		if distance > s_max_distance:
 			final_dir = -to_player.normalized()

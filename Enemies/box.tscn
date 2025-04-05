@@ -1,15 +1,49 @@
-[gd_scene load_steps=15 format=3 uid="uid://3qevbhnxt5xg"]
+[gd_scene load_steps=36 format=3 uid="uid://3qevbhnxt5xg"]
 
 [ext_resource type="PackedScene" uid="uid://2rx00tnl0vje" path="res://Components/health.tscn" id="1_7ushe"]
 [ext_resource type="Script" uid="uid://chx5k8fykuvl5" path="res://Enemies/enemy.gd" id="1_xbarb"]
 [ext_resource type="PackedScene" uid="uid://c700l20getk" path="res://Components/hitbox.tscn" id="2_5gsve"]
 [ext_resource type="Material" uid="uid://jbpqhrul7rwc" path="res://particles/DeathParticles.tres" id="4_ijwdr"]
 [ext_resource type="PackedScene" uid="uid://bwle4a3xvat5g" path="res://Components/movement.tscn" id="4_kc5n5"]
+[ext_resource type="Texture2D" uid="uid://dvtasgjsvbffq" path="res://assets/powerup/Data/Data_1.png" id="6_7uyki"]
+[ext_resource type="Texture2D" uid="uid://dp7gmmakh7h87" path="res://assets/powerup/Data/Data_2.png" id="7_1150l"]
+[ext_resource type="Texture2D" uid="uid://utyd1q7rkse7" path="res://assets/powerup/Data/Data_3.png" id="8_liiu3"]
+[ext_resource type="Texture2D" uid="uid://bt5uhecvmcrdq" path="res://assets/powerup/Data/Data_4.png" id="9_uehd1"]
+[ext_resource type="Texture2D" uid="uid://bii37734xxyn" path="res://assets/powerup/Data/Data_5.png" id="10_7m377"]
+[ext_resource type="Texture2D" uid="uid://c7bda1nahn7y3" path="res://assets/powerup/Data/Data_6.png" id="11_f4e4l"]
+[ext_resource type="Texture2D" uid="uid://d0yxayjre75gi" path="res://assets/powerup/Data/Data_7.png" id="12_gyahl"]
+[ext_resource type="Texture2D" uid="uid://pl4dg3ce7tca" path="res://assets/powerup/Data/Data_8.png" id="13_h5tvw"]
+[ext_resource type="Texture2D" uid="uid://dtr8y21th1j67" path="res://assets/powerup/Data/Data_9.png" id="14_udlj2"]
+[ext_resource type="Texture2D" uid="uid://cejcpjbdryulq" path="res://assets/powerup/Data/Data_10.png" id="15_43431"]
+[ext_resource type="Texture2D" uid="uid://bigrb4e37s5rw" path="res://assets/powerup/Data/Data_11.png" id="16_hcio3"]
+[ext_resource type="Texture2D" uid="uid://ds5lqhpjr6wn6" path="res://assets/powerup/Data/Data_12.png" id="17_66yof"]
+[ext_resource type="Texture2D" uid="uid://dxyohb3rwditr" path="res://assets/powerup/Data/Data_13.png" id="18_p6ce5"]
+[ext_resource type="Texture2D" uid="uid://bcgyu6yvujw1" path="res://assets/powerup/Data/Data_14.png" id="19_wsl8l"]
+[ext_resource type="Texture2D" uid="uid://4x121ilny622" path="res://assets/powerup/Data/Data_15.png" id="20_0q5bj"]
+[ext_resource type="Texture2D" uid="uid://nh82qoqmq0wc" path="res://assets/powerup/Data/Data_16.png" id="21_2ojfv"]
+[ext_resource type="Texture2D" uid="uid://ddwrcua4abs0j" path="res://assets/powerup/Data/Data_17.png" id="22_yo7i8"]
+[ext_resource type="Texture2D" uid="uid://dom4cltsxhtff" path="res://assets/powerup/Data/Data_18.png" id="23_x57ts"]
+[ext_resource type="Texture2D" uid="uid://c3yb6cev57wah" path="res://assets/powerup/Data/Data_19.png" id="24_hnfno"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6q36a"]
 
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_7uyki"]
+frames = 6
+speed_scale = 20.0
+frame_0/texture = ExtResource("6_7uyki")
+frame_1/texture = ExtResource("7_1150l")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("8_liiu3")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("9_uehd1")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("10_7m377")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("11_f4e4l")
+frame_5/duration = 1.0
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xbarb"]
-albedo_color = Color(0.392, 0.584, 0.929, 1)
+albedo_texture = SubResource("AnimatedTexture_7uyki")
 
 [sub_resource type="BoxMesh" id="BoxMesh_ijwdr"]
 material = SubResource("StandardMaterial3D_xbarb")
@@ -36,6 +70,7 @@ corner_radius_bottom_left = 5
 corner_detail = 12
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kc5n5"]
+shading_mode = 0
 albedo_color = Color(1, 0.826865, 0.348468, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_kc5n5"]
@@ -43,15 +78,82 @@ material = SubResource("StandardMaterial3D_kc5n5")
 radius = 0.1
 height = 0.05
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_2mi42"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_7uyki")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1150l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_liiu3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_uehd1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_7m377")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_f4e4l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_gyahl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_h5tvw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_udlj2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_43431")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_hcio3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_66yof")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_p6ce5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_wsl8l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_0q5bj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_2ojfv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_yo7i8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_x57ts")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_hnfno")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
 [node name="Box" type="RigidBody3D" groups=["enemy"]]
 collision_layer = 7
 collision_mask = 7
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
+mass = 20.0
 script = ExtResource("1_xbarb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+visible = false
 shape = SubResource("BoxShape3D_6q36a")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
@@ -61,6 +163,7 @@ mesh = SubResource("BoxMesh_ijwdr")
 health = 50
 
 [node name="Hitbox" parent="." instance=ExtResource("2_5gsve")]
+visible = false
 collision_priority = 0.5
 
 [node name="CollisionShape3D" parent="Hitbox" index="0"]
@@ -101,8 +204,9 @@ show_percentage = false
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0133696, -0.00199164, 0.00657907)
+cast_shadow = 0
 emitting = false
-amount = 30
+amount = 4
 lifetime = 2.0
 one_shot = true
 explosiveness = 0.6
@@ -114,6 +218,11 @@ draw_pass_1 = SubResource("SphereMesh_kc5n5")
 
 [node name="Movement" parent="." instance=ExtResource("4_kc5n5")]
 speed = 0.0
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_2mi42")
+frame_progress = 0.764099
 
 [connection signal="dead" from="Health" to="Movement" method="_on_dead"]
 [connection signal="just_hit" from="Health" to="." method="_on_health_just_hit"]

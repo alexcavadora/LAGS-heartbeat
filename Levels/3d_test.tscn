@@ -172,6 +172,14 @@ s_force = 1000.0
 s_damping = 0.2
 p_deceleration = 45.0
 
+[node name="Heart2" parent="Player" node_paths=PackedStringArray("follow") instance=ExtResource("4_usu0y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.91436, 0.75, 5.4977)
+mass = 10.0
+follow = NodePath("../Heart")
+s_force = 300.0
+s_damping = 1.0
+p_deceleration = 65.0
+
 [node name="Chaser" type="Node" parent="."]
 
 [node name="Chaser" parent="Chaser" instance=ExtResource("6_gs7ah")]

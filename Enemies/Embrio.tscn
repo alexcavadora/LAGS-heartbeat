@@ -31,7 +31,8 @@ corner_radius_bottom_left = 5
 corner_detail = 12
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xbarb"]
-albedo_color = Color(1, 0.826865, 0.348468, 1)
+shading_mode = 0
+albedo_color = Color(0.791126, 0.635765, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_pm8q8"]
 material = SubResource("StandardMaterial3D_xbarb")
@@ -126,8 +127,9 @@ show_percentage = false
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0133696, -0.00199164, 0.00657907)
+cast_shadow = 0
 emitting = false
-amount = 30
+amount = 4
 lifetime = 2.0
 one_shot = true
 explosiveness = 0.6
