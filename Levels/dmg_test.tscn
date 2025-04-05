@@ -181,13 +181,15 @@ p_deceleration = 45.0
 [node name="Embrio" type="Node" parent="."]
 
 [node name="Embrio" parent="Embrio" instance=ExtResource("5_e04oe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.633, 0.5, -0.449)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7956, 0.499999, -3.63022)
+
+[node name="Embrio2" parent="Embrio" instance=ExtResource("5_e04oe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.01968, 0.499999, -3.79521)
 
 [node name="Environment" type="Node" parent="."]
 
 [node name="tilesito" type="StaticBody3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.560677, 0, 0)
-visible = false
 collision_layer = 7
 collision_mask = 7
 
@@ -2792,7 +2794,6 @@ size = Vector3(29.2659, 1.11591, 30.2412)
 
 [node name="Wall" type="StaticBody3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.902096, -0.0341563, 0.00287056)
-visible = false
 collision_layer = 135
 collision_mask = 135
 
@@ -2802,7 +2803,6 @@ shape = SubResource("BoxShape3D_kgbxp")
 
 [node name="Wall2" type="StaticBody3D" parent="Environment"]
 transform = Transform3D(-0.00254174, -0.000105, -0.999997, -0.00169059, 0.999999, -0.000100717, 0.999995, 0.00169033, -0.00254191, 0, 0, -2.59529)
-visible = false
 collision_layer = 135
 collision_mask = 135
 
@@ -2812,7 +2812,6 @@ shape = SubResource("BoxShape3D_kgbxp")
 
 [node name="Wall3" type="StaticBody3D" parent="Environment"]
 transform = Transform3D(-0.999995, -0.00169033, 0.00254196, -0.00169059, 0.999999, -0.000100717, -0.00254178, -0.000105, -0.999997, 0.909363, 0, 0.38668)
-visible = false
 collision_layer = 135
 collision_mask = 135
 
@@ -2822,7 +2821,6 @@ shape = SubResource("BoxShape3D_kgbxp")
 
 [node name="Wall4" type="StaticBody3D" parent="Environment"]
 transform = Transform3D(0.00254183, 0.000105, 0.999997, -0.00169059, 0.999999, -0.000100717, -0.999995, -0.00169033, 0.002542, 0, 0, 2.74571)
-visible = false
 collision_layer = 135
 collision_mask = 135
 

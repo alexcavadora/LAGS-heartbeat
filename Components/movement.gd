@@ -42,7 +42,6 @@ func _physics_process(_delta: float) -> void:
 	cached_player_pos = player.center.global_position
 	var to_player = cached_player_pos - enemy.global_position
 	var distance = to_player.length_squared()
-
 	if abs(distance - last_distance) > 0.5 or wandering:
 		last_distance = distance
 
@@ -52,8 +51,8 @@ func _physics_process(_delta: float) -> void:
 			timer.stop()
 
 		if has_seen_player:
-			direction = to_player.normalized()
 			real_speed = speed
+			direction = to_player.normalized()
 		else:
 			direction = wander_direction
 
@@ -92,3 +91,10 @@ func new_wander_direction() -> Vector3:
 func _on_timer_timeout() -> void:
 	if wandering:
 		wander_direction = new_wander_direction()
+
+
+func _on_tetherer_tethered(status: Variant) -> void:
+	if status:
+		speed = speed/2
+	else:
+		speed = speed*2
