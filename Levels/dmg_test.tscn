@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bx0msm0hagnj0" path="res://Player/player.tscn" id="2_o2oq2"]
 [ext_resource type="Script" uid="uid://bdd3erwlvffxt" path="res://UI/ui.gd" id="3_hd1u5"]
 [ext_resource type="PackedScene" uid="uid://buiitvt4ugobf" path="res://Player/heart.tscn" id="4_3k01p"]
-[ext_resource type="PackedScene" uid="uid://dwhxov4hp4hhg" path="res://Enemies/chasing_enemy.tscn" id="5_w5y6t"]
+[ext_resource type="PackedScene" uid="uid://tf7en6eqi5no" path="res://Enemies/Embrio.tscn" id="5_e04oe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mac0m"]
 bg_color = Color(0.0583, 0.144778, 0.53, 0.34902)
@@ -162,6 +162,11 @@ theme_override_styles/background = SubResource("StyleBoxFlat_gs7ah")
 theme_override_styles/fill = SubResource("StyleBoxFlat_3on5e")
 value = 100.0
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Player/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.969872, -0.243615, 0, 0.243615, 0.969872, 0, 4.6221, -5.74409)
+light_energy = 0.5
+shadow_enabled = true
+
 [node name="Heart" parent="Player" node_paths=PackedStringArray("follow") instance=ExtResource("4_3k01p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.91436, 0.75, 5.4977)
 mass = 10.0
@@ -173,13 +178,16 @@ p_deceleration = 45.0
 
 [node name="Chaser" type="Node" parent="."]
 
-[node name="Chaser" parent="Chaser" instance=ExtResource("5_w5y6t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.36172, 0.500001, -3.46227)
+[node name="Embrio" type="Node" parent="."]
+
+[node name="Chaser" parent="Embrio" instance=ExtResource("5_e04oe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.633, 0.5, -0.449)
 
 [node name="Environment" type="Node" parent="."]
 
 [node name="tilesito" type="StaticBody3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.560677, 0, 0)
+visible = false
 collision_layer = 7
 collision_mask = 7
 
@@ -2823,14 +2831,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.8577, 1, 0)
 shape = SubResource("BoxShape3D_kgbxp")
 
 [node name="Post-Process" type="Node3D" parent="."]
+visible = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Post-Process"]
 environment = SubResource("Environment_53w0m")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Post-Process"]
-transform = Transform3D(1, 0, 0, 0, 0.858065, 0.513541, 0, -0.513541, 0.858065, 0, 7.20663, 0)
-light_energy = 0.5
-shadow_enabled = true
 
 [connection signal="updated_energy" from="Player" to="Player/Camera3D/UI" method="_on_player_cooldown_changed"]
 [connection signal="updated_health" from="Player" to="Player/Camera3D/UI" method="_on_player_health_changed"]

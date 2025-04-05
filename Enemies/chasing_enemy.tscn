@@ -123,6 +123,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 
 [node name="Enemy_health" type="ProgressBar" parent="SubViewport/Control"]
+visible = false
 layout_mode = 0
 offset_right = 100.0
 offset_bottom = 15.0

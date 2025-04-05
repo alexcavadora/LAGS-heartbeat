@@ -5,7 +5,7 @@ extends RigidBody3D
 @onready var enemy_health: ProgressBar = $SubViewport/Control/Enemy_health
 @onready var particles: GPUParticles3D = $GPUParticles3D
 @onready var animated_sprite: AnimatedSprite3D
-
+@export var enemy_name = ""
 @export var attacker: Attacker
 var player_node: Eye
 

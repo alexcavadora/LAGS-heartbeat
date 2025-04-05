@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://tf7en6eqi5no"]
+[gd_scene load_steps=20 format=3 uid="uid://tf7en6eqi5no"]
 
 [ext_resource type="Script" uid="uid://chx5k8fykuvl5" path="res://Enemies/enemy.gd" id="1_0um8n"]
 [ext_resource type="PackedScene" uid="uid://2rx00tnl0vje" path="res://Components/health.tscn" id="2_d02l1"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://capi235xpp2mq" path="res://assets/Enemies/embryo/embryo_attack.png" id="8_d02l1"]
 [ext_resource type="Texture2D" uid="uid://cmya1xvgms48" path="res://assets/Enemies/embryo/embryo_idle.png" id="9_5sfr7"]
 [ext_resource type="Texture2D" uid="uid://b3bglfdmlbh68" path="res://assets/Enemies/embryo/embryo_stunned.png" id="10_wtllu"]
+[ext_resource type="PackedScene" uid="uid://dx1ru13457o3r" path="res://Components/tetherer.tscn" id="12_d02l1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5q8ye"]
 
@@ -80,21 +81,22 @@ animations = [{
 [sub_resource type="ViewportTexture" id="ViewportTexture_dgrtn"]
 viewport_path = NodePath("SubViewport")
 
-[node name="Chaser" type="RigidBody3D" groups=["enemy"]]
+[node name="Embrio" type="RigidBody3D" groups=["enemy"]]
 collision_layer = 7
 collision_mask = 7
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
-mass = 3.0
+mass = 5.0
 script = ExtResource("1_0um8n")
+enemy_name = "embrio"
 metadata/_custom_type_script = "uid://chx5k8fykuvl5"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_5q8ye")
 
 [node name="Health" parent="." instance=ExtResource("2_d02l1")]
-health = 60
+health = 300
 
 [node name="Hitbox" parent="." instance=ExtResource("3_5sfr7")]
 
@@ -139,7 +141,7 @@ process_material = ExtResource("4_0um8n")
 draw_pass_1 = SubResource("SphereMesh_pm8q8")
 
 [node name="Movement" parent="." instance=ExtResource("4_wtllu")]
-speed = 35.0
+speed = 60.0
 
 [node name="Attacker" parent="." instance=ExtResource("5_m25qf")]
 
@@ -164,6 +166,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57979, 0)
 billboard = 1
 shaded = true
 texture = SubResource("ViewportTexture_dgrtn")
+
+[node name="tetherer" parent="." instance=ExtResource("12_d02l1")]
 
 [connection signal="just_hit" from="Health" to="." method="_on_health_just_hit"]
 [connection signal="just_hit" from="Health" to="Movement" method="_on_hit_received"]
