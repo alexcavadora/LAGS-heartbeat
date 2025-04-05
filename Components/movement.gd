@@ -4,7 +4,6 @@ class_name EnemyAI
 @onready var enemy = $".."
 @export var speed: float = 5.0
 @export var vis_range: float = 8.0
-@export_range(0.1, 2.0) var wander_time: float = 0.4
 @export_range(0.0, 1.0) var physics_skip_frames: int = 2
 
 @onready var timer: Timer = $Timer
@@ -24,8 +23,6 @@ func _ready() -> void:
 	player = get_tree().get_first_node_in_group("Player")
 	real_speed = speed
 	wander_direction = new_wander_direction()
-	if not timer.timeout.is_connected(_on_timer_timeout):
-		timer.timeout.connect(_on_timer_timeout)
 	if player and player.has_node("center"):
 		cached_player_pos = player.center.global_position
 		direction = (cached_player_pos - enemy.global_position).normalized()
@@ -71,8 +68,6 @@ func _on_hit_ended() -> void:
 	enemy.set_collision_layer_value(1, true)
 	enemy.set_collision_mask_value(1, true)
 	wander_direction = new_wander_direction()
-	if wandering:
-		timer.start(wander_time)
 
 func _on_dead() -> void:
 	var mask = 0

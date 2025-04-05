@@ -16,6 +16,8 @@ class_name Eye extends CharacterBody3D
 @export var p_acceleration: float = 50.0
 @export var p_deceleration: float = 35.0
 @export var p_pull_acceleration: float = 2000
+@export var health_regen = 0.01
+
 #cooldown
 @export var c_max: float = 2
 @export var c_drain_speed = 0.01
@@ -45,7 +47,6 @@ func _ready() -> void:
 	p_current_speed = p_move_speed
 	cooldown = c_max
 	tethers = [corazon]
-	print(tethers)
 
 func _physics_process(delta: float) -> void:
 	#pivot.global_position = global_position
@@ -94,6 +95,8 @@ func _process_chain_physics(delta: float) -> void:
 		p_current_speed = p_move_speed
 		corazon.pulled = false
 	elif is_pulling:
+		health.heal(health_regen)
+		updated_health.emit(health.health)
 		cooldown = max(cooldown - c_drain_speed, 0)
 		updated_energy.emit(cooldown)
 		p_current_speed = p_move_speed * 0.5
@@ -118,8 +121,6 @@ func _handle_collisions() -> void:
 		if collider is Enemy:
 			if collider.enemy_name == "embrio":
 				return 
-				collider.apply_central_impulse(-collision.get_normal() * collider.mass/4)
-				return
 			collider.apply_central_impulse(-collision.get_normal() * collider.mass)
 
 func _unhandled_input(_event: InputEvent) -> void:
@@ -133,5 +134,6 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("repel"):
 		attack.emit()
 
-func _on_health_just_hit(health: Variant) -> void:
-	updated_health.emit(health)
+func _on_health_just_hit(hp: float) -> void:
+	updated_health.emit(hp)
+	

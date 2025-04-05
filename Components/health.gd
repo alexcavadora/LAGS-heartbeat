@@ -1,5 +1,6 @@
 extends Node
 @export var health = 100
+var max_health = health
 @export var attack_cooldown = 0.5
 @onready var timer: Timer = $Timer
 @export var IE_frames = false
@@ -17,10 +18,14 @@ func hit(damage: float):
 	
 	health = max(health - damage, 0)
 	just_hit.emit(health)
+	if health == 0:
+		dead.emit()
+
+func heal(hp: float):
+	health = min(health + hp, max_health)
 	
 func _on_hitbox_finish_hit() -> void:
 	if health == 0:
-		dead.emit()
 		get_parent().queue_free()
 
 func _on_timer_timeout() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=155 format=3 uid="uid://bx0msm0hagnj0"]
+[gd_scene load_steps=156 format=3 uid="uid://bx0msm0hagnj0"]
 
 [ext_resource type="Script" uid="uid://2ihggwsefmxj" path="res://Player/player_chained.gd" id="1_go726"]
 [ext_resource type="PackedScene" uid="uid://2rx00tnl0vje" path="res://Components/health.tscn" id="3_6vxin"]
@@ -148,6 +148,7 @@
 [ext_resource type="Texture2D" uid="uid://b0h55mqorx33p" path="res://assets/iris/irisidle/iris_00142.png" id="146_vekmy"]
 [ext_resource type="Texture2D" uid="uid://b0vbv0tx8sv02" path="res://assets/iris/irisidle/iris_00143.png" id="147_35ln8"]
 [ext_resource type="Texture2D" uid="uid://bqunb3k2eeurm" path="res://assets/iris/irisidle/iris_00144.png" id="148_eke8s"]
+[ext_resource type="Script" uid="uid://dpwp0u5x1vpw1" path="res://Player/Upgrades.gd" id="149_fm5nm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1gj5y"]
 
@@ -615,6 +616,7 @@ axis_lock_angular_y = true
 axis_lock_angular_z = true
 motion_mode = 1
 script = ExtResource("1_go726")
+health_regen = 10.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -670,6 +672,9 @@ transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0,
 light_energy = 0.5
 light_volumetric_fog_energy = 5.91
 omni_shadow_mode = 0
+
+[node name="Upgrades" type="Node" parent="."]
+script = ExtResource("149_fm5nm")
 
 [connection signal="attack" from="." to="Pusher" method="_on_player_attack"]
 [connection signal="just_hit" from="Health" to="." method="_on_health_just_hit"]

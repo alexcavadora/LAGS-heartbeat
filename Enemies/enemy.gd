@@ -4,9 +4,9 @@ extends RigidBody3D
 @onready var hitbox: Area3D = $Hitbox
 @onready var enemy_health: ProgressBar = $SubViewport/Control/Enemy_health
 @onready var particles: GPUParticles3D = $GPUParticles3D
-@onready var animated_sprite: AnimatedSprite3D
+@onready var animated_sprite: AnimatedSprite3D = $AnimatedSprite
 @export var enemy_name = ""
-@export var attacker: Attacker
+@onready var attacker: Attacker = $Attacker
 var player_node: Eye
 
 var max_health: float = 0.0
@@ -14,6 +14,8 @@ var is_stunned: bool = false
 
 const ANIM_MOVING: String = "Moving"
 const ANIM_STUN: String = "Stun"
+const ANIM_DEATH: String = "Die"
+const ANIM_ATTACK: String = "Attack"
 
 func _ready() -> void:
 	animated_sprite = find_child("AnimatedSprite")
@@ -52,9 +54,8 @@ func _on_health_just_hit(life: float) -> void:
 			enemy_health.show()
 	
 	_play_hit_effects()
-	
-	if attacker:
-		attacker.monitoring = false
+	attacker.target = null
+	attacker.monitoring = false
 
 func _play_hit_effects() -> void:
 	if particles:
@@ -72,6 +73,14 @@ func _on_hitbox_finish_hit() -> void:
 	
 	if particles:
 		particles.emitting = false
-	
-	if attacker:
-		attacker.monitoring = true
+	attacker.monitoring = true
+
+
+func _on_attacker_attacked() -> void:
+	animated_sprite.play(ANIM_ATTACK)
+	await animated_sprite.animation_finished
+	animated_sprite.play(ANIM_MOVING)
+
+
+func _on_health_dead() -> void:
+	animated_sprite.play(ANIM_DEATH)

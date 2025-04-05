@@ -1,13 +1,8 @@
 extends Control
 
 @onready var player: CharacterBody3D = %Player
-@onready var cooldown_bar: ProgressBar = $Cooldown
 @onready var hp_bar: ProgressBar = $Panel/Health 
-
-@export var update_interval: float = 0.05  # How often to update the UI (in seconds)
-@export var speed_unit: String = "m/s" 
-
-var _elapsed_time: float = 0
+@onready var cooldown_bar: ProgressBar = $Panel/Cooldown
 
 func _ready() -> void:
 	_update_ui_colors()
