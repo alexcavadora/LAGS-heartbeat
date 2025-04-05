@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnyhsw2k7jbqs"]
+
+[ext_resource type="ArrayMesh" uid="uid://b2wsmqyfygn3e" path="res://assets/Hexagons/untitled.obj" id="1_roqii"]
+
+[node name="MeshLibrary" type="Node3D"]
+
+[node name="Untitled" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_roqii")
