@@ -27,13 +27,27 @@ func _ready()->void:
 	
 func _physics_process(delta:float)->void:
 	#Making the bones move as the rigidbodies move. 
-	
-	
-	for i in skeleton.get_bone_count(): 
+	for i in skeleton.get_bone_count():
 		var bone_name =skeleton.get_bone_name(i)
+		print(bone_name)
 		var id = skeleton.find_bone(bone_name)
 		skeleton_movement= ROPE_BODIES[i].transform
 		skeleton.set_bone_global_pose_override(id, skeleton_movement, 1)
+		if bone_name == "Bone" and PointA != null:
+			var firstbone : RigidBody3D = ROPE_BODIES[i]
+			firstbone.freeze = true
+			firstbone.global_position = PointA.global_position 
+		
+		if bone_name == "Bone.016" and PointB != null:
+			var firstbone : RigidBody3D = ROPE_BODIES[i]
+			firstbone.freeze = true
+			firstbone.global_position = PointB.global_position 
+		elif bone_name == "Bone.015" and PointB != null:
+			var firstbone : RigidBody3D = ROPE_BODIES[i]
+			firstbone.freeze = true
+			firstbone.global_position = PointB.global_position 
+		
+
 
 
 ##Adding a RigidBody for every bone.## 

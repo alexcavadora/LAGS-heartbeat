@@ -95,9 +95,12 @@ bind/18/bone = -1
 bind/18/pose = Transform3D(1, -2.90877e-15, -8.49808e-08, 1.17159e-15, 1, 1.57173e-14, 8.49808e-08, 3.42285e-08, 1, -0.0131346, -3.98978, -1.56083e-08)
 
 [node name="String" type="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 script = ExtResource("1_k8h7v")
 skeleton_path = NodePath("choriziño/Armature/Skeleton3D")
 rope_body = ExtResource("2_i84c4")
+bias = 0.99
+damping = 0.0
 
 [node name="choriziño" type="Node3D" parent="."]
 
@@ -248,3 +251,6 @@ skin = SubResource("Skin_25p2u")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00146866, -3.41625, 7.94369)
+metadata/_edit_lock_ = true
+
+[node name="PinJoint3D" type="PinJoint3D" parent="."]

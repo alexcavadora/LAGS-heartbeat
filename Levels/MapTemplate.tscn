@@ -73,6 +73,7 @@ script = ExtResource("1_fjysl")
 [node name="Player" parent="." node_paths=PackedStringArray("corazon") groups=["Player"] instance=ExtResource("2_y6c2c")]
 unique_name_in_owner = true
 corazon = NodePath("Heart")
+s_max_distance = 16.0
 c_regen_speed = 0.1
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
@@ -172,7 +173,7 @@ Z
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.91436, 0.75, 5.4977)
 mass = 10.0
 follow = NodePath("..")
-string_max_distance = 16.0
+string_max_distance = 32.0
 s_force = 1000.0
 s_damping = 0.2
 p_deceleration = 45.0
