@@ -3,6 +3,7 @@ extends Control
 @onready var player: CharacterBody3D = %Player
 @onready var hp_bar: TextureProgressBar = $Panel/Health 
 @onready var cooldown_bar: TextureProgressBar = $Panel/Cooldown
+@onready var sprite: AnimatedSprite2D = $SubViewport/AnimatedSprite2D
 
 func _ready() -> void:
 	pass
@@ -28,3 +29,10 @@ func _on_player_health_changed(new_health: float) -> void:
 func _on_player_cooldown_changed(new_cooldown: float) -> void:
 	cooldown_bar.value = new_cooldown
 	#_update_ui_colors()
+
+
+func _on_player_using_energy(status: Variant) -> void:
+	if status:
+		sprite.play("use")
+	else:
+		sprite.play("normal")

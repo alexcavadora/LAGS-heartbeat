@@ -3,6 +3,7 @@ class_name Eye extends CharacterBody3D
 @onready var center: CollisionShape3D = $CollisionShape3D
 @onready var health: Node = $Health
 @onready var pivot: Node3D = $pivot
+@onready var sprite: AnimatedSprite2D = $SubViewport/AnimatedSprite2D
 
 @export var corazon: heart
 
@@ -41,6 +42,7 @@ var _zero_vector = Vector3.ZERO
 signal updated_health(hp)
 signal updated_energy(energy)
 signal attack()
+signal using_energy(status)
 
 func _ready() -> void:
 	#pivot.global_position = global_position
@@ -91,10 +93,12 @@ func _process_chain_physics(delta: float) -> void:
 		pulled = false
 	
 	if !is_pulling or cooldown <= 0:
+		energy_use(false)
 		p_current_pull_force = 0.0
 		p_current_speed = p_move_speed
 		corazon.pulled = false
 	elif is_pulling:
+		energy_use(true)
 		health.heal(health_regen)
 		updated_health.emit(health.health)
 		cooldown = max(cooldown - c_drain_speed, 0)
@@ -104,6 +108,7 @@ func _process_chain_physics(delta: float) -> void:
 		p_current_pull_force = min(p_current_pull_force + p_pull_acceleration * delta, s_force)
 	
 	if !is_pulling and cooldown < c_max:
+		energy_use(false)
 		cooldown = min(cooldown + c_regen_speed, c_max)
 		updated_energy.emit(cooldown)
 
@@ -136,4 +141,10 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 func _on_health_just_hit(hp: float) -> void:
 	updated_health.emit(hp)
-	
+
+func energy_use(status):
+	using_energy.emit(status)
+	if status:
+		sprite.play("use")
+	else:
+		sprite.play("normal")

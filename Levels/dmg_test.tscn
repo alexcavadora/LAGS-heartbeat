@@ -2720,3 +2720,4 @@ environment = SubResource("Environment_53w0m")
 
 [connection signal="updated_energy" from="Player" to="Player/Camera3D/UI" method="_on_player_cooldown_changed"]
 [connection signal="updated_health" from="Player" to="Player/Camera3D/UI" method="_on_player_health_changed"]
+[connection signal="using_energy" from="Player" to="Player/Camera3D/UI" method="_on_player_using_energy"]
