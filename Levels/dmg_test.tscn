@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bx0msm0hagnj0" path="res://Player/player.tscn" id="2_o2oq2"]
 [ext_resource type="PackedScene" uid="uid://biwv0g0bia05s" path="res://UI/ui.tscn" id="3_s105c"]
 [ext_resource type="PackedScene" uid="uid://buiitvt4ugobf" path="res://Player/heart.tscn" id="4_3k01p"]
-[ext_resource type="PackedScene" uid="uid://biknk72swbsc2" path="res://Enemies/Troyano.tscn" id="5_e04oe"]
+[ext_resource type="PackedScene" uid="uid://r3yjw3cm0pv6" path="res://Enemies/Bulbo.tscn" id="6_s105c"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_g22v7"]
 
@@ -58,10 +58,21 @@ p_deceleration = 45.0
 
 [node name="Embrio" type="Node" parent="."]
 
-[node name="Troyano" type="Node" parent="."]
+[node name="bulbo" type="Node" parent="."]
 
-[node name="Troyano6" parent="Troyano" instance=ExtResource("5_e04oe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.39019, 2.62651, -2.53604)
+[node name="Bulbo" parent="bulbo" instance=ExtResource("6_s105c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.67411, 0.553097, -1.47373)
+
+[node name="Bulbo2" parent="bulbo" instance=ExtResource("6_s105c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0813313, 0.553097, -3.38104)
+
+[node name="Bulbo3" parent="bulbo" instance=ExtResource("6_s105c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.91867, 0.553097, -1.38104)
+
+[node name="Bulbo4" parent="bulbo" instance=ExtResource("6_s105c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.91867, 0.553097, -1.38104)
+
+[node name="Troyano" type="Node" parent="."]
 
 [node name="Environment" type="Node" parent="."]
 

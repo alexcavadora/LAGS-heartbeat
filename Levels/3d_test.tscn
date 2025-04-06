@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d3tj5dh56ot3e"]
+[gd_scene load_steps=14 format=3 uid="uid://bbls7m2phko18"]
 
 [ext_resource type="PackedScene" uid="uid://bx0msm0hagnj0" path="res://Player/player.tscn" id="1_6q36a"]
 [ext_resource type="Script" uid="uid://bydtmfnv5gj6u" path="res://Levels/level.gd" id="1_c2igh"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://3qevbhnxt5xg" path="res://Enemies/box.tscn" id="4_kgbxp"]
 [ext_resource type="PackedScene" uid="uid://buiitvt4ugobf" path="res://Player/heart.tscn" id="4_usu0y"]
 [ext_resource type="PackedScene" uid="uid://dwhxov4hp4hhg" path="res://Enemies/chasing_enemy.tscn" id="6_gs7ah"]
-[ext_resource type="ArrayMesh" uid="uid://dtox841xh5uxq" path="res://assets/Hexagons/untitled.obj" id="7_3on5e"]
+[ext_resource type="ArrayMesh" uid="uid://4m7c7h4erxwh" path="res://assets/Hexagons/untitled.obj" id="7_3on5e"]
 [ext_resource type="PackedScene" uid="uid://tf7en6eqi5no" path="res://Enemies/Embrio.tscn" id="8_53w0m"]
 [ext_resource type="PackedScene" uid="uid://bnvofq8o46gga" path="res://shaders/DitherShit/src/demo.tscn" id="9_7b7wc"]
 [ext_resource type="PackedScene" uid="uid://deo5mpbd2emu5" path="res://Scenes/string.tscn" id="10_syk1v"]

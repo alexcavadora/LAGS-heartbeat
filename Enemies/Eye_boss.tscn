@@ -1,0 +1,215 @@
+[gd_scene load_steps=23 format=3 uid="uid://d8ut0msjyk48"]
+
+[ext_resource type="Script" uid="uid://chx5k8fykuvl5" path="res://Enemies/enemy.gd" id="1_b7xar"]
+[ext_resource type="PackedScene" uid="uid://2rx00tnl0vje" path="res://Components/health.tscn" id="2_lcbr4"]
+[ext_resource type="PackedScene" uid="uid://c700l20getk" path="res://Components/hitbox.tscn" id="3_8q2sl"]
+[ext_resource type="Material" uid="uid://jbpqhrul7rwc" path="res://particles/DeathParticles.tres" id="4_6fm3h"]
+[ext_resource type="PackedScene" uid="uid://bwle4a3xvat5g" path="res://Components/movement.tscn" id="5_4tapm"]
+[ext_resource type="Script" uid="uid://8rl72386f2ly" path="res://Components/attacker.gd" id="6_lcbr4"]
+[ext_resource type="Texture2D" uid="uid://lpnvltta1k4c" path="res://assets/Enemies/Boss/Eyes/Eye_idle_1.png" id="7_lcbr4"]
+[ext_resource type="Texture2D" uid="uid://oti4tfwuamrj" path="res://assets/Enemies/Boss/Eyes/Eye_idle_2.png" id="8_8q2sl"]
+[ext_resource type="Texture2D" uid="uid://crp3fngsa5nwt" path="res://assets/Enemies/Boss/Eyes/Eye_idle_3.png" id="9_6fm3h"]
+[ext_resource type="Texture2D" uid="uid://bf4murhgme12k" path="res://assets/Enemies/Boss/Eyes/Eye_death.png" id="10_4tapm"]
+[ext_resource type="Texture2D" uid="uid://cdjvp32aveen8" path="res://assets/Enemies/Boss/Eyes/Eye_idle_4.png" id="11_setd0"]
+[ext_resource type="Texture2D" uid="uid://bdiaowqi06alg" path="res://assets/Enemies/Boss/Eyes/Eye_stunned.png" id="12_icryn"]
+[ext_resource type="PackedScene" uid="uid://dx1ru13457o3r" path="res://Components/tetherer.tscn" id="12_oj8q8"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5q8ye"]
+radius = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8q2sl"]
+radius = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xbarb"]
+shading_mode = 0
+albedo_color = Color(0.791126, 0.635765, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_pm8q8"]
+material = SubResource("StandardMaterial3D_xbarb")
+radius = 0.1
+height = 0.05
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6fm3h"]
+radius = 1.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mes3u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_lcbr4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_8q2sl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_6fm3h")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_4tapm")
+}],
+"loop": true,
+"name": &"Die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_lcbr4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_8q2sl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_6fm3h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_setd0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_6fm3h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_8q2sl")
+}],
+"loop": true,
+"name": &"Moving",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_icryn")
+}],
+"loop": false,
+"name": &"Stun",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d02l1"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+anti_aliasing = false
+anti_aliasing_size = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5sfr7"]
+bg_color = Color(0.79, 0.1264, 0.1264, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+anti_aliasing = false
+anti_aliasing_size = 5.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_wtllu"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Eye_boss" type="RigidBody3D" groups=["enemy"]]
+collision_layer = 71
+collision_mask = 71
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 5.0
+script = ExtResource("1_b7xar")
+enemy_name = "boss"
+metadata/_custom_type_script = "uid://chx5k8fykuvl5"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_5q8ye")
+
+[node name="Health" parent="." instance=ExtResource("2_lcbr4")]
+health = 300
+
+[node name="Hitbox" parent="." instance=ExtResource("3_8q2sl")]
+
+[node name="CollisionShape3D" parent="Hitbox" index="0"]
+shape = SubResource("SphereShape3D_8q2sl")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0133696, -0.00199164, 0.00657907)
+cast_shadow = 0
+emitting = false
+amount = 4
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.6
+fixed_fps = 60
+collision_base_size = 0.1
+process_material = ExtResource("4_6fm3h")
+draw_pass_1 = SubResource("SphereMesh_pm8q8")
+
+[node name="Movement" parent="." instance=ExtResource("5_4tapm")]
+speed = 60.0
+
+[node name="Attacker" type="Area3D" parent="."]
+script = ExtResource("6_lcbr4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Attacker"]
+shape = SubResource("SphereShape3D_6fm3h")
+
+[node name="AnimatedSprite" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+offset = Vector2(0, 500)
+pixel_size = 0.001
+billboard = 1
+alpha_cut = 1
+texture_filter = 2
+sprite_frames = SubResource("SpriteFrames_mes3u")
+animation = &"Attack"
+autoplay = "Moving"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.643287)
+visible = false
+shadow_enabled = true
+omni_range = 2.0
+
+[node name="tetherer" parent="." instance=ExtResource("12_oj8q8")]
+tether_force = 2.0
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(100, 10)
+
+[node name="Control" type="Control" parent="SubViewport"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.2, 0.2)
+size_flags_horizontal = 4
+
+[node name="Enemy_health" type="ProgressBar" parent="SubViewport/Control"]
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 50.0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_styles/background = SubResource("StyleBoxFlat_d02l1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5sfr7")
+value = 54.0
+show_percentage = false
+
+[node name="HealthBar" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.502306, 0)
+cast_shadow = 0
+billboard = 1
+texture = SubResource("ViewportTexture_wtllu")
+
+[connection signal="just_hit" from="Health" to="." method="_on_health_just_hit"]
+[connection signal="just_hit" from="Health" to="Movement" method="_on_hit_received"]
+[connection signal="finish_hit" from="Hitbox" to="." method="_on_hitbox_finish_hit"]
+[connection signal="finish_hit" from="Hitbox" to="Health" method="_on_hitbox_finish_hit"]
+[connection signal="finish_hit" from="Hitbox" to="Movement" method="_on_hit_ended"]
+[connection signal="body_entered" from="Attacker" to="Attacker" method="_on_body_entered"]
+[connection signal="body_exited" from="Attacker" to="Attacker" method="_on_body_exited"]
+[connection signal="tethered" from="tetherer" to="Movement" method="_on_tetherer_tethered"]
+
+[editable path="Hitbox"]

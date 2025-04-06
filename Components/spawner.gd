@@ -10,3 +10,4 @@ func spawn():
 		instance = enemy.instantiate()
 		instance.global_position = get_parent().global_position
 		get_parent().get_parent().add_child(instance)
+	return true

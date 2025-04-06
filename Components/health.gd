@@ -23,7 +23,7 @@ func hit(damage: float):
 
 func heal(hp: float):
 	health = min(health + hp, max_health)
-	
+
 func _on_hitbox_finish_hit() -> void:
 	if health == 0:
 		get_parent().queue_free()

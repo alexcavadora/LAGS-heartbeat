@@ -1,0 +1,285 @@
+[gd_scene load_steps=25 format=3 uid="uid://c71m7k1apyf6j"]
+
+[ext_resource type="Script" uid="uid://chx5k8fykuvl5" path="res://Enemies/enemy.gd" id="1_by4ou"]
+[ext_resource type="PackedScene" uid="uid://2rx00tnl0vje" path="res://Components/health.tscn" id="2_cslct"]
+[ext_resource type="Texture2D" uid="uid://shortnn23d2g" path="res://assets/Enemies/Boss/Heart/heart_idle1.png" id="4_7bgs2"]
+[ext_resource type="Material" uid="uid://jbpqhrul7rwc" path="res://particles/DeathParticles.tres" id="4_u1jy0"]
+[ext_resource type="Texture2D" uid="uid://6fhsaho2u4sa" path="res://assets/Enemies/Boss/Heart/heart_idle2.png" id="5_by4ou"]
+[ext_resource type="Script" uid="uid://8rl72386f2ly" path="res://Components/attacker.gd" id="6_dette"]
+[ext_resource type="Texture2D" uid="uid://lpnvltta1k4c" path="res://assets/Enemies/Boss/Eyes/Eye_idle_1.png" id="7_cslct"]
+[ext_resource type="Texture2D" uid="uid://oti4tfwuamrj" path="res://assets/Enemies/Boss/Eyes/Eye_idle_2.png" id="8_ygc3l"]
+[ext_resource type="Texture2D" uid="uid://crp3fngsa5nwt" path="res://assets/Enemies/Boss/Eyes/Eye_idle_3.png" id="9_u1jy0"]
+[ext_resource type="Texture2D" uid="uid://cdjvp32aveen8" path="res://assets/Enemies/Boss/Eyes/Eye_idle_4.png" id="10_v08w2"]
+[ext_resource type="Texture2D" uid="uid://bf4murhgme12k" path="res://assets/Enemies/Boss/Eyes/Eye_death.png" id="11_cslct"]
+[ext_resource type="Texture2D" uid="uid://bdiaowqi06alg" path="res://assets/Enemies/Boss/Eyes/Eye_stunned.png" id="12_ygc3l"]
+[ext_resource type="Texture2D" uid="uid://biwfcda53w6ty" path="res://assets/Enemies/Boss/Heart/heart_death.png" id="13_ygc3l"]
+[ext_resource type="Texture2D" uid="uid://cvvvov17y2r2j" path="res://assets/Enemies/Boss/Heart/heart_stunned_1.png" id="14_u1jy0"]
+[ext_resource type="Texture2D" uid="uid://c3a6srvrtyfat" path="res://assets/Enemies/Boss/Heart/heart_stunned_2.png" id="15_v08w2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xbarb"]
+albedo_color = Color(1, 0.826865, 0.348468, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_pm8q8"]
+material = SubResource("StandardMaterial3D_xbarb")
+radius = 0.1
+height = 0.05
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5q8ye"]
+radius = 1.06996
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j0357"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_cslct")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ygc3l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_u1jy0")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_cslct")
+}],
+"loop": true,
+"name": &"Die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_cslct")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ygc3l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_u1jy0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_v08w2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_u1jy0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ygc3l")
+}],
+"loop": true,
+"name": &"Moving",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_ygc3l")
+}],
+"loop": false,
+"name": &"Stun",
+"speed": 5.0
+}]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wb176"]
+radius = 0.715219
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_578ye"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+anti_aliasing = false
+anti_aliasing_size = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dr7o5"]
+bg_color = Color(0.79, 0.1264, 0.1264, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+anti_aliasing = false
+anti_aliasing_size = 5.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_578ye"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dette"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_7bgs2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_by4ou")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_ygc3l")
+}],
+"loop": true,
+"name": &"Die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_7bgs2")
+}, {
+"duration": 5.0,
+"texture": ExtResource("5_by4ou")
+}],
+"loop": true,
+"name": &"Moving",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_u1jy0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_v08w2")
+}],
+"loop": true,
+"name": &"Stun",
+"speed": 10.0
+}]
+
+[node name="Boss" type="RigidBody3D" groups=["enemy"]]
+collision_layer = 7
+collision_mask = 7
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 3.0
+script = ExtResource("1_by4ou")
+metadata/_custom_type_script = "uid://chx5k8fykuvl5"
+
+[node name="Health" parent="." instance=ExtResource("2_cslct")]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0133696, -0.00199164, 0.00657907)
+emitting = false
+amount = 30
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.6
+fixed_fps = 60
+collision_base_size = 0.1
+process_material = ExtResource("4_u1jy0")
+draw_pass_1 = SubResource("SphereMesh_pm8q8")
+
+[node name="Eye_left" type="RigidBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Eye_left"]
+transform = Transform3D(0.666667, 0, 0, 0, 0.666667, 0, 0, 0, 0.666667, 0, 0, 0)
+shape = SubResource("SphereShape3D_5q8ye")
+
+[node name="Eye_left" type="AnimatedSprite3D" parent="Eye_left"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+offset = Vector2(0, 250)
+flip_h = true
+pixel_size = 0.001
+billboard = 1
+alpha_cut = 1
+texture_filter = 2
+sprite_frames = SubResource("SpriteFrames_j0357")
+animation = &"Attack"
+autoplay = "Moving"
+frame_progress = 0.656749
+
+[node name="Attacker" type="Area3D" parent="Eye_left/Eye_left"]
+transform = Transform3D(0.666667, 0, 0, 0, 0.666667, 0, 0, 0, 0.666667, 0, 0, 0)
+script = ExtResource("6_dette")
+contact_damage = 5.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Eye_left/Eye_left/Attacker"]
+shape = SubResource("SphereShape3D_wb176")
+
+[node name="Eye_right" type="RigidBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Eye_right"]
+transform = Transform3D(0.666667, 0, 0, 0, 0.666667, 0, 0, 0, 0.666667, 0, 0, 0)
+shape = SubResource("SphereShape3D_5q8ye")
+
+[node name="Eye_right" type="AnimatedSprite3D" parent="Eye_right"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1.41482, -0.0120713, 0.0433874)
+offset = Vector2(0, 250)
+pixel_size = 0.001
+billboard = 1
+alpha_cut = 1
+texture_filter = 2
+sprite_frames = SubResource("SpriteFrames_j0357")
+animation = &"Attack"
+autoplay = "Moving"
+
+[node name="Attacker" type="Area3D" parent="Eye_right/Eye_right"]
+transform = Transform3D(0.666667, 0, 0, 0, 0.666667, 0, 0, 0, 0.666667, 0, 0, 0)
+script = ExtResource("6_dette")
+contact_damage = 5.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Eye_right/Eye_right/Attacker"]
+shape = SubResource("SphereShape3D_wb176")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.643287)
+visible = false
+shadow_enabled = true
+omni_range = 2.0
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(100, 10)
+
+[node name="Control" type="Control" parent="SubViewport"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.2, 0.2)
+size_flags_horizontal = 4
+
+[node name="Enemy_health" type="ProgressBar" parent="SubViewport/Control"]
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 50.0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_styles/background = SubResource("StyleBoxFlat_578ye")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dr7o5")
+value = 54.0
+show_percentage = false
+
+[node name="HealthBar" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5682, 0)
+cast_shadow = 0
+billboard = 1
+texture = SubResource("ViewportTexture_578ye")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 1.80725, -0.185485, 0.0433874)
+offset = Vector2(0, 250)
+pixel_size = 0.001
+billboard = 1
+alpha_cut = 1
+texture_filter = 2
+sprite_frames = SubResource("SpriteFrames_dette")
+animation = &"Attack"
+autoplay = "Moving"
+frame_progress = 0.0841982
+
+[connection signal="dead" from="Health" to="." method="_on_health_dead"]
+[connection signal="just_hit" from="Health" to="." method="_on_health_just_hit"]
+[connection signal="attacked" from="Eye_left/Eye_left/Attacker" to="." method="_on_attacker_attacked"]
+[connection signal="body_entered" from="Eye_left/Eye_left/Attacker" to="Eye_left/Eye_left/Attacker" method="_on_body_entered"]
+[connection signal="body_exited" from="Eye_left/Eye_left/Attacker" to="Eye_left/Eye_left/Attacker" method="_on_body_exited"]
+[connection signal="attacked" from="Eye_right/Eye_right/Attacker" to="." method="_on_attacker_attacked"]
+[connection signal="body_entered" from="Eye_right/Eye_right/Attacker" to="Eye_right/Eye_right/Attacker" method="_on_body_entered"]
+[connection signal="body_exited" from="Eye_right/Eye_right/Attacker" to="Eye_right/Eye_right/Attacker" method="_on_body_exited"]

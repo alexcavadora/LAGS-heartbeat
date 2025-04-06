@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://r3yjw3cm0pv6"]
+[gd_scene load_steps=20 format=3 uid="uid://r3yjw3cm0pv6"]
 
 [ext_resource type="Script" uid="uid://chx5k8fykuvl5" path="res://Enemies/enemy.gd" id="1_xehaw"]
 [ext_resource type="PackedScene" uid="uid://2rx00tnl0vje" path="res://Components/health.tscn" id="2_vlnxd"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://b1costssgpqap" path="res://assets/Enemies/bulbo/bulbo_run1.png" id="9_vlnxd"]
 [ext_resource type="Texture2D" uid="uid://dw07ya0vtexme" path="res://assets/Enemies/bulbo/bulbo_run.png" id="10_xceul"]
 [ext_resource type="Texture2D" uid="uid://7b4y1dwdu0s7" path="res://assets/Enemies/bulbo/bulbo_stunned.png" id="11_t8i3r"]
+[ext_resource type="PackedScene" uid="uid://cse13j4srgw6g" path="res://Components/sight_detector.tscn" id="12_xehaw"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5q8ye"]
 
@@ -89,7 +90,7 @@ collision_mask = 7
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
-mass = 5.0
+mass = 10.0
 script = ExtResource("1_xehaw")
 enemy_name = "embrio"
 metadata/_custom_type_script = "uid://chx5k8fykuvl5"
@@ -98,7 +99,6 @@ metadata/_custom_type_script = "uid://chx5k8fykuvl5"
 shape = SubResource("SphereShape3D_5q8ye")
 
 [node name="Health" parent="." instance=ExtResource("2_vlnxd")]
-health = 300
 
 [node name="Hitbox" parent="." instance=ExtResource("3_xceul")]
 visible = false
@@ -117,7 +117,8 @@ process_material = ExtResource("4_t8i3r")
 draw_pass_1 = SubResource("SphereMesh_pm8q8")
 
 [node name="Movement" parent="." instance=ExtResource("5_tl2e7")]
-speed = 60.0
+speed = 200.0
+vis_range = 0.0
 
 [node name="Attacker" parent="." instance=ExtResource("6_447tv")]
 visible = false
@@ -130,9 +131,8 @@ shaded = true
 alpha_cut = 1
 texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_tl2e7")
-animation = &"Attack"
+animation = &"Moving"
 autoplay = "Moving"
-frame_progress = 1.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.643287)
@@ -145,6 +145,7 @@ transparent_bg = true
 size = Vector2i(100, 10)
 
 [node name="Control" type="Control" parent="SubViewport"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -164,10 +165,12 @@ value = 54.0
 show_percentage = false
 
 [node name="HealthBar" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.502306, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.833073, 0)
 cast_shadow = 0
 billboard = 1
 texture = SubResource("ViewportTexture_wtllu")
+
+[node name="Monitor_detector" parent="." instance=ExtResource("12_xehaw")]
 
 [connection signal="just_hit" from="Health" to="." method="_on_health_just_hit"]
 [connection signal="just_hit" from="Health" to="Movement" method="_on_hit_received"]

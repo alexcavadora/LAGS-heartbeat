@@ -82,6 +82,5 @@ func _on_attacker_attacked() -> void:
 	await animated_sprite.animation_finished
 	animated_sprite.play(ANIM_MOVING)
 
-
 func _on_health_dead() -> void:
 	animated_sprite.play(ANIM_DEATH)

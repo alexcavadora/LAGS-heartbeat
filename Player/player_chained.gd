@@ -135,7 +135,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 	elif Input.is_action_just_released("pull_spring"):
 		is_pulling = false
 		corazon.pulled = false
-	
+
 	if Input.is_action_just_pressed("repel"):
 		attack.emit()
 

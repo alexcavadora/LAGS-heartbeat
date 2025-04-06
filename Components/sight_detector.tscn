@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cse13j4srgw6g"]
+
+[ext_resource type="Script" uid="uid://bj74wesh7ugqd" path="res://Components/monitor_detector.gd" id="1_astxf"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vlnxd"]
+
+[node name="Monitor_detector" type="Area3D"]
+script = ExtResource("1_astxf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_vlnxd")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

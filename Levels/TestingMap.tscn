@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cnhcumyvhe17e"]
+[gd_scene load_steps=28 format=3 uid="uid://cnhcumyvhe17e"]
 
 [ext_resource type="Script" uid="uid://bydtmfnv5gj6u" path="res://Levels/level.gd" id="1_at1qm"]
 [ext_resource type="PackedScene" uid="uid://bx0msm0hagnj0" path="res://Player/player.tscn" id="2_wxfap"]
@@ -9,7 +9,14 @@
 [ext_resource type="PackedScene" uid="uid://deo5mpbd2emu5" path="res://Scenes/string.tscn" id="7_brjha"]
 [ext_resource type="PackedScene" uid="uid://bumwcljyyl83x" path="res://Scenes/fixed_hex.tscn" id="8_ovnb0"]
 [ext_resource type="Script" uid="uid://05wfyw363rdi" path="res://Components/tutorial_component.gd" id="9_0xgx3"]
-[ext_resource type="PackedScene" uid="uid://3qevbhnxt5xg" path="res://Enemies/box.tscn" id="10_wxfap"]
+[ext_resource type="PackedScene" uid="uid://d8ut0msjyk48" path="res://Enemies/Eye_boss.tscn" id="11_kmljm"]
+[ext_resource type="PackedScene" uid="uid://dwhxov4hp4hhg" path="res://Enemies/chasing_enemy.tscn" id="17_0xgx3"]
+[ext_resource type="Script" uid="uid://bbgg47aoc0e30" path="res://Scenes/hex_template.gd" id="19_r30sf"]
+[ext_resource type="ArrayMesh" uid="uid://4m7c7h4erxwh" path="res://assets/Hexagons/untitled.obj" id="20_n8v56"]
+[ext_resource type="PackedScene" uid="uid://v0oj5afjxrn8" path="res://Scenes/animation_player_Hex.tscn" id="21_dh1lx"]
+[ext_resource type="Script" uid="uid://bleawlaewp1wf" path="res://Scenes/HexAnimationComponent.gd" id="22_2li3d"]
+[ext_resource type="Script" path="res://Scenes/progress_count.gd" id="23_57br2"]
+[ext_resource type="Theme" uid="uid://bfp08hmhenri4" path="res://themes/Elmero.tres" id="24_bj8hu"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_y6c2c"]
 viewport_path = NodePath("Player/UI3D/SubViewport")
@@ -24,10 +31,31 @@ fog_light_color = Color(0, 0, 0, 1)
 fog_density = 3.0
 volumetric_fog_albedo = Color(0, 0, 0, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b35dy"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_j4cnv"]
+points = PackedVector3Array(-0.000169575, 5, 1, 0.866025, 5, 0.499804, -0.866025, 5, 0.499804, -0.000169575, -5, 1, 0.866025, -5, 0.499804, 0.866025, 5, -0.500196, -0.866025, 5, -0.500196, -0.866025, -5, 0.499804, 0.866025, -5, -0.500196, -0.000169575, 5, -1, -0.866025, -5, -0.500196, -0.000169575, -5, -1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_24y5s"]
+size = Vector3(12, 150, 0.244)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_88adk"]
+size = Vector3(12, 20, 4)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_5dqjb"]
+viewport_path = NodePath("ProgressCount/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_a0uwd"]
+viewport_path = NodePath("ProgressCount/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_lxu3f"]
+viewport_path = NodePath("ProgressCount/SubViewport")
+
 [node name="test_level2" type="Node3D"]
 script = ExtResource("1_at1qm")
 
 [node name="Player" parent="." node_paths=PackedStringArray("corazon") instance=ExtResource("2_wxfap")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.50501, 0, 17.4405)
 corazon = NodePath("Heart")
 
 [node name="Demo" parent="Player" node_paths=PackedStringArray("Camera_To_Follow") instance=ExtResource("3_kmljm")]
@@ -65,6 +93,33 @@ size = Vector2i(1280, 720)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.278732, 5.38965, 0.62126)
 PointA = NodePath("..")
 PointB = NodePath("../Heart")
+
+[node name="Chaser" parent="Player" instance=ExtResource("17_0xgx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.50501, 5.63886, -17.4405)
+
+[node name="Chaser2" parent="Player" instance=ExtResource("17_0xgx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.92233, 5.63886, -15.9313)
+
+[node name="Chaser3" parent="Player" instance=ExtResource("17_0xgx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.92233, 5.63886, -14.9313)
+
+[node name="Chaser4" parent="Player" instance=ExtResource("17_0xgx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.90952, 5.63886, -16.249)
+
+[node name="Chaser5" parent="Player" instance=ExtResource("17_0xgx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0261, 5.63886, -12.8278)
+
+[node name="Chaser6" parent="Player" instance=ExtResource("17_0xgx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0261, 5.63886, -12.8278)
+
+[node name="Chaser7" parent="Player" instance=ExtResource("17_0xgx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.884, 5.63886, -12.2995)
+
+[node name="Chaser8" parent="Player" instance=ExtResource("17_0xgx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8348, 5.63886, -6.16695)
+
+[node name="Chaser9" parent="Player" instance=ExtResource("17_0xgx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.8348, 5.63886, -12.167)
 
 [node name="Environment" type="Node" parent="."]
 
@@ -174,8 +229,2648 @@ transform = Transform3D(1, 0, 0, 0, 0.184758, 0.982784, 0, -0.982784, 0.184758, 
 shadow_enabled = true
 shadow_opacity = 0.2
 
-[node name="Box" parent="." instance=ExtResource("10_wxfap")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 14.27)
+[node name="Eye_boss" parent="." instance=ExtResource("11_kmljm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2655, 8.5807, 56.7214)
+
+[node name="Eye_boss2" parent="." instance=ExtResource("11_kmljm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.2655, 8.5807, 56.7214)
+
+[node name="Eye_boss3" parent="." instance=ExtResource("11_kmljm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.2655, 8.5807, 63.7214)
+
+[node name="Eye_boss4" parent="." instance=ExtResource("11_kmljm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.4655, 8.5807, 71.5179)
+
+[node name="Eye_boss5" parent="." instance=ExtResource("11_kmljm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5868, 8.5807, 72.0019)
+
+[node name="Eye_boss6" parent="." instance=ExtResource("11_kmljm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.37269, 8.5807, 63.2973)
+
+[node name="Eye_boss7" parent="." instance=ExtResource("11_kmljm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.37269, 8.5807, 63.2973)
+
+[node name="walls" type="Node" parent="."]
+
+[node name="wallstatic" type="Node3D" parent="walls" node_paths=PackedStringArray("Animations")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1549, -1.90735e-06, 26.8281)
+script = ExtResource("19_r30sf")
+Animations = NodePath("AnimationHex")
+Up = true
+
+[node name="Hex" type="StaticBody3D" parent="walls/wallstatic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
+collision_layer = 71
+collision_mask = 71
+
+[node name="Model" type="MeshInstance3D" parent="walls/wallstatic/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+material_override = SubResource("ShaderMaterial_b35dy")
+mesh = ExtResource("20_n8v56")
+skeleton = NodePath("../..")
+
+[node name="Colision" type="CollisionShape3D" parent="walls/wallstatic/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+shape = SubResource("ConvexPolygonShape3D_j4cnv")
+debug_fill = false
+
+[node name="Wall" type="Node3D" parent="walls/wallstatic/Hex"]
+
+[node name="Walls" type="StaticBody3D" parent="walls/wallstatic/Hex/Wall"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="AnimationPlayer" parent="walls/wallstatic" instance=ExtResource("21_dh1lx")]
+active = false
+reset_on_save = false
+
+[node name="AnimationHex" type="Node3D" parent="walls/wallstatic" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("22_2li3d")
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="Detector" type="Area3D" parent="walls/wallstatic"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+monitoring = false
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="ProgressCount" type="Sprite3D" parent="walls/wallstatic"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 1, 0)
+visible = false
+billboard = 1
+texture = SubResource("ViewportTexture_5dqjb")
+script = ExtResource("23_57br2")
+
+[node name="SubViewport" type="SubViewport" parent="walls/wallstatic/ProgressCount"]
+size = Vector2i(400, 100)
+
+[node name="Control" type="Control" parent="walls/wallstatic/ProgressCount/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="walls/wallstatic/ProgressCount/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("24_bj8hu")
+theme_override_font_sizes/font_size = 91
+
+[node name="wallstatic4" type="Node3D" parent="walls" node_paths=PackedStringArray("Animations")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7346, -1.90735e-06, 17.8976)
+script = ExtResource("19_r30sf")
+Animations = NodePath("AnimationHex")
+Up = true
+
+[node name="Hex" type="StaticBody3D" parent="walls/wallstatic4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
+collision_layer = 71
+collision_mask = 71
+
+[node name="Model" type="MeshInstance3D" parent="walls/wallstatic4/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+material_override = SubResource("ShaderMaterial_b35dy")
+mesh = ExtResource("20_n8v56")
+skeleton = NodePath("../..")
+
+[node name="Colision" type="CollisionShape3D" parent="walls/wallstatic4/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+shape = SubResource("ConvexPolygonShape3D_j4cnv")
+debug_fill = false
+
+[node name="Wall" type="Node3D" parent="walls/wallstatic4/Hex"]
+
+[node name="Walls" type="StaticBody3D" parent="walls/wallstatic4/Hex/Wall"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic4/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic4/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic4/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic4/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic4/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic4/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="AnimationPlayer" parent="walls/wallstatic4" instance=ExtResource("21_dh1lx")]
+active = false
+reset_on_save = false
+
+[node name="AnimationHex" type="Node3D" parent="walls/wallstatic4" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("22_2li3d")
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="Detector" type="Area3D" parent="walls/wallstatic4"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+monitoring = false
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic4/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic4/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic4/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic4/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic4/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic4/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="ProgressCount" type="Sprite3D" parent="walls/wallstatic4"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 1, 0)
+visible = false
+billboard = 1
+texture = SubResource("ViewportTexture_5dqjb")
+script = ExtResource("23_57br2")
+
+[node name="SubViewport" type="SubViewport" parent="walls/wallstatic4/ProgressCount"]
+size = Vector2i(400, 100)
+
+[node name="Control" type="Control" parent="walls/wallstatic4/ProgressCount/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="walls/wallstatic4/ProgressCount/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("24_bj8hu")
+theme_override_font_sizes/font_size = 91
+
+[node name="wallstatic5" type="Node3D" parent="walls" node_paths=PackedStringArray("Animations")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.8086, -1.90735e-06, 9.00234)
+script = ExtResource("19_r30sf")
+Animations = NodePath("AnimationHex")
+Up = true
+
+[node name="Hex" type="StaticBody3D" parent="walls/wallstatic5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
+collision_layer = 71
+collision_mask = 71
+
+[node name="Model" type="MeshInstance3D" parent="walls/wallstatic5/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+material_override = SubResource("ShaderMaterial_b35dy")
+mesh = ExtResource("20_n8v56")
+skeleton = NodePath("../..")
+
+[node name="Colision" type="CollisionShape3D" parent="walls/wallstatic5/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+shape = SubResource("ConvexPolygonShape3D_j4cnv")
+debug_fill = false
+
+[node name="Wall" type="Node3D" parent="walls/wallstatic5/Hex"]
+
+[node name="Walls" type="StaticBody3D" parent="walls/wallstatic5/Hex/Wall"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic5/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic5/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic5/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic5/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic5/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic5/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="AnimationPlayer" parent="walls/wallstatic5" instance=ExtResource("21_dh1lx")]
+active = false
+reset_on_save = false
+
+[node name="AnimationHex" type="Node3D" parent="walls/wallstatic5" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("22_2li3d")
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="Detector" type="Area3D" parent="walls/wallstatic5"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+monitoring = false
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic5/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic5/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic5/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic5/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic5/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic5/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="ProgressCount" type="Sprite3D" parent="walls/wallstatic5"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 1, 0)
+visible = false
+billboard = 1
+texture = SubResource("ViewportTexture_5dqjb")
+script = ExtResource("23_57br2")
+
+[node name="SubViewport" type="SubViewport" parent="walls/wallstatic5/ProgressCount"]
+size = Vector2i(400, 100)
+
+[node name="Control" type="Control" parent="walls/wallstatic5/ProgressCount/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="walls/wallstatic5/ProgressCount/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("24_bj8hu")
+theme_override_font_sizes/font_size = 91
+
+[node name="wallstatic6" type="Node3D" parent="walls" node_paths=PackedStringArray("Animations")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.0718, -1.90735e-06, 0.0334454)
+script = ExtResource("19_r30sf")
+Animations = NodePath("AnimationHex")
+Up = true
+
+[node name="Hex" type="StaticBody3D" parent="walls/wallstatic6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
+collision_layer = 71
+collision_mask = 71
+
+[node name="Model" type="MeshInstance3D" parent="walls/wallstatic6/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+material_override = SubResource("ShaderMaterial_b35dy")
+mesh = ExtResource("20_n8v56")
+skeleton = NodePath("../..")
+
+[node name="Colision" type="CollisionShape3D" parent="walls/wallstatic6/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+shape = SubResource("ConvexPolygonShape3D_j4cnv")
+debug_fill = false
+
+[node name="Wall" type="Node3D" parent="walls/wallstatic6/Hex"]
+
+[node name="Walls" type="StaticBody3D" parent="walls/wallstatic6/Hex/Wall"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic6/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic6/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic6/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic6/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic6/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic6/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="AnimationPlayer" parent="walls/wallstatic6" instance=ExtResource("21_dh1lx")]
+active = false
+reset_on_save = false
+
+[node name="AnimationHex" type="Node3D" parent="walls/wallstatic6" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("22_2li3d")
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="Detector" type="Area3D" parent="walls/wallstatic6"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+monitoring = false
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic6/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic6/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic6/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic6/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic6/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic6/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="ProgressCount" type="Sprite3D" parent="walls/wallstatic6"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 1, 0)
+visible = false
+billboard = 1
+texture = SubResource("ViewportTexture_5dqjb")
+script = ExtResource("23_57br2")
+
+[node name="SubViewport" type="SubViewport" parent="walls/wallstatic6/ProgressCount"]
+size = Vector2i(400, 100)
+
+[node name="Control" type="Control" parent="walls/wallstatic6/ProgressCount/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="walls/wallstatic6/ProgressCount/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("24_bj8hu")
+theme_override_font_sizes/font_size = 91
+
+[node name="wallstatic7" type="Node3D" parent="walls" node_paths=PackedStringArray("Animations")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.9271, -1.90735e-06, -8.98838)
+script = ExtResource("19_r30sf")
+Animations = NodePath("AnimationHex")
+Up = true
+
+[node name="Hex" type="StaticBody3D" parent="walls/wallstatic7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
+collision_layer = 71
+collision_mask = 71
+
+[node name="Model" type="MeshInstance3D" parent="walls/wallstatic7/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+material_override = SubResource("ShaderMaterial_b35dy")
+mesh = ExtResource("20_n8v56")
+skeleton = NodePath("../..")
+
+[node name="Colision" type="CollisionShape3D" parent="walls/wallstatic7/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+shape = SubResource("ConvexPolygonShape3D_j4cnv")
+debug_fill = false
+
+[node name="Wall" type="Node3D" parent="walls/wallstatic7/Hex"]
+
+[node name="Walls" type="StaticBody3D" parent="walls/wallstatic7/Hex/Wall"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic7/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic7/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic7/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic7/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic7/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic7/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="AnimationPlayer" parent="walls/wallstatic7" instance=ExtResource("21_dh1lx")]
+active = false
+reset_on_save = false
+
+[node name="AnimationHex" type="Node3D" parent="walls/wallstatic7" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("22_2li3d")
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="Detector" type="Area3D" parent="walls/wallstatic7"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+monitoring = false
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic7/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic7/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic7/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic7/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic7/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic7/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="ProgressCount" type="Sprite3D" parent="walls/wallstatic7"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 1, 0)
+visible = false
+billboard = 1
+texture = SubResource("ViewportTexture_5dqjb")
+script = ExtResource("23_57br2")
+
+[node name="SubViewport" type="SubViewport" parent="walls/wallstatic7/ProgressCount"]
+size = Vector2i(400, 100)
+
+[node name="Control" type="Control" parent="walls/wallstatic7/ProgressCount/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="walls/wallstatic7/ProgressCount/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("24_bj8hu")
+theme_override_font_sizes/font_size = 91
+
+[node name="wallstatic11" type="Node3D" parent="walls" node_paths=PackedStringArray("Animations")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.724, -1.90735e-06, 26.7759)
+script = ExtResource("19_r30sf")
+Animations = NodePath("AnimationHex")
+Up = true
+
+[node name="Hex" type="StaticBody3D" parent="walls/wallstatic11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
+collision_layer = 71
+collision_mask = 71
+
+[node name="Model" type="MeshInstance3D" parent="walls/wallstatic11/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+material_override = SubResource("ShaderMaterial_b35dy")
+mesh = ExtResource("20_n8v56")
+skeleton = NodePath("../..")
+
+[node name="Colision" type="CollisionShape3D" parent="walls/wallstatic11/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+shape = SubResource("ConvexPolygonShape3D_j4cnv")
+debug_fill = false
+
+[node name="Wall" type="Node3D" parent="walls/wallstatic11/Hex"]
+
+[node name="Walls" type="StaticBody3D" parent="walls/wallstatic11/Hex/Wall"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic11/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic11/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic11/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic11/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic11/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic11/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="AnimationPlayer" parent="walls/wallstatic11" instance=ExtResource("21_dh1lx")]
+active = false
+reset_on_save = false
+
+[node name="AnimationHex" type="Node3D" parent="walls/wallstatic11" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("22_2li3d")
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="Detector" type="Area3D" parent="walls/wallstatic11"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+monitoring = false
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic11/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic11/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic11/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic11/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic11/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic11/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="ProgressCount" type="Sprite3D" parent="walls/wallstatic11"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 1, 0)
+visible = false
+billboard = 1
+texture = SubResource("ViewportTexture_5dqjb")
+script = ExtResource("23_57br2")
+
+[node name="SubViewport" type="SubViewport" parent="walls/wallstatic11/ProgressCount"]
+size = Vector2i(400, 100)
+
+[node name="Control" type="Control" parent="walls/wallstatic11/ProgressCount/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="walls/wallstatic11/ProgressCount/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("24_bj8hu")
+theme_override_font_sizes/font_size = 91
+
+[node name="wallstatic12" type="Node3D" parent="walls" node_paths=PackedStringArray("Animations")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.22633, -1.90735e-06, -26.9042)
+script = ExtResource("19_r30sf")
+Animations = NodePath("AnimationHex")
+Up = true
+
+[node name="Hex" type="StaticBody3D" parent="walls/wallstatic12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
+collision_layer = 71
+collision_mask = 71
+
+[node name="Model" type="MeshInstance3D" parent="walls/wallstatic12/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+material_override = SubResource("ShaderMaterial_b35dy")
+mesh = ExtResource("20_n8v56")
+skeleton = NodePath("../..")
+
+[node name="Colision" type="CollisionShape3D" parent="walls/wallstatic12/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+shape = SubResource("ConvexPolygonShape3D_j4cnv")
+debug_fill = false
+
+[node name="Wall" type="Node3D" parent="walls/wallstatic12/Hex"]
+
+[node name="Walls" type="StaticBody3D" parent="walls/wallstatic12/Hex/Wall"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic12/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic12/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic12/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic12/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic12/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic12/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="AnimationPlayer" parent="walls/wallstatic12" instance=ExtResource("21_dh1lx")]
+active = false
+reset_on_save = false
+
+[node name="AnimationHex" type="Node3D" parent="walls/wallstatic12" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("22_2li3d")
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="Detector" type="Area3D" parent="walls/wallstatic12"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+monitoring = false
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic12/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic12/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic12/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic12/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic12/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic12/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="ProgressCount" type="Sprite3D" parent="walls/wallstatic12"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 1, 0)
+visible = false
+billboard = 1
+texture = SubResource("ViewportTexture_5dqjb")
+script = ExtResource("23_57br2")
+
+[node name="SubViewport" type="SubViewport" parent="walls/wallstatic12/ProgressCount"]
+size = Vector2i(400, 100)
+
+[node name="Control" type="Control" parent="walls/wallstatic12/ProgressCount/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="walls/wallstatic12/ProgressCount/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("24_bj8hu")
+theme_override_font_sizes/font_size = 91
+
+[node name="wallstatic13" type="Node3D" parent="walls" node_paths=PackedStringArray("Animations")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5997, -1.90735e-06, -26.8793)
+script = ExtResource("19_r30sf")
+Animations = NodePath("AnimationHex")
+Up = true
+
+[node name="Hex" type="StaticBody3D" parent="walls/wallstatic13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
+collision_layer = 71
+collision_mask = 71
+
+[node name="Model" type="MeshInstance3D" parent="walls/wallstatic13/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+material_override = SubResource("ShaderMaterial_b35dy")
+mesh = ExtResource("20_n8v56")
+skeleton = NodePath("../..")
+
+[node name="Colision" type="CollisionShape3D" parent="walls/wallstatic13/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+shape = SubResource("ConvexPolygonShape3D_j4cnv")
+debug_fill = false
+
+[node name="Wall" type="Node3D" parent="walls/wallstatic13/Hex"]
+
+[node name="Walls" type="StaticBody3D" parent="walls/wallstatic13/Hex/Wall"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic13/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic13/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic13/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic13/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic13/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic13/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="AnimationPlayer" parent="walls/wallstatic13" instance=ExtResource("21_dh1lx")]
+active = false
+reset_on_save = false
+
+[node name="AnimationHex" type="Node3D" parent="walls/wallstatic13" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("22_2li3d")
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="Detector" type="Area3D" parent="walls/wallstatic13"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+monitoring = false
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic13/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic13/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic13/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic13/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic13/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic13/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="ProgressCount" type="Sprite3D" parent="walls/wallstatic13"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 1, 0)
+visible = false
+billboard = 1
+texture = SubResource("ViewportTexture_5dqjb")
+script = ExtResource("23_57br2")
+
+[node name="SubViewport" type="SubViewport" parent="walls/wallstatic13/ProgressCount"]
+size = Vector2i(400, 100)
+
+[node name="Control" type="Control" parent="walls/wallstatic13/ProgressCount/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="walls/wallstatic13/ProgressCount/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("24_bj8hu")
+theme_override_font_sizes/font_size = 91
+
+[node name="wallstatic14" type="Node3D" parent="walls" node_paths=PackedStringArray("Animations")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.7989, -1.90735e-06, -18.0234)
+script = ExtResource("19_r30sf")
+Animations = NodePath("AnimationHex")
+Up = true
+
+[node name="Hex" type="StaticBody3D" parent="walls/wallstatic14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
+collision_layer = 71
+collision_mask = 71
+
+[node name="Model" type="MeshInstance3D" parent="walls/wallstatic14/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+material_override = SubResource("ShaderMaterial_b35dy")
+mesh = ExtResource("20_n8v56")
+skeleton = NodePath("../..")
+
+[node name="Colision" type="CollisionShape3D" parent="walls/wallstatic14/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+shape = SubResource("ConvexPolygonShape3D_j4cnv")
+debug_fill = false
+
+[node name="Wall" type="Node3D" parent="walls/wallstatic14/Hex"]
+
+[node name="Walls" type="StaticBody3D" parent="walls/wallstatic14/Hex/Wall"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic14/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic14/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic14/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic14/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic14/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic14/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="AnimationPlayer" parent="walls/wallstatic14" instance=ExtResource("21_dh1lx")]
+active = false
+reset_on_save = false
+
+[node name="AnimationHex" type="Node3D" parent="walls/wallstatic14" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("22_2li3d")
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="Detector" type="Area3D" parent="walls/wallstatic14"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+monitoring = false
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic14/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic14/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic14/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic14/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic14/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic14/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="ProgressCount" type="Sprite3D" parent="walls/wallstatic14"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 1, 0)
+visible = false
+billboard = 1
+texture = SubResource("ViewportTexture_5dqjb")
+script = ExtResource("23_57br2")
+
+[node name="SubViewport" type="SubViewport" parent="walls/wallstatic14/ProgressCount"]
+size = Vector2i(400, 100)
+
+[node name="Control" type="Control" parent="walls/wallstatic14/ProgressCount/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="walls/wallstatic14/ProgressCount/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("24_bj8hu")
+theme_override_font_sizes/font_size = 91
+
+[node name="wallstatic15" type="Node3D" parent="walls" node_paths=PackedStringArray("Animations")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9483, -1.90735e-06, -9.01814)
+script = ExtResource("19_r30sf")
+Animations = NodePath("AnimationHex")
+Up = true
+
+[node name="Hex" type="StaticBody3D" parent="walls/wallstatic15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
+collision_layer = 71
+collision_mask = 71
+
+[node name="Model" type="MeshInstance3D" parent="walls/wallstatic15/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+material_override = SubResource("ShaderMaterial_b35dy")
+mesh = ExtResource("20_n8v56")
+skeleton = NodePath("../..")
+
+[node name="Colision" type="CollisionShape3D" parent="walls/wallstatic15/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+shape = SubResource("ConvexPolygonShape3D_j4cnv")
+debug_fill = false
+
+[node name="Wall" type="Node3D" parent="walls/wallstatic15/Hex"]
+
+[node name="Walls" type="StaticBody3D" parent="walls/wallstatic15/Hex/Wall"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic15/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic15/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic15/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic15/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic15/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic15/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="AnimationPlayer" parent="walls/wallstatic15" instance=ExtResource("21_dh1lx")]
+active = false
+reset_on_save = false
+
+[node name="AnimationHex" type="Node3D" parent="walls/wallstatic15" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("22_2li3d")
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="Detector" type="Area3D" parent="walls/wallstatic15"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+monitoring = false
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic15/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic15/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic15/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic15/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic15/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic15/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="ProgressCount" type="Sprite3D" parent="walls/wallstatic15"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 1, 0)
+visible = false
+billboard = 1
+texture = SubResource("ViewportTexture_5dqjb")
+script = ExtResource("23_57br2")
+
+[node name="SubViewport" type="SubViewport" parent="walls/wallstatic15/ProgressCount"]
+size = Vector2i(400, 100)
+
+[node name="Control" type="Control" parent="walls/wallstatic15/ProgressCount/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="walls/wallstatic15/ProgressCount/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("24_bj8hu")
+theme_override_font_sizes/font_size = 91
+
+[node name="wallstatic16" type="Node3D" parent="walls" node_paths=PackedStringArray("Animations")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.1972, -1.90735e-06, -0.137313)
+script = ExtResource("19_r30sf")
+Animations = NodePath("AnimationHex")
+Up = true
+
+[node name="Hex" type="StaticBody3D" parent="walls/wallstatic16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
+collision_layer = 71
+collision_mask = 71
+
+[node name="Model" type="MeshInstance3D" parent="walls/wallstatic16/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+material_override = SubResource("ShaderMaterial_b35dy")
+mesh = ExtResource("20_n8v56")
+skeleton = NodePath("../..")
+
+[node name="Colision" type="CollisionShape3D" parent="walls/wallstatic16/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+shape = SubResource("ConvexPolygonShape3D_j4cnv")
+debug_fill = false
+
+[node name="Wall" type="Node3D" parent="walls/wallstatic16/Hex"]
+
+[node name="Walls" type="StaticBody3D" parent="walls/wallstatic16/Hex/Wall"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic16/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic16/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic16/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic16/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic16/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic16/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="AnimationPlayer" parent="walls/wallstatic16" instance=ExtResource("21_dh1lx")]
+active = false
+reset_on_save = false
+
+[node name="AnimationHex" type="Node3D" parent="walls/wallstatic16" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("22_2li3d")
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="Detector" type="Area3D" parent="walls/wallstatic16"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+monitoring = false
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic16/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic16/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic16/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic16/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic16/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic16/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="ProgressCount" type="Sprite3D" parent="walls/wallstatic16"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 1, 0)
+visible = false
+billboard = 1
+texture = SubResource("ViewportTexture_5dqjb")
+script = ExtResource("23_57br2")
+
+[node name="SubViewport" type="SubViewport" parent="walls/wallstatic16/ProgressCount"]
+size = Vector2i(400, 100)
+
+[node name="Control" type="Control" parent="walls/wallstatic16/ProgressCount/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="walls/wallstatic16/ProgressCount/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("24_bj8hu")
+theme_override_font_sizes/font_size = 91
+
+[node name="wallstatic17" type="Node3D" parent="walls" node_paths=PackedStringArray("Animations")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.0229, -1.90735e-06, 9.06691)
+script = ExtResource("19_r30sf")
+Animations = NodePath("AnimationHex")
+Up = true
+
+[node name="Hex" type="StaticBody3D" parent="walls/wallstatic17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
+collision_layer = 71
+collision_mask = 71
+
+[node name="Model" type="MeshInstance3D" parent="walls/wallstatic17/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+material_override = SubResource("ShaderMaterial_b35dy")
+mesh = ExtResource("20_n8v56")
+skeleton = NodePath("../..")
+
+[node name="Colision" type="CollisionShape3D" parent="walls/wallstatic17/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+shape = SubResource("ConvexPolygonShape3D_j4cnv")
+debug_fill = false
+
+[node name="Wall" type="Node3D" parent="walls/wallstatic17/Hex"]
+
+[node name="Walls" type="StaticBody3D" parent="walls/wallstatic17/Hex/Wall"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic17/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic17/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic17/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic17/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic17/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic17/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="AnimationPlayer" parent="walls/wallstatic17" instance=ExtResource("21_dh1lx")]
+active = false
+reset_on_save = false
+
+[node name="AnimationHex" type="Node3D" parent="walls/wallstatic17" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("22_2li3d")
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="Detector" type="Area3D" parent="walls/wallstatic17"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+monitoring = false
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic17/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic17/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic17/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic17/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic17/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic17/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="ProgressCount" type="Sprite3D" parent="walls/wallstatic17"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 1, 0)
+visible = false
+billboard = 1
+texture = SubResource("ViewportTexture_5dqjb")
+script = ExtResource("23_57br2")
+
+[node name="SubViewport" type="SubViewport" parent="walls/wallstatic17/ProgressCount"]
+size = Vector2i(400, 100)
+
+[node name="Control" type="Control" parent="walls/wallstatic17/ProgressCount/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="walls/wallstatic17/ProgressCount/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("24_bj8hu")
+theme_override_font_sizes/font_size = 91
+
+[node name="wallstatic19" type="Node3D" parent="walls" node_paths=PackedStringArray("Animations")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.0229, -1.90735e-06, 9.06691)
+script = ExtResource("19_r30sf")
+Animations = NodePath("AnimationHex")
+Up = true
+
+[node name="Hex" type="StaticBody3D" parent="walls/wallstatic19"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
+collision_layer = 71
+collision_mask = 71
+
+[node name="Model" type="MeshInstance3D" parent="walls/wallstatic19/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+material_override = SubResource("ShaderMaterial_b35dy")
+mesh = ExtResource("20_n8v56")
+skeleton = NodePath("../..")
+
+[node name="Colision" type="CollisionShape3D" parent="walls/wallstatic19/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+shape = SubResource("ConvexPolygonShape3D_j4cnv")
+debug_fill = false
+
+[node name="Wall" type="Node3D" parent="walls/wallstatic19/Hex"]
+
+[node name="Walls" type="StaticBody3D" parent="walls/wallstatic19/Hex/Wall"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic19/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic19/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic19/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic19/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic19/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic19/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="AnimationPlayer" parent="walls/wallstatic19" instance=ExtResource("21_dh1lx")]
+active = false
+reset_on_save = false
+
+[node name="AnimationHex" type="Node3D" parent="walls/wallstatic19" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("22_2li3d")
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="Detector" type="Area3D" parent="walls/wallstatic19"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+monitoring = false
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic19/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic19/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic19/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic19/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic19/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic19/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="ProgressCount" type="Sprite3D" parent="walls/wallstatic19"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 1, 0)
+visible = false
+billboard = 1
+texture = SubResource("ViewportTexture_5dqjb")
+script = ExtResource("23_57br2")
+
+[node name="SubViewport" type="SubViewport" parent="walls/wallstatic19/ProgressCount"]
+size = Vector2i(400, 100)
+
+[node name="Control" type="Control" parent="walls/wallstatic19/ProgressCount/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="walls/wallstatic19/ProgressCount/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("24_bj8hu")
+theme_override_font_sizes/font_size = 91
+
+[node name="wallstatic20" type="Node3D" parent="walls" node_paths=PackedStringArray("Animations")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.1103, -9.53674e-06, 9.28608)
+script = ExtResource("19_r30sf")
+Animations = NodePath("AnimationHex")
+Up = true
+
+[node name="Hex" type="StaticBody3D" parent="walls/wallstatic20"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
+collision_layer = 71
+collision_mask = 71
+
+[node name="Model" type="MeshInstance3D" parent="walls/wallstatic20/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+material_override = SubResource("ShaderMaterial_b35dy")
+mesh = ExtResource("20_n8v56")
+skeleton = NodePath("../..")
+
+[node name="Colision" type="CollisionShape3D" parent="walls/wallstatic20/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+shape = SubResource("ConvexPolygonShape3D_j4cnv")
+debug_fill = false
+
+[node name="Wall" type="Node3D" parent="walls/wallstatic20/Hex"]
+
+[node name="Walls" type="StaticBody3D" parent="walls/wallstatic20/Hex/Wall"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic20/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic20/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic20/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic20/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic20/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic20/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="AnimationPlayer" parent="walls/wallstatic20" instance=ExtResource("21_dh1lx")]
+active = false
+reset_on_save = false
+
+[node name="AnimationHex" type="Node3D" parent="walls/wallstatic20" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("22_2li3d")
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="Detector" type="Area3D" parent="walls/wallstatic20"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+monitoring = false
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic20/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic20/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic20/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic20/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic20/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic20/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="ProgressCount" type="Sprite3D" parent="walls/wallstatic20"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 1, 0)
+visible = false
+billboard = 1
+texture = SubResource("ViewportTexture_5dqjb")
+script = ExtResource("23_57br2")
+
+[node name="SubViewport" type="SubViewport" parent="walls/wallstatic20/ProgressCount"]
+size = Vector2i(400, 100)
+
+[node name="Control" type="Control" parent="walls/wallstatic20/ProgressCount/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="walls/wallstatic20/ProgressCount/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("24_bj8hu")
+theme_override_font_sizes/font_size = 91
+
+[node name="wallstatic18" type="Node3D" parent="walls" node_paths=PackedStringArray("Animations")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.7242, -1.90735e-06, 18.0224)
+script = ExtResource("19_r30sf")
+Animations = NodePath("AnimationHex")
+Up = true
+
+[node name="Hex" type="StaticBody3D" parent="walls/wallstatic18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
+collision_layer = 71
+collision_mask = 71
+
+[node name="Model" type="MeshInstance3D" parent="walls/wallstatic18/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+material_override = SubResource("ShaderMaterial_b35dy")
+mesh = ExtResource("20_n8v56")
+skeleton = NodePath("../..")
+
+[node name="Colision" type="CollisionShape3D" parent="walls/wallstatic18/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+shape = SubResource("ConvexPolygonShape3D_j4cnv")
+debug_fill = false
+
+[node name="Wall" type="Node3D" parent="walls/wallstatic18/Hex"]
+
+[node name="Walls" type="StaticBody3D" parent="walls/wallstatic18/Hex/Wall"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic18/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic18/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic18/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic18/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic18/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic18/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="AnimationPlayer" parent="walls/wallstatic18" instance=ExtResource("21_dh1lx")]
+active = false
+reset_on_save = false
+
+[node name="AnimationHex" type="Node3D" parent="walls/wallstatic18" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("22_2li3d")
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="Detector" type="Area3D" parent="walls/wallstatic18"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+monitoring = false
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic18/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic18/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic18/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic18/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic18/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic18/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="ProgressCount" type="Sprite3D" parent="walls/wallstatic18"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 1, 0)
+visible = false
+billboard = 1
+texture = SubResource("ViewportTexture_5dqjb")
+script = ExtResource("23_57br2")
+
+[node name="SubViewport" type="SubViewport" parent="walls/wallstatic18/ProgressCount"]
+size = Vector2i(400, 100)
+
+[node name="Control" type="Control" parent="walls/wallstatic18/ProgressCount/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="walls/wallstatic18/ProgressCount/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("24_bj8hu")
+theme_override_font_sizes/font_size = 91
+
+[node name="wallstatic8" type="Node3D" parent="walls" node_paths=PackedStringArray("Animations")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7926, -1.90735e-06, -18.011)
+script = ExtResource("19_r30sf")
+Animations = NodePath("AnimationHex")
+Up = true
+
+[node name="Hex" type="StaticBody3D" parent="walls/wallstatic8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
+collision_layer = 71
+collision_mask = 71
+
+[node name="Model" type="MeshInstance3D" parent="walls/wallstatic8/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+material_override = SubResource("ShaderMaterial_b35dy")
+mesh = ExtResource("20_n8v56")
+skeleton = NodePath("../..")
+
+[node name="Colision" type="CollisionShape3D" parent="walls/wallstatic8/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+shape = SubResource("ConvexPolygonShape3D_j4cnv")
+debug_fill = false
+
+[node name="Wall" type="Node3D" parent="walls/wallstatic8/Hex"]
+
+[node name="Walls" type="StaticBody3D" parent="walls/wallstatic8/Hex/Wall"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic8/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic8/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic8/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic8/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic8/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic8/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="AnimationPlayer" parent="walls/wallstatic8" instance=ExtResource("21_dh1lx")]
+active = false
+reset_on_save = false
+
+[node name="AnimationHex" type="Node3D" parent="walls/wallstatic8" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("22_2li3d")
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="Detector" type="Area3D" parent="walls/wallstatic8"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+monitoring = false
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic8/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic8/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic8/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic8/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic8/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic8/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="ProgressCount" type="Sprite3D" parent="walls/wallstatic8"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 1, 0)
+visible = false
+billboard = 1
+texture = SubResource("ViewportTexture_5dqjb")
+script = ExtResource("23_57br2")
+
+[node name="SubViewport" type="SubViewport" parent="walls/wallstatic8/ProgressCount"]
+size = Vector2i(400, 100)
+
+[node name="Control" type="Control" parent="walls/wallstatic8/ProgressCount/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="walls/wallstatic8/ProgressCount/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("24_bj8hu")
+theme_override_font_sizes/font_size = 91
+
+[node name="wallstatic9" type="Node3D" parent="walls" node_paths=PackedStringArray("Animations")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5591, -1.90735e-06, -26.9586)
+script = ExtResource("19_r30sf")
+Animations = NodePath("AnimationHex")
+Up = true
+
+[node name="Hex" type="StaticBody3D" parent="walls/wallstatic9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
+collision_layer = 71
+collision_mask = 71
+
+[node name="Model" type="MeshInstance3D" parent="walls/wallstatic9/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+material_override = SubResource("ShaderMaterial_b35dy")
+mesh = ExtResource("20_n8v56")
+skeleton = NodePath("../..")
+
+[node name="Colision" type="CollisionShape3D" parent="walls/wallstatic9/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+shape = SubResource("ConvexPolygonShape3D_j4cnv")
+debug_fill = false
+
+[node name="Wall" type="Node3D" parent="walls/wallstatic9/Hex"]
+
+[node name="Walls" type="StaticBody3D" parent="walls/wallstatic9/Hex/Wall"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic9/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic9/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic9/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic9/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic9/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic9/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="AnimationPlayer" parent="walls/wallstatic9" instance=ExtResource("21_dh1lx")]
+active = false
+reset_on_save = false
+
+[node name="AnimationHex" type="Node3D" parent="walls/wallstatic9" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("22_2li3d")
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="Detector" type="Area3D" parent="walls/wallstatic9"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+monitoring = false
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic9/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic9/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic9/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic9/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic9/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic9/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="ProgressCount" type="Sprite3D" parent="walls/wallstatic9"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 1, 0)
+visible = false
+billboard = 1
+texture = SubResource("ViewportTexture_5dqjb")
+script = ExtResource("23_57br2")
+
+[node name="SubViewport" type="SubViewport" parent="walls/wallstatic9/ProgressCount"]
+size = Vector2i(400, 100)
+
+[node name="Control" type="Control" parent="walls/wallstatic9/ProgressCount/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="walls/wallstatic9/ProgressCount/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("24_bj8hu")
+theme_override_font_sizes/font_size = 91
+
+[node name="wallstatic10" type="Node3D" parent="walls" node_paths=PackedStringArray("Animations")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.19121, -1.90735e-06, -27.0435)
+script = ExtResource("19_r30sf")
+Animations = NodePath("AnimationHex")
+Up = true
+
+[node name="Hex" type="StaticBody3D" parent="walls/wallstatic10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
+collision_layer = 71
+collision_mask = 71
+
+[node name="Model" type="MeshInstance3D" parent="walls/wallstatic10/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+material_override = SubResource("ShaderMaterial_b35dy")
+mesh = ExtResource("20_n8v56")
+skeleton = NodePath("../..")
+
+[node name="Colision" type="CollisionShape3D" parent="walls/wallstatic10/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+shape = SubResource("ConvexPolygonShape3D_j4cnv")
+debug_fill = false
+
+[node name="Wall" type="Node3D" parent="walls/wallstatic10/Hex"]
+
+[node name="Walls" type="StaticBody3D" parent="walls/wallstatic10/Hex/Wall"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic10/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic10/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic10/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic10/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic10/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic10/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="AnimationPlayer" parent="walls/wallstatic10" instance=ExtResource("21_dh1lx")]
+active = false
+reset_on_save = false
+
+[node name="AnimationHex" type="Node3D" parent="walls/wallstatic10" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("22_2li3d")
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="Detector" type="Area3D" parent="walls/wallstatic10"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+monitoring = false
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic10/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic10/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic10/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic10/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic10/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic10/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="ProgressCount" type="Sprite3D" parent="walls/wallstatic10"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 1, 0)
+visible = false
+billboard = 1
+texture = SubResource("ViewportTexture_5dqjb")
+script = ExtResource("23_57br2")
+
+[node name="SubViewport" type="SubViewport" parent="walls/wallstatic10/ProgressCount"]
+size = Vector2i(400, 100)
+
+[node name="Control" type="Control" parent="walls/wallstatic10/ProgressCount/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="walls/wallstatic10/ProgressCount/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("24_bj8hu")
+theme_override_font_sizes/font_size = 91
+
+[node name="wallstatic2" type="Node3D" parent="walls" node_paths=PackedStringArray("Animations")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.75492, -1.90735e-06, 26.8281)
+script = ExtResource("19_r30sf")
+Animations = NodePath("AnimationHex")
+Up = true
+
+[node name="Hex" type="StaticBody3D" parent="walls/wallstatic2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
+collision_layer = 71
+collision_mask = 71
+
+[node name="Model" type="MeshInstance3D" parent="walls/wallstatic2/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+material_override = SubResource("ShaderMaterial_b35dy")
+mesh = ExtResource("20_n8v56")
+skeleton = NodePath("../..")
+
+[node name="Colision" type="CollisionShape3D" parent="walls/wallstatic2/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+shape = SubResource("ConvexPolygonShape3D_j4cnv")
+debug_fill = false
+
+[node name="Wall" type="Node3D" parent="walls/wallstatic2/Hex"]
+
+[node name="Walls" type="StaticBody3D" parent="walls/wallstatic2/Hex/Wall"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic2/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic2/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic2/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic2/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic2/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic2/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="AnimationPlayer" parent="walls/wallstatic2" instance=ExtResource("21_dh1lx")]
+active = false
+reset_on_save = false
+
+[node name="AnimationHex" type="Node3D" parent="walls/wallstatic2" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("22_2li3d")
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="Detector" type="Area3D" parent="walls/wallstatic2"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+monitoring = false
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic2/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic2/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic2/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic2/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic2/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic2/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="ProgressCount" type="Sprite3D" parent="walls/wallstatic2"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 1, 0)
+visible = false
+billboard = 1
+texture = SubResource("ViewportTexture_a0uwd")
+script = ExtResource("23_57br2")
+
+[node name="SubViewport" type="SubViewport" parent="walls/wallstatic2/ProgressCount"]
+size = Vector2i(400, 100)
+
+[node name="Control" type="Control" parent="walls/wallstatic2/ProgressCount/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="walls/wallstatic2/ProgressCount/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("24_bj8hu")
+theme_override_font_sizes/font_size = 91
+
+[node name="wallstatic3" type="Node3D" parent="walls" node_paths=PackedStringArray("Animations")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.64508, -1.90735e-06, 26.8281)
+script = ExtResource("19_r30sf")
+Animations = NodePath("AnimationHex")
+Up = true
+
+[node name="Hex" type="StaticBody3D" parent="walls/wallstatic3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
+collision_layer = 71
+collision_mask = 71
+
+[node name="Model" type="MeshInstance3D" parent="walls/wallstatic3/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+material_override = SubResource("ShaderMaterial_b35dy")
+mesh = ExtResource("20_n8v56")
+skeleton = NodePath("../..")
+
+[node name="Colision" type="CollisionShape3D" parent="walls/wallstatic3/Hex"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+shape = SubResource("ConvexPolygonShape3D_j4cnv")
+debug_fill = false
+
+[node name="Wall" type="Node3D" parent="walls/wallstatic3/Hex"]
+
+[node name="Walls" type="StaticBody3D" parent="walls/wallstatic3/Hex/Wall"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic3/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic3/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic3/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic3/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 140, 8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic3/Hex/Wall/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 140, 0)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic3/Hex/Wall/Walls"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 140, -8.8)
+shape = SubResource("BoxShape3D_24y5s")
+debug_color = Color(0.86, 0, 0.0143331, 0.419608)
+
+[node name="AnimationPlayer" parent="walls/wallstatic3" instance=ExtResource("21_dh1lx")]
+active = false
+reset_on_save = false
+
+[node name="AnimationHex" type="Node3D" parent="walls/wallstatic3" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("22_2li3d")
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="Detector" type="Area3D" parent="walls/wallstatic3"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+monitoring = false
+
+[node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic3/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidR" type="CollisionShape3D" parent="walls/wallstatic3/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowR" type="CollisionShape3D" parent="walls/wallstatic3/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallLowL" type="CollisionShape3D" parent="walls/wallstatic3/Detector"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 3.28, 8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallMidL" type="CollisionShape3D" parent="walls/wallstatic3/Detector"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 3.28, 0)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="WallUpL" type="CollisionShape3D" parent="walls/wallstatic3/Detector"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 3.28, -8.8)
+shape = SubResource("BoxShape3D_88adk")
+debug_color = Color(0, 0.469331, 0.792709, 0.419608)
+
+[node name="ProgressCount" type="Sprite3D" parent="walls/wallstatic3"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 1, 0)
+visible = false
+billboard = 1
+texture = SubResource("ViewportTexture_lxu3f")
+script = ExtResource("23_57br2")
+
+[node name="SubViewport" type="SubViewport" parent="walls/wallstatic3/ProgressCount"]
+size = Vector2i(400, 100)
+
+[node name="Control" type="Control" parent="walls/wallstatic3/ProgressCount/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="walls/wallstatic3/ProgressCount/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("24_bj8hu")
+theme_override_font_sizes/font_size = 91
 
 [connection signal="updated_energy" from="Player" to="Player/UI3D/SubViewport/UI" method="_on_player_cooldown_changed"]
 [connection signal="updated_health" from="Player" to="Player/UI3D/SubViewport/UI" method="_on_player_health_changed"]
+[connection signal="AnimToggle" from="walls/wallstatic" to="walls/wallstatic/AnimationHex" method="_on_fixed_hex_anim_toggle"]
+[connection signal="animation_finished" from="walls/wallstatic/AnimationPlayer" to="walls/wallstatic" method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="walls/wallstatic/Detector" to="walls/wallstatic" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="walls/wallstatic/Detector" to="walls/wallstatic" method="_on_area_3d_body_exited"]
+[connection signal="AnimToggle" from="walls/wallstatic4" to="walls/wallstatic4/AnimationHex" method="_on_fixed_hex_anim_toggle"]
+[connection signal="animation_finished" from="walls/wallstatic4/AnimationPlayer" to="walls/wallstatic4" method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="walls/wallstatic4/Detector" to="walls/wallstatic4" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="walls/wallstatic4/Detector" to="walls/wallstatic4" method="_on_area_3d_body_exited"]
+[connection signal="AnimToggle" from="walls/wallstatic5" to="walls/wallstatic5/AnimationHex" method="_on_fixed_hex_anim_toggle"]
+[connection signal="animation_finished" from="walls/wallstatic5/AnimationPlayer" to="walls/wallstatic5" method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="walls/wallstatic5/Detector" to="walls/wallstatic5" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="walls/wallstatic5/Detector" to="walls/wallstatic5" method="_on_area_3d_body_exited"]
+[connection signal="AnimToggle" from="walls/wallstatic6" to="walls/wallstatic6/AnimationHex" method="_on_fixed_hex_anim_toggle"]
+[connection signal="animation_finished" from="walls/wallstatic6/AnimationPlayer" to="walls/wallstatic6" method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="walls/wallstatic6/Detector" to="walls/wallstatic6" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="walls/wallstatic6/Detector" to="walls/wallstatic6" method="_on_area_3d_body_exited"]
+[connection signal="AnimToggle" from="walls/wallstatic7" to="walls/wallstatic7/AnimationHex" method="_on_fixed_hex_anim_toggle"]
+[connection signal="animation_finished" from="walls/wallstatic7/AnimationPlayer" to="walls/wallstatic7" method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="walls/wallstatic7/Detector" to="walls/wallstatic7" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="walls/wallstatic7/Detector" to="walls/wallstatic7" method="_on_area_3d_body_exited"]
+[connection signal="AnimToggle" from="walls/wallstatic11" to="walls/wallstatic11/AnimationHex" method="_on_fixed_hex_anim_toggle"]
+[connection signal="animation_finished" from="walls/wallstatic11/AnimationPlayer" to="walls/wallstatic11" method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="walls/wallstatic11/Detector" to="walls/wallstatic11" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="walls/wallstatic11/Detector" to="walls/wallstatic11" method="_on_area_3d_body_exited"]
+[connection signal="AnimToggle" from="walls/wallstatic12" to="walls/wallstatic12/AnimationHex" method="_on_fixed_hex_anim_toggle"]
+[connection signal="animation_finished" from="walls/wallstatic12/AnimationPlayer" to="walls/wallstatic12" method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="walls/wallstatic12/Detector" to="walls/wallstatic12" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="walls/wallstatic12/Detector" to="walls/wallstatic12" method="_on_area_3d_body_exited"]
+[connection signal="AnimToggle" from="walls/wallstatic13" to="walls/wallstatic13/AnimationHex" method="_on_fixed_hex_anim_toggle"]
+[connection signal="animation_finished" from="walls/wallstatic13/AnimationPlayer" to="walls/wallstatic13" method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="walls/wallstatic13/Detector" to="walls/wallstatic13" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="walls/wallstatic13/Detector" to="walls/wallstatic13" method="_on_area_3d_body_exited"]
+[connection signal="AnimToggle" from="walls/wallstatic14" to="walls/wallstatic14/AnimationHex" method="_on_fixed_hex_anim_toggle"]
+[connection signal="animation_finished" from="walls/wallstatic14/AnimationPlayer" to="walls/wallstatic14" method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="walls/wallstatic14/Detector" to="walls/wallstatic14" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="walls/wallstatic14/Detector" to="walls/wallstatic14" method="_on_area_3d_body_exited"]
+[connection signal="AnimToggle" from="walls/wallstatic15" to="walls/wallstatic15/AnimationHex" method="_on_fixed_hex_anim_toggle"]
+[connection signal="animation_finished" from="walls/wallstatic15/AnimationPlayer" to="walls/wallstatic15" method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="walls/wallstatic15/Detector" to="walls/wallstatic15" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="walls/wallstatic15/Detector" to="walls/wallstatic15" method="_on_area_3d_body_exited"]
+[connection signal="AnimToggle" from="walls/wallstatic16" to="walls/wallstatic16/AnimationHex" method="_on_fixed_hex_anim_toggle"]
+[connection signal="animation_finished" from="walls/wallstatic16/AnimationPlayer" to="walls/wallstatic16" method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="walls/wallstatic16/Detector" to="walls/wallstatic16" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="walls/wallstatic16/Detector" to="walls/wallstatic16" method="_on_area_3d_body_exited"]
+[connection signal="AnimToggle" from="walls/wallstatic17" to="walls/wallstatic17/AnimationHex" method="_on_fixed_hex_anim_toggle"]
+[connection signal="animation_finished" from="walls/wallstatic17/AnimationPlayer" to="walls/wallstatic17" method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="walls/wallstatic17/Detector" to="walls/wallstatic17" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="walls/wallstatic17/Detector" to="walls/wallstatic17" method="_on_area_3d_body_exited"]
+[connection signal="AnimToggle" from="walls/wallstatic19" to="walls/wallstatic19/AnimationHex" method="_on_fixed_hex_anim_toggle"]
+[connection signal="animation_finished" from="walls/wallstatic19/AnimationPlayer" to="walls/wallstatic19" method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="walls/wallstatic19/Detector" to="walls/wallstatic19" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="walls/wallstatic19/Detector" to="walls/wallstatic19" method="_on_area_3d_body_exited"]
+[connection signal="AnimToggle" from="walls/wallstatic20" to="walls/wallstatic20/AnimationHex" method="_on_fixed_hex_anim_toggle"]
+[connection signal="animation_finished" from="walls/wallstatic20/AnimationPlayer" to="walls/wallstatic20" method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="walls/wallstatic20/Detector" to="walls/wallstatic20" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="walls/wallstatic20/Detector" to="walls/wallstatic20" method="_on_area_3d_body_exited"]
+[connection signal="AnimToggle" from="walls/wallstatic18" to="walls/wallstatic18/AnimationHex" method="_on_fixed_hex_anim_toggle"]
+[connection signal="animation_finished" from="walls/wallstatic18/AnimationPlayer" to="walls/wallstatic18" method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="walls/wallstatic18/Detector" to="walls/wallstatic18" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="walls/wallstatic18/Detector" to="walls/wallstatic18" method="_on_area_3d_body_exited"]
+[connection signal="AnimToggle" from="walls/wallstatic8" to="walls/wallstatic8/AnimationHex" method="_on_fixed_hex_anim_toggle"]
+[connection signal="animation_finished" from="walls/wallstatic8/AnimationPlayer" to="walls/wallstatic8" method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="walls/wallstatic8/Detector" to="walls/wallstatic8" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="walls/wallstatic8/Detector" to="walls/wallstatic8" method="_on_area_3d_body_exited"]
+[connection signal="AnimToggle" from="walls/wallstatic9" to="walls/wallstatic9/AnimationHex" method="_on_fixed_hex_anim_toggle"]
+[connection signal="animation_finished" from="walls/wallstatic9/AnimationPlayer" to="walls/wallstatic9" method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="walls/wallstatic9/Detector" to="walls/wallstatic9" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="walls/wallstatic9/Detector" to="walls/wallstatic9" method="_on_area_3d_body_exited"]
+[connection signal="AnimToggle" from="walls/wallstatic10" to="walls/wallstatic10/AnimationHex" method="_on_fixed_hex_anim_toggle"]
+[connection signal="animation_finished" from="walls/wallstatic10/AnimationPlayer" to="walls/wallstatic10" method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="walls/wallstatic10/Detector" to="walls/wallstatic10" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="walls/wallstatic10/Detector" to="walls/wallstatic10" method="_on_area_3d_body_exited"]
+[connection signal="AnimToggle" from="walls/wallstatic2" to="walls/wallstatic2/AnimationHex" method="_on_fixed_hex_anim_toggle"]
+[connection signal="animation_finished" from="walls/wallstatic2/AnimationPlayer" to="walls/wallstatic2" method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="walls/wallstatic2/Detector" to="walls/wallstatic2" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="walls/wallstatic2/Detector" to="walls/wallstatic2" method="_on_area_3d_body_exited"]
+[connection signal="AnimToggle" from="walls/wallstatic3" to="walls/wallstatic3/AnimationHex" method="_on_fixed_hex_anim_toggle"]
+[connection signal="animation_finished" from="walls/wallstatic3/AnimationPlayer" to="walls/wallstatic3" method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="walls/wallstatic3/Detector" to="walls/wallstatic3" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="walls/wallstatic3/Detector" to="walls/wallstatic3" method="_on_area_3d_body_exited"]

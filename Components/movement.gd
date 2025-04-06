@@ -78,7 +78,7 @@ func _on_dead() -> void:
 func new_wander_direction() -> Vector3:
 	return Vector3(
 		randf_range(-1.0, 1.0),
-		randf_range(-1.0, 1.0),
+		randf_range(-0.1, 0.1),
 		randf_range(-1.0, 1.0)
 	).normalized()
 
