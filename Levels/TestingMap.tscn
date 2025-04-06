@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cnhcumyvhe17e"]
+[gd_scene load_steps=29 format=3 uid="uid://cnhcumyvhe17e"]
 
 [ext_resource type="Script" uid="uid://bydtmfnv5gj6u" path="res://Levels/level.gd" id="1_at1qm"]
 [ext_resource type="PackedScene" uid="uid://bx0msm0hagnj0" path="res://Player/player.tscn" id="2_wxfap"]
@@ -11,11 +11,12 @@
 [ext_resource type="Script" uid="uid://05wfyw363rdi" path="res://Components/tutorial_component.gd" id="9_0xgx3"]
 [ext_resource type="PackedScene" uid="uid://d8ut0msjyk48" path="res://Enemies/Eye_boss.tscn" id="11_kmljm"]
 [ext_resource type="PackedScene" uid="uid://dwhxov4hp4hhg" path="res://Enemies/chasing_enemy.tscn" id="17_0xgx3"]
+[ext_resource type="PackedScene" uid="uid://3qevbhnxt5xg" path="res://Enemies/box.tscn" id="18_oqux5"]
 [ext_resource type="Script" uid="uid://bbgg47aoc0e30" path="res://Scenes/hex_template.gd" id="19_r30sf"]
-[ext_resource type="ArrayMesh" uid="uid://4m7c7h4erxwh" path="res://assets/Hexagons/untitled.obj" id="20_n8v56"]
+[ext_resource type="ArrayMesh" uid="uid://dtox841xh5uxq" path="res://assets/Hexagons/untitled.obj" id="20_n8v56"]
 [ext_resource type="PackedScene" uid="uid://v0oj5afjxrn8" path="res://Scenes/animation_player_Hex.tscn" id="21_dh1lx"]
 [ext_resource type="Script" uid="uid://bleawlaewp1wf" path="res://Scenes/HexAnimationComponent.gd" id="22_2li3d"]
-[ext_resource type="Script" path="res://Scenes/progress_count.gd" id="23_57br2"]
+[ext_resource type="Script" uid="uid://b0kjkh2ooa0ke" path="res://Scenes/progress_count.gd" id="23_57br2"]
 [ext_resource type="Theme" uid="uid://bfp08hmhenri4" path="res://themes/Elmero.tres" id="24_bj8hu"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_y6c2c"]
@@ -101,7 +102,7 @@ Camera_To_Follow = NodePath("../Camera3D")
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 8, 7.85)
 
 [node name="Heart" parent="Player" node_paths=PackedStringArray("follow") instance=ExtResource("4_cg3js")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.91436, 0.237122, 5.4977)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.91436, 1.23712, 5.4977)
 mass = 10.0
 follow = NodePath("..")
 string_max_distance = 16.0
@@ -2840,6 +2841,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("24_bj8hu")
 theme_override_font_sizes/font_size = 91
+
+[node name="Box" parent="." instance=ExtResource("18_oqux5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.84959, 0.417241, 1.61043)
 
 [connection signal="updated_energy" from="Player" to="Player/UI3D/SubViewport/UI" method="_on_player_cooldown_changed"]
 [connection signal="updated_health" from="Player" to="Player/UI3D/SubViewport/UI" method="_on_player_health_changed"]

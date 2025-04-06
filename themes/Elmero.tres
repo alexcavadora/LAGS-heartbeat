@@ -1,6 +1,86 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bfp08hmhenri4"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://bfp08hmhenri4"]
 
 [ext_resource type="FontFile" uid="uid://dww4hvkxoaa6i" path="res://assets/fonts/ROGLyonsTypeRegular3.ttf" id="1_8jd2q"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8jd2q"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mmwnf"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.356863, 0.270588, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5xkmm"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.980392, 0.721569, 0.419608, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yq0ns"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.345098, 0.152941, 0.211765, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jg6jv"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
 [resource]
 default_font = ExtResource("1_8jd2q")
+Button/colors/font_color = Color(0.980392, 0.721569, 0.419608, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 30
+Button/styles/disabled = SubResource("StyleBoxFlat_8jd2q")
+Button/styles/focus = SubResource("StyleBoxFlat_mmwnf")
+Button/styles/hover = SubResource("StyleBoxFlat_5xkmm")
+Button/styles/normal = SubResource("StyleBoxFlat_yq0ns")
+Button/styles/pressed = SubResource("StyleBoxFlat_jg6jv")

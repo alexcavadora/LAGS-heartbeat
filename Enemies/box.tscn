@@ -1,33 +1,32 @@
-[gd_scene load_steps=42 format=3 uid="uid://3qevbhnxt5xg"]
+[gd_scene load_steps=41 format=3 uid="uid://3qevbhnxt5xg"]
 
 [ext_resource type="PackedScene" uid="uid://2rx00tnl0vje" path="res://Components/health.tscn" id="1_7ushe"]
 [ext_resource type="Script" uid="uid://chx5k8fykuvl5" path="res://Enemies/enemy.gd" id="1_xbarb"]
 [ext_resource type="PackedScene" uid="uid://c700l20getk" path="res://Components/hitbox.tscn" id="2_5gsve"]
 [ext_resource type="Material" uid="uid://jbpqhrul7rwc" path="res://particles/DeathParticles.tres" id="4_ijwdr"]
 [ext_resource type="PackedScene" uid="uid://bwle4a3xvat5g" path="res://Components/movement.tscn" id="4_kc5n5"]
-[ext_resource type="Texture2D" uid="uid://d4gw7ntfjcq85" path="res://assets/powerup/Data/Data_1.png" id="6_7uyki"]
-[ext_resource type="Texture2D" uid="uid://ckp4xvh0qf4ug" path="res://assets/powerup/Data/Data_2.png" id="7_1150l"]
-[ext_resource type="Texture2D" uid="uid://d222fah1s0vse" path="res://assets/powerup/Data/Data_3.png" id="8_liiu3"]
-[ext_resource type="Texture2D" uid="uid://btykxdw4h57dh" path="res://assets/powerup/Data/Data_4.png" id="9_uehd1"]
-[ext_resource type="Texture2D" uid="uid://bw0g0fctxwg42" path="res://assets/powerup/Data/Data_5.png" id="10_7m377"]
-[ext_resource type="Texture2D" uid="uid://t0rw1wrk8r53" path="res://assets/powerup/Data/Data_6.png" id="11_f4e4l"]
-[ext_resource type="Texture2D" uid="uid://lftmvxhlaii8" path="res://assets/powerup/Data/Data_7.png" id="12_gyahl"]
-[ext_resource type="Texture2D" uid="uid://cdydm0henlfik" path="res://assets/powerup/Data/Data_8.png" id="13_h5tvw"]
-[ext_resource type="Texture2D" uid="uid://b1abb3cdgp1xy" path="res://assets/powerup/Data/Data_9.png" id="14_udlj2"]
-[ext_resource type="Texture2D" uid="uid://b8ok5nqln0f43" path="res://assets/powerup/Data/Data_10.png" id="15_43431"]
-[ext_resource type="Texture2D" uid="uid://01yyet10jmwk" path="res://assets/powerup/Data/Data_11.png" id="16_hcio3"]
-[ext_resource type="Texture2D" uid="uid://d1m3uqu2wutbj" path="res://assets/powerup/Data/Data_12.png" id="17_66yof"]
-[ext_resource type="Texture2D" uid="uid://b6r2nqsslweiq" path="res://assets/powerup/Data/Data_13.png" id="18_p6ce5"]
-[ext_resource type="Texture2D" uid="uid://cssbl73bkfpv2" path="res://assets/powerup/Data/Data_14.png" id="19_wsl8l"]
-[ext_resource type="Texture2D" uid="uid://b6obiev8lpvb1" path="res://assets/powerup/Data/Data_15.png" id="20_0q5bj"]
-[ext_resource type="Texture2D" uid="uid://cv8xxsujqg2mj" path="res://assets/powerup/Data/Data_16.png" id="21_2ojfv"]
-[ext_resource type="Texture2D" uid="uid://ch4cldhxra1fb" path="res://assets/powerup/Data/Data_17.png" id="22_yo7i8"]
-[ext_resource type="Texture2D" uid="uid://c5n30u1l52ril" path="res://assets/powerup/Data/Data_18.png" id="23_x57ts"]
-[ext_resource type="Texture2D" uid="uid://bn56vos1ior2e" path="res://assets/powerup/Data/Data_19.png" id="24_hnfno"]
-[ext_resource type="ArrayMesh" uid="uid://cgq3l5pn1abct" path="res://assets/powerup/Data/folder.obj" id="25_1150l"]
+[ext_resource type="Texture2D" uid="uid://cuna5pqdbjil4" path="res://assets/powerup/Data/Data_1.png" id="6_7uyki"]
+[ext_resource type="Texture2D" uid="uid://bgml6vyf48lge" path="res://assets/powerup/Data/Data_2.png" id="7_1150l"]
+[ext_resource type="Texture2D" uid="uid://kq726vf0aky4" path="res://assets/powerup/Data/Data_3.png" id="8_liiu3"]
+[ext_resource type="Texture2D" uid="uid://cr67vprv6jy3c" path="res://assets/powerup/Data/Data_4.png" id="9_uehd1"]
+[ext_resource type="Texture2D" uid="uid://xh6np4mrcnx6" path="res://assets/powerup/Data/Data_5.png" id="10_7m377"]
+[ext_resource type="Texture2D" uid="uid://b3k1qheigvjg7" path="res://assets/powerup/Data/Data_6.png" id="11_f4e4l"]
+[ext_resource type="Texture2D" uid="uid://bwyodymbqn5yx" path="res://assets/powerup/Data/Data_7.png" id="12_gyahl"]
+[ext_resource type="Texture2D" uid="uid://bmmwdx3bb2jqu" path="res://assets/powerup/Data/Data_8.png" id="13_h5tvw"]
+[ext_resource type="Texture2D" uid="uid://bhcskh8t4vw0o" path="res://assets/powerup/Data/Data_9.png" id="14_udlj2"]
+[ext_resource type="Texture2D" uid="uid://dpyywf2n60l2g" path="res://assets/powerup/Data/Data_10.png" id="15_43431"]
+[ext_resource type="Texture2D" uid="uid://cufqtwgeedxye" path="res://assets/powerup/Data/Data_11.png" id="16_hcio3"]
+[ext_resource type="Texture2D" uid="uid://bojr1dqmxq81c" path="res://assets/powerup/Data/Data_12.png" id="17_66yof"]
+[ext_resource type="Texture2D" uid="uid://duqrprxsyfxad" path="res://assets/powerup/Data/Data_13.png" id="18_p6ce5"]
+[ext_resource type="Texture2D" uid="uid://br1yn1nwwljhr" path="res://assets/powerup/Data/Data_14.png" id="19_wsl8l"]
+[ext_resource type="Texture2D" uid="uid://dnkghf6w1fxfl" path="res://assets/powerup/Data/Data_15.png" id="20_0q5bj"]
+[ext_resource type="Texture2D" uid="uid://bkla7dltfekhq" path="res://assets/powerup/Data/Data_16.png" id="21_2ojfv"]
+[ext_resource type="Texture2D" uid="uid://eqhpq1qjqwn3" path="res://assets/powerup/Data/Data_17.png" id="22_yo7i8"]
+[ext_resource type="Texture2D" uid="uid://dlkfar8hibgtt" path="res://assets/powerup/Data/Data_18.png" id="23_x57ts"]
+[ext_resource type="Texture2D" uid="uid://wrwnw8nc0dwa" path="res://assets/powerup/Data/Data_19.png" id="24_hnfno"]
+[ext_resource type="ArrayMesh" uid="uid://enr7cbexekv1" path="res://assets/powerup/Data/folder.obj" id="25_1150l"]
 [ext_resource type="Script" uid="uid://8rl72386f2ly" path="res://Components/attacker.gd" id="26_liiu3"]
 [ext_resource type="Script" uid="uid://j4jplmm05snu" path="res://Enemies/power_up.gd" id="27_uehd1"]
-[ext_resource type="Texture2D" uid="uid://c4wsowfno20qh" path="res://assets/embryo_.png" id="28_7m377"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6q36a"]
 
@@ -217,6 +216,7 @@ shape = SubResource("BoxShape3D_6q36a")
 
 [node name="Health" parent="." instance=ExtResource("1_7ushe")]
 health = 1
+IE_frames = true
 
 [node name="Hitbox" parent="." instance=ExtResource("2_5gsve")]
 visible = false
@@ -302,23 +302,6 @@ autoplay = "Idle"
 
 [node name="PowerUp" type="Node" parent="."]
 script = ExtResource("27_uehd1")
-
-[node name="UpgradeSystem" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Upgrade1" type="TextureButton" parent="UpgradeSystem"]
-layout_mode = 0
-offset_left = 131.0
-offset_top = 82.0
-offset_right = 393.0
-offset_bottom = 539.0
-scale = Vector2(0.3, 0.3)
-texture_normal = ExtResource("28_7m377")
 
 [connection signal="dead" from="Health" to="Movement" method="_on_dead"]
 [connection signal="dead" from="Health" to="PowerUp" method="_on_health_dead"]

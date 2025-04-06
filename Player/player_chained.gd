@@ -24,6 +24,9 @@ class_name Eye extends CharacterBody3D
 @export var c_drain_speed = 0.01
 @export var c_regen_speed = 0.005
 
+@onready var upgrades : UpgradeComponent = $Upgrades
+
+
 #cache
 var pulled = false
 var pulled_n = 0
