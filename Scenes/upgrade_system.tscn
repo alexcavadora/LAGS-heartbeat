@@ -1,26 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c15hx0bu2oe6w"]
+[gd_scene load_steps=5 format=3 uid="uid://c15hx0bu2oe6w"]
 
 [ext_resource type="Script" uid="uid://d0fv3tdvfqe4x" path="res://Scenes/upgrade_system.gd" id="1_vu38r"]
 [ext_resource type="Theme" uid="uid://bfp08hmhenri4" path="res://themes/Elmero.tres" id="2_q2e8n"]
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vu38r"]
-lifetime_randomness = 0.5
-spread = 180.0
-initial_velocity_max = 50.0
-scale_min = 0.1
-collision_mode = 1
-collision_friction = 0.0
-collision_bounce = 1.0
-collision_use_scale = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q2e8n"]
-albedo_color = Color(1, 0.890196, 0.364706, 1)
-emission_enabled = true
-emission = Color(1, 0.890196, 0.364706, 1)
-emission_energy_multiplier = 21.39
-
-[sub_resource type="SphereMesh" id="SphereMesh_gxvyi"]
-material = SubResource("StandardMaterial3D_q2e8n")
+[ext_resource type="Material" uid="uid://b20kp3df7i6xe" path="res://Scenes/upgrade_system.tres" id="3_q2e8n"]
+[ext_resource type="SphereMesh" uid="uid://cy1mumbix3e3" path="res://Scenes/upgrade_system-pass.tres" id="4_gxvyi"]
 
 [node name="UpgradeSystem" type="Control"]
 process_mode = 3
@@ -69,8 +52,8 @@ amount = 100
 lifetime = 5.0
 one_shot = true
 explosiveness = 1.0
-process_material = SubResource("ParticleProcessMaterial_vu38r")
-draw_pass_1 = SubResource("SphereMesh_gxvyi")
+process_material = ExtResource("3_q2e8n")
+draw_pass_1 = ExtResource("4_gxvyi")
 
 [connection signal="pressed" from="Button1" to="." method="_on_button_1_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dwhxov4hp4hhg"]
+[gd_scene load_steps=20 format=3 uid="uid://dwhxov4hp4hhg"]
 
 [ext_resource type="Script" uid="uid://chx5k8fykuvl5" path="res://Enemies/enemy.gd" id="1_5q8ye"]
 [ext_resource type="PackedScene" uid="uid://2rx00tnl0vje" path="res://Components/health.tscn" id="2_wb176"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bwle4a3xvat5g" path="res://Components/movement.tscn" id="4_dgrtn"]
 [ext_resource type="Material" uid="uid://jbpqhrul7rwc" path="res://particles/DeathParticles.tres" id="4_kq5jf"]
 [ext_resource type="PackedScene" uid="uid://d2j44bib6ji13" path="res://Components/attacker.tscn" id="5_wb176"]
+[ext_resource type="SphereMesh" uid="uid://p8je7wniikho" path="res://Enemies/enemy-particles.tres" id="5_wlnk3"]
 [ext_resource type="Texture2D" uid="uid://dueda3qya808d" path="res://assets/Enemies/Mantis/Mantis_Attack.png" id="6_0bmwx"]
 [ext_resource type="Texture2D" uid="uid://2g0vssornjc4" path="res://assets/Enemies/Mantis/Idle_Mantis_1.png" id="6_dljoa"]
 [ext_resource type="Texture2D" uid="uid://j5cxeqbnl07l" path="res://assets/Enemies/Mantis/Idle_Mantis_2.png" id="7_dgrtn"]
@@ -33,15 +34,6 @@ border_width_bottom = 3
 border_color = Color(1, 1, 1, 1)
 anti_aliasing = false
 anti_aliasing_size = 5.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xbarb"]
-shading_mode = 0
-albedo_color = Color(0.109193, 0.36384, 0.514162, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_pm8q8"]
-material = SubResource("StandardMaterial3D_xbarb")
-radius = 0.1
-height = 0.05
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kq5jf"]
 radius = 0.55
@@ -143,7 +135,7 @@ explosiveness = 0.6
 fixed_fps = 60
 collision_base_size = 0.1
 process_material = ExtResource("4_kq5jf")
-draw_pass_1 = SubResource("SphereMesh_pm8q8")
+draw_pass_1 = ExtResource("5_wlnk3")
 
 [node name="Movement" parent="." instance=ExtResource("4_dgrtn")]
 speed = 50.0

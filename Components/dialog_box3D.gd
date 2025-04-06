@@ -11,7 +11,7 @@ class_name DialogComponent3D
 @onready var extraevent : bool = true
 
 @onready var charcount : int = 0
-@onready var timer = $SubViewport/DialogBox/Timer
+@onready var timer : Timer = $SubViewport/DialogBox/Timer
 @onready var count : int = 0 
 signal Done
 
