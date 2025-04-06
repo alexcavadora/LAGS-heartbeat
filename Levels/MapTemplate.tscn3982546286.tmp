@@ -14,11 +14,6 @@
 
 [sub_resource type="Environment" id="Environment_ugyuv"]
 background_mode = 1
-fog_enabled = true
-fog_mode = 1
-fog_light_color = Color(0, 0, 0, 1)
-fog_density = 3.0
-volumetric_fog_albedo = Color(0, 0, 0, 1)
 
 [node name="test_level2" type="Node3D"]
 script = ExtResource("1_fjysl")
@@ -57,98 +52,22 @@ shape = SubResource("ConvexPolygonShape3D_qbn24")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.56, 0)
 size = Vector3(29.2659, 1.11591, 30.2412)
 
-[node name="PrimerHex" type="Node3D" parent="."]
-
-[node name="FixedHex0" parent="PrimerHex" instance=ExtResource("5_qbn24")]
+[node name="FixedHex0" parent="." instance=ExtResource("5_qbn24")]
+Downed = false
 Up = true
+GoUp = false
 
-[node name="FirstRing" type="Node3D" parent="."]
-
-[node name="FixedHex1" parent="FirstRing" instance=ExtResource("5_qbn24")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2, 0, -9.05)
-Downed = true
-
-[node name="FixedHex2" parent="FirstRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex2" parent="." instance=ExtResource("5_qbn24")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4, 0, 0)
 Downed = true
+Up = false
+GoUp = false
 
-[node name="FixedHex3" parent="FirstRing" instance=ExtResource("5_qbn24")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2, 0, 9.05)
+[node name="FixedHex1" parent="." instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2, 0, -9.05)
 Downed = true
-
-[node name="FixedHex4" parent="FirstRing" instance=ExtResource("5_qbn24")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2, 0, 9.05)
-Downed = true
-
-[node name="FixedHex5" parent="FirstRing" instance=ExtResource("5_qbn24")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4, 0, 0)
-Downed = true
-
-[node name="FixedHex6" parent="FirstRing" instance=ExtResource("5_qbn24")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2, 0, -9.05)
-Downed = true
-
-[node name="SecondRing" type="Node3D" parent="."]
-
-[node name="FixedHex7" parent="SecondRing" instance=ExtResource("5_qbn24")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6, 0, -9.05)
-Downed = true
-Deactivate = true
-
-[node name="FixedHex8" parent="SecondRing" instance=ExtResource("5_qbn24")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.8, 0, 0)
-Downed = true
-Deactivate = true
-
-[node name="FixedHex9" parent="SecondRing" instance=ExtResource("5_qbn24")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6, 0, 9.05)
-Downed = true
-Deactivate = true
-
-[node name="FixedHex10" parent="SecondRing" instance=ExtResource("5_qbn24")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4, 0, 18.1)
-Downed = true
-Deactivate = true
-
-[node name="FixedHex11" parent="SecondRing" instance=ExtResource("5_qbn24")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18.1)
-Downed = true
-Deactivate = true
-
-[node name="FixedHex12" parent="SecondRing" instance=ExtResource("5_qbn24")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4, 0, 18.1)
-Downed = true
-Deactivate = true
-
-[node name="FixedHex13" parent="SecondRing" instance=ExtResource("5_qbn24")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.6, 0, 9.05)
-Downed = true
-Deactivate = true
-
-[node name="FixedHex14" parent="SecondRing" instance=ExtResource("5_qbn24")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.8, 0, 0)
-Downed = true
-Deactivate = true
-
-[node name="FixedHex15" parent="SecondRing" instance=ExtResource("5_qbn24")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.6, 0, -9.05)
-Downed = true
-Deactivate = true
-
-[node name="FixedHex16" parent="SecondRing" instance=ExtResource("5_qbn24")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4, 0, -18.1)
-Downed = true
-Deactivate = true
-
-[node name="FixedHex17" parent="SecondRing" instance=ExtResource("5_qbn24")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.1)
-Downed = true
-Deactivate = true
-
-[node name="FixedHex18" parent="SecondRing" instance=ExtResource("5_qbn24")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4, 0, -18.1)
-Downed = true
-Deactivate = true
+Up = false
+GoUp = false
 
 [node name="TutorialComponent" type="Node3D" parent="." node_paths=PackedStringArray("Dialog")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.36767, -1.48911, -1.51835)
