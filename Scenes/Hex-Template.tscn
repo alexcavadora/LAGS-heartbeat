@@ -1,91 +1,22 @@
-[gd_scene load_steps=11 format=3 uid="uid://cg7ldg8vlcumw"]
+[gd_scene load_steps=6 format=3 uid="uid://cg7ldg8vlcumw"]
 
 [ext_resource type="Script" uid="uid://bbgg47aoc0e30" path="res://Scenes/hex_template.gd" id="1_0is2r"]
-[ext_resource type="ArrayMesh" uid="uid://b2wsmqyfygn3e" path="res://assets/Hexagons/untitled.obj" id="1_24y5s"]
+[ext_resource type="ArrayMesh" uid="uid://dtox841xh5uxq" path="res://assets/Hexagons/untitled.obj" id="1_24y5s"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_j4cnv"]
 points = PackedVector3Array(-0.000169575, 5, 1, 0.866025, 5, 0.499804, -0.866025, 5, 0.499804, -0.000169575, -5, 1, 0.866025, -5, 0.499804, 0.866025, 5, -0.500196, -0.866025, 5, -0.500196, -0.866025, -5, 0.499804, 0.866025, -5, -0.500196, -0.000169575, 5, -1, -0.866025, -5, -0.500196, -0.000169575, -5, -1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_24y5s"]
-size = Vector3(16.905, 10, 2)
+size = Vector3(12, 10, 0.244)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0is2r"]
 size = Vector3(16.905, 10, 3)
-
-[sub_resource type="Animation" id="Animation_0is2r"]
-resource_name = "AllDone"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_4dryt"]
-resource_name = "ComingUp"
-length = 10.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 9.5, 10),
-"transitions": PackedFloat32Array(1, 2.54912, 0.432375),
-"update": 0,
-"values": [Vector3(0, -60, 0), Vector3(0, 5, 0), Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_6w1ii"]
-resource_name = "Down"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, -60, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_0g133"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_4dryt"]
-_data = {
-&"AllDone": SubResource("Animation_0is2r"),
-&"ComingUp": SubResource("Animation_4dryt"),
-&"Down": SubResource("Animation_6w1ii"),
-&"RESET": SubResource("Animation_0g133")
-}
 
 [node name="Hex" type="StaticBody3D"]
 script = ExtResource("1_0is2r")
 
 [node name="Model" type="MeshInstance3D" parent="."]
-transform = Transform3D(12, 0, 0, 0, 12, 0, 0, 0, 12, 0, -60, 0)
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -60, 0)
 mesh = ExtResource("1_24y5s")
 skeleton = NodePath("../..")
 
@@ -176,11 +107,6 @@ visible = false
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11, 0, 0)
 shape = SubResource("BoxShape3D_0is2r")
 debug_color = Color(0.3587, 0.530444, 0.841466, 0.42)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_4dryt")
-}
 
 [connection signal="body_entered" from="Wall/UpR" to="." method="_on_up_r_body_entered"]
 [connection signal="body_exited" from="Wall/UpR" to="." method="_on_up_r_body_exited"]

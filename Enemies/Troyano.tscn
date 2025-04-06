@@ -1,33 +1,24 @@
-[gd_scene load_steps=18 format=3 uid="uid://biknk72swbsc2"]
+[gd_scene load_steps=25 format=3 uid="uid://biknk72swbsc2"]
 
 [ext_resource type="Script" uid="uid://chx5k8fykuvl5" path="res://Enemies/enemy.gd" id="1_578ye"]
 [ext_resource type="PackedScene" uid="uid://2rx00tnl0vje" path="res://Components/health.tscn" id="2_dr7o5"]
-[ext_resource type="PackedScene" uid="uid://c700l20getk" path="res://Components/hitbox.tscn" id="3_7vi88"]
+[ext_resource type="Script" uid="uid://ckodnfioanjmn" path="res://Components/hitbox.gd" id="3_aniey"]
 [ext_resource type="Material" uid="uid://jbpqhrul7rwc" path="res://particles/DeathParticles.tres" id="4_jths8"]
 [ext_resource type="PackedScene" uid="uid://bwle4a3xvat5g" path="res://Components/movement.tscn" id="5_2iskq"]
-[ext_resource type="PackedScene" uid="uid://d2j44bib6ji13" path="res://Components/attacker.tscn" id="6_j0357"]
-[ext_resource type="Texture2D" uid="uid://dwpirlgpgxpbd" path="res://assets/Enemies/Troyano/caballitp_H_attack_1.png" id="7_aniey"]
-[ext_resource type="Texture2D" uid="uid://dpawyracilg6a" path="res://assets/Enemies/Troyano/caballitp_H.png" id="9_aniey"]
-[ext_resource type="Texture2D" uid="uid://hgrjdqo77srr" path="res://assets/Enemies/embryo/embryo_attack.png" id="9_uxlsu"]
-[ext_resource type="Texture2D" uid="uid://giiala4drxpf" path="res://assets/Enemies/embryo/embryo_stunned.png" id="11_6vvbe"]
+[ext_resource type="Script" uid="uid://8rl72386f2ly" path="res://Components/attacker.gd" id="6_578ye"]
+[ext_resource type="Texture2D" uid="uid://c4glws3oggbdy" path="res://assets/Enemies/Troyano/caballitp_H_attack_1.png" id="7_aniey"]
+[ext_resource type="Texture2D" uid="uid://ci5x2i0rb6xoi" path="res://assets/Enemies/Troyano/caballitp_H_attack_2.png" id="8_578ye"]
+[ext_resource type="Texture2D" uid="uid://cqdwtne705rdy" path="res://assets/Enemies/Troyano/caballitp_H.png" id="9_aniey"]
+[ext_resource type="Texture2D" uid="uid://beujb40gpcd0s" path="res://assets/Enemies/Troyano/caballitp_H_Stunned.png" id="9_dr7o5"]
+[ext_resource type="Texture2D" uid="uid://b0cssegg4n7u6" path="res://assets/Enemies/Troyano/caballitp_H_death.png" id="10_7vi88"]
+[ext_resource type="PackedScene" uid="uid://dpmesqjgoo5sp" path="res://Components/spawner.tscn" id="12_dr7o5"]
+[ext_resource type="PackedScene" uid="uid://dnddv5qv6kycy" path="res://Enemies/troyanito.tscn" id="13_7vi88"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5q8ye"]
+radius = 0.75
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qa3c4"]
-bg_color = Color(0.84, 0.84, 0.84, 1)
-border_color = Color(0.91, 0.91, 0.91, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kq5jf"]
-bg_color = Color(0.79, 0.1264, 0.1264, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-corner_detail = 12
+[sub_resource type="SphereShape3D" id="SphereShape3D_578ye"]
+radius = 0.75
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xbarb"]
 albedo_color = Color(1, 0.826865, 0.348468, 1)
@@ -37,19 +28,36 @@ material = SubResource("StandardMaterial3D_xbarb")
 radius = 0.1
 height = 0.05
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_578ye"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_wb176"]
+radius = 0.78
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jths8"]
+atlas = ExtResource("10_7vi88")
+region = Rect2(0, 0, 1555, 1600)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2iskq"]
+atlas = ExtResource("9_dr7o5")
+region = Rect2(0, 0, 1555, 1600)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j0357"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("7_aniey")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_578ye")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_dr7o5")
 }],
 "loop": false,
-"name": &"Detect",
+"name": &"Attack",
 "speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("9_uxlsu")
+"texture": SubResource("AtlasTexture_jths8")
 }],
 "loop": true,
 "name": &"Die",
@@ -60,22 +68,41 @@ animations = [{
 "texture": ExtResource("9_aniey")
 }],
 "loop": true,
-"name": &"MovingNormal",
+"name": &"Moving",
 "speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("11_6vvbe")
+"texture": SubResource("AtlasTexture_2iskq")
 }],
-"loop": true,
+"loop": false,
 "name": &"Stun",
 "speed": 5.0
 }]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_dgrtn"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_578ye"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+anti_aliasing = false
+anti_aliasing_size = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dr7o5"]
+bg_color = Color(0.79, 0.1264, 0.1264, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+anti_aliasing = false
+anti_aliasing_size = 5.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_578ye"]
 viewport_path = NodePath("SubViewport")
 
-[node name="Chaser" type="RigidBody3D" groups=["enemy"]]
+[node name="Troyano" type="RigidBody3D" groups=["enemy"]]
 collision_layer = 7
 collision_mask = 7
 axis_lock_angular_x = true
@@ -89,36 +116,17 @@ metadata/_custom_type_script = "uid://chx5k8fykuvl5"
 shape = SubResource("SphereShape3D_5q8ye")
 
 [node name="Health" parent="." instance=ExtResource("2_dr7o5")]
-health = 60
 
-[node name="Hitbox" parent="." instance=ExtResource("3_7vi88")]
+[node name="Hitbox" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 4
+monitoring = false
+monitorable = false
+script = ExtResource("3_aniey")
 
-[node name="SubViewport" type="SubViewport" parent="."]
-transparent_bg = true
-size = Vector2i(100, 75)
-
-[node name="Control" type="Control" parent="SubViewport"]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -20.0
-offset_right = -10.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-
-[node name="Enemy_health" type="ProgressBar" parent="SubViewport/Control"]
-layout_mode = 0
-offset_right = 100.0
-offset_bottom = 15.0
-theme_override_styles/background = SubResource("StyleBoxFlat_qa3c4")
-theme_override_styles/fill = SubResource("StyleBoxFlat_kq5jf")
-show_percentage = false
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+shape = SubResource("SphereShape3D_578ye")
+debug_color = Color(1, 0.62, 0.05, 1)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0133696, -0.00199164, 0.00657907)
@@ -134,35 +142,73 @@ draw_pass_1 = SubResource("SphereMesh_pm8q8")
 
 [node name="Movement" parent="." instance=ExtResource("5_2iskq")]
 speed = 35.0
+vis_range = 12.0
 
-[node name="Attacker" parent="." instance=ExtResource("6_j0357")]
+[node name="Attacker" type="Area3D" parent="."]
+script = ExtResource("6_578ye")
+contact_damage = 5.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Attacker"]
+shape = SubResource("SphereShape3D_wb176")
 
 [node name="AnimatedSprite" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+offset = Vector2(-75, 200)
 pixel_size = 0.001
 billboard = 1
 shaded = true
 alpha_cut = 1
 texture_filter = 2
-sprite_frames = SubResource("SpriteFrames_578ye")
-animation = &"MovingNormal"
-autoplay = "MovingNormal"
+sprite_frames = SubResource("SpriteFrames_j0357")
+animation = &"Moving"
+autoplay = "Moving"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.643287)
-visible = false
 shadow_enabled = true
 omni_range = 2.0
 
-[node name="HealthBar" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57979, 0)
-billboard = 1
-shaded = true
-texture = SubResource("ViewportTexture_dgrtn")
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(100, 10)
 
+[node name="Control" type="Control" parent="SubViewport"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.2, 0.2)
+size_flags_horizontal = 4
+
+[node name="Enemy_health" type="ProgressBar" parent="SubViewport/Control"]
+visible = false
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 50.0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_styles/background = SubResource("StyleBoxFlat_578ye")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dr7o5")
+value = 54.0
+show_percentage = false
+
+[node name="HealthBar" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.99628, 0)
+cast_shadow = 0
+billboard = 1
+texture = SubResource("ViewportTexture_578ye")
+
+[node name="Spawner" parent="." instance=ExtResource("12_dr7o5")]
+enemy = ExtResource("13_7vi88")
+
+[connection signal="dead" from="Health" to="." method="_on_health_dead"]
 [connection signal="just_hit" from="Health" to="." method="_on_health_just_hit"]
 [connection signal="just_hit" from="Health" to="Movement" method="_on_hit_received"]
+[connection signal="body_entered" from="Hitbox" to="Hitbox" method="_on_body_entered"]
 [connection signal="finish_hit" from="Hitbox" to="." method="_on_hitbox_finish_hit"]
 [connection signal="finish_hit" from="Hitbox" to="Health" method="_on_hitbox_finish_hit"]
 [connection signal="finish_hit" from="Hitbox" to="Movement" method="_on_hit_ended"]
-
-[editable path="Hitbox"]
+[connection signal="attacked" from="Attacker" to="." method="_on_attacker_attacked"]
+[connection signal="attacked" from="Attacker" to="Spawner" method="spawn"]
+[connection signal="body_entered" from="Attacker" to="Attacker" method="_on_body_entered"]
+[connection signal="body_exited" from="Attacker" to="Attacker" method="_on_body_exited"]

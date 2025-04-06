@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://tf7en6eqi5no"]
+[gd_scene load_steps=20 format=3 uid="uid://tf7en6eqi5no"]
 
 [ext_resource type="Script" uid="uid://chx5k8fykuvl5" path="res://Enemies/enemy.gd" id="1_0um8n"]
 [ext_resource type="PackedScene" uid="uid://2rx00tnl0vje" path="res://Components/health.tscn" id="2_d02l1"]
@@ -6,29 +6,14 @@
 [ext_resource type="Material" uid="uid://jbpqhrul7rwc" path="res://particles/DeathParticles.tres" id="4_0um8n"]
 [ext_resource type="PackedScene" uid="uid://bwle4a3xvat5g" path="res://Components/movement.tscn" id="4_wtllu"]
 [ext_resource type="PackedScene" uid="uid://d2j44bib6ji13" path="res://Components/attacker.tscn" id="5_m25qf"]
-[ext_resource type="Texture2D" uid="uid://b5ja4hm1mrsgn" path="res://assets/Enemies/embryo/embryo_attack_3.png" id="6_hp0sm"]
-[ext_resource type="Texture2D" uid="uid://py22be6wb8f3" path="res://assets/Enemies/embryo/embryo_attack_4.png" id="7_0um8n"]
-[ext_resource type="Texture2D" uid="uid://capi235xpp2mq" path="res://assets/Enemies/embryo/embryo_attack.png" id="8_d02l1"]
-[ext_resource type="Texture2D" uid="uid://cmya1xvgms48" path="res://assets/Enemies/embryo/embryo_idle.png" id="9_5sfr7"]
-[ext_resource type="Texture2D" uid="uid://b3bglfdmlbh68" path="res://assets/Enemies/embryo/embryo_stunned.png" id="10_wtllu"]
+[ext_resource type="Texture2D" uid="uid://upw5x00ptcwg" path="res://assets/Enemies/embryo/embryo_attack_3.png" id="6_hp0sm"]
+[ext_resource type="Texture2D" uid="uid://qvnincsprkoo" path="res://assets/Enemies/embryo/embryo_attack_4.png" id="7_0um8n"]
+[ext_resource type="Texture2D" uid="uid://b1c4qoydxtqxl" path="res://assets/Enemies/embryo/embryo_attack.png" id="8_d02l1"]
+[ext_resource type="Texture2D" uid="uid://byttt6d3dy3bw" path="res://assets/Enemies/embryo/embryo_idle.png" id="9_5sfr7"]
+[ext_resource type="Texture2D" uid="uid://df1edy5qjrxjb" path="res://assets/Enemies/embryo/embryo_stunned.png" id="10_wtllu"]
+[ext_resource type="PackedScene" uid="uid://dx1ru13457o3r" path="res://Components/tetherer.tscn" id="12_d02l1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5q8ye"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qa3c4"]
-bg_color = Color(0.84, 0.84, 0.84, 1)
-border_color = Color(0.91, 0.91, 0.91, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kq5jf"]
-bg_color = Color(0.79, 0.1264, 0.1264, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-corner_detail = 12
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xbarb"]
 shading_mode = 0
@@ -77,53 +62,46 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_dgrtn"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d02l1"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+anti_aliasing = false
+anti_aliasing_size = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5sfr7"]
+bg_color = Color(0.79, 0.1264, 0.1264, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+anti_aliasing = false
+anti_aliasing_size = 5.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_wtllu"]
 viewport_path = NodePath("SubViewport")
 
-[node name="Chaser" type="RigidBody3D" groups=["enemy"]]
+[node name="Embrio" type="RigidBody3D" groups=["enemy"]]
 collision_layer = 7
 collision_mask = 7
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
-mass = 3.0
+mass = 5.0
 script = ExtResource("1_0um8n")
+enemy_name = "embrio"
 metadata/_custom_type_script = "uid://chx5k8fykuvl5"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_5q8ye")
 
 [node name="Health" parent="." instance=ExtResource("2_d02l1")]
-health = 60
+health = 300
 
 [node name="Hitbox" parent="." instance=ExtResource("3_5sfr7")]
-
-[node name="SubViewport" type="SubViewport" parent="."]
-transparent_bg = true
-size = Vector2i(100, 75)
-
-[node name="Control" type="Control" parent="SubViewport"]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -20.0
-offset_right = -10.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-
-[node name="Enemy_health" type="ProgressBar" parent="SubViewport/Control"]
-layout_mode = 0
-offset_right = 100.0
-offset_bottom = 15.0
-theme_override_styles/background = SubResource("StyleBoxFlat_qa3c4")
-theme_override_styles/fill = SubResource("StyleBoxFlat_kq5jf")
-show_percentage = false
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0133696, -0.00199164, 0.00657907)
@@ -139,7 +117,7 @@ process_material = ExtResource("4_0um8n")
 draw_pass_1 = SubResource("SphereMesh_pm8q8")
 
 [node name="Movement" parent="." instance=ExtResource("4_wtllu")]
-speed = 35.0
+speed = 60.0
 
 [node name="Attacker" parent="." instance=ExtResource("5_m25qf")]
 
@@ -159,16 +137,42 @@ visible = false
 shadow_enabled = true
 omni_range = 2.0
 
+[node name="tetherer" parent="." instance=ExtResource("12_d02l1")]
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(100, 10)
+
+[node name="Control" type="Control" parent="SubViewport"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.2, 0.2)
+size_flags_horizontal = 4
+
+[node name="Enemy_health" type="ProgressBar" parent="SubViewport/Control"]
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 50.0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_styles/background = SubResource("StyleBoxFlat_d02l1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5sfr7")
+value = 54.0
+show_percentage = false
+
 [node name="HealthBar" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57979, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.502306, 0)
+cast_shadow = 0
 billboard = 1
-shaded = true
-texture = SubResource("ViewportTexture_dgrtn")
+texture = SubResource("ViewportTexture_wtllu")
 
 [connection signal="just_hit" from="Health" to="." method="_on_health_just_hit"]
 [connection signal="just_hit" from="Health" to="Movement" method="_on_hit_received"]
 [connection signal="finish_hit" from="Hitbox" to="." method="_on_hitbox_finish_hit"]
 [connection signal="finish_hit" from="Hitbox" to="Health" method="_on_hitbox_finish_hit"]
 [connection signal="finish_hit" from="Hitbox" to="Movement" method="_on_hit_ended"]
+[connection signal="tethered" from="tetherer" to="Movement" method="_on_tetherer_tethered"]
 
 [editable path="Hitbox"]

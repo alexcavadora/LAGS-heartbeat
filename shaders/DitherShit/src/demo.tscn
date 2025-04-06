@@ -1,0 +1,218 @@
+[gd_scene load_steps=19 format=3 uid="uid://bnvofq8o46gga"]
+
+[ext_resource type="Shader" uid="uid://dlgi1g374bynp" path="res://shaders/DitherShit/shader/dither.gdshader" id="1"]
+[ext_resource type="PackedScene" uid="uid://k1wl2nar0cd6" path="res://shaders/DitherShit/src/control_slider.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://cey3qsnpgmxlw" path="res://shaders/DitherShit/assets/nanner-pancakes-32x.png" id="2_1bo03"]
+[ext_resource type="Texture2D" uid="uid://br5fk3hgf2rce" path="res://shaders/DitherShit/assets/Lemera.png" id="2_2t4eu"]
+[ext_resource type="Texture2D" uid="uid://dyuhwm46ougmi" path="res://shaders/DitherShit/assets/min.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://hhixy7avxojh" path="res://shaders/DitherShit/assets/fading-16-1x.png" id="3_ci1rp"]
+[ext_resource type="Texture2D" uid="uid://bdtfbspvl700f" path="res://shaders/DitherShit/assets/bayer16tile2.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://cqx367ybb114y" path="res://shaders/DitherShit/assets/commodore64-32x.png" id="4_0gi7w"]
+[ext_resource type="Texture2D" uid="uid://lc6lpx5k5077" path="res://shaders/DitherShit/assets/bayer4tile8.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://c2g0wa5d7xom8" path="res://shaders/DitherShit/assets/test.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://nryq6myop1yc" path="res://shaders/DitherShit/assets/move.png" id="7"]
+[ext_resource type="Script" uid="uid://b4dcvgbfo7smn" path="res://shaders/DitherShit/src/demo.gd" id="8"]
+[ext_resource type="Script" uid="uid://d2pvhwovdcqtg" path="res://shaders/DitherShit/src/control_slider.gd" id="9"]
+[ext_resource type="Texture2D" uid="uid://djguuy15itgs8" path="res://shaders/DitherShit/assets/tnr-8-32x.png" id="11_23kgv"]
+[ext_resource type="Texture2D" uid="uid://05ca6qhebrel" path="res://shaders/DitherShit/assets/bayer2tile16.png" id="15"]
+[ext_resource type="Texture2D" uid="uid://erfwd3dreq4w" path="res://shaders/DitherShit/assets/blue_noise.png" id="16"]
+[ext_resource type="Texture2D" uid="uid://dt52eh5ynrat3" path="res://shaders/DitherShit/assets/bayer8tile4.png" id="17"]
+
+[sub_resource type="ShaderMaterial" id="1"]
+shader = ExtResource("1")
+shader_parameter/u_dither_tex = ExtResource("4")
+shader_parameter/u_color_tex = ExtResource("11_23kgv")
+shader_parameter/u_bit_depth = 15
+shader_parameter/u_contrast = 1.1
+shader_parameter/u_offset = 0.0
+shader_parameter/u_dither_size = 2
+
+[node name="Demo" type="Node3D"]
+script = ExtResource("8")
+palettes = [ExtResource("2_2t4eu"), ExtResource("2_1bo03"), ExtResource("3_ci1rp")]
+dither_patterns = [ExtResource("4"), ExtResource("17"), ExtResource("5"), ExtResource("15"), ExtResource("16")]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Gradient" type="TextureRect" parent="SubViewportContainer/SubViewport"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("6")
+expand_mode = 1
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+
+[node name="Controls" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Control" type="Control" parent="Controls"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 952.0
+offset_top = 11.0
+offset_right = 992.0
+offset_bottom = 51.0
+
+[node name="TabContainer" type="TabContainer" parent="Controls/Control"]
+layout_mode = 0
+offset_right = 288.0
+offset_bottom = 196.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+current_tab = 0
+
+[node name="Params" type="VBoxContainer" parent="Controls/Control/TabContainer"]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+metadata/_tab_index = 0
+
+[node name="BitDepth" parent="Controls/Control/TabContainer/Params" instance=ExtResource("2")]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="Controls/Control/TabContainer/Params"]
+layout_mode = 2
+
+[node name="DitherSize" parent="Controls/Control/TabContainer/Params" instance=ExtResource("2")]
+layout_mode = 2
+
+[node name="HSeparator3" type="HSeparator" parent="Controls/Control/TabContainer/Params"]
+layout_mode = 2
+
+[node name="Contrast" parent="Controls/Control/TabContainer/Params" instance=ExtResource("2")]
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="Controls/Control/TabContainer/Params"]
+layout_mode = 2
+
+[node name="Offset" parent="Controls/Control/TabContainer/Params" instance=ExtResource("2")]
+layout_mode = 2
+
+[node name="HSeparator4" type="HSeparator" parent="Controls/Control/TabContainer/Params"]
+layout_mode = 2
+
+[node name="Palette" type="HBoxContainer" parent="Controls/Control/TabContainer/Params"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("9")
+
+[node name="Label" type="Label" parent="Controls/Control/TabContainer/Params/Palette"]
+layout_mode = 2
+text = "Palette"
+horizontal_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Controls/Control/TabContainer/Params/Palette"]
+layout_mode = 2
+
+[node name="Checkbox" type="CheckBox" parent="Controls/Control/TabContainer/Params/Palette/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Checkbox2" type="CheckBox" parent="Controls/Control/TabContainer/Params/Palette/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Checkbox3" type="CheckBox" parent="Controls/Control/TabContainer/Params/Palette/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Checkbox4" type="CheckBox" parent="Controls/Control/TabContainer/Params/Palette/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Checkbox5" type="CheckBox" parent="Controls/Control/TabContainer/Params/Palette/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PalettePreview" type="TextureRect" parent="Controls/Control/TabContainer/Params"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("4_0gi7w")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HSeparator5" type="HSeparator" parent="Controls/Control/TabContainer/Params"]
+layout_mode = 2
+
+[node name="Dither" type="HBoxContainer" parent="Controls/Control/TabContainer/Params"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("9")
+
+[node name="Label" type="Label" parent="Controls/Control/TabContainer/Params/Dither"]
+layout_mode = 2
+text = "Dither Pattern"
+horizontal_alignment = 2
+
+[node name="MarginContainer" type="HBoxContainer" parent="Controls/Control/TabContainer/Params/Dither"]
+layout_mode = 2
+
+[node name="Dither1" type="CheckBox" parent="Controls/Control/TabContainer/Params/Dither/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Dither2" type="CheckBox" parent="Controls/Control/TabContainer/Params/Dither/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Dither3" type="CheckBox" parent="Controls/Control/TabContainer/Params/Dither/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Dither4" type="CheckBox" parent="Controls/Control/TabContainer/Params/Dither/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Dither5" type="CheckBox" parent="Controls/Control/TabContainer/Params/Dither/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DitherPreview" type="TextureRect" parent="Controls/Control/TabContainer/Params"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DitherLabel" type="Label" parent="Controls/Control/TabContainer/Params"]
+layout_mode = 2
+text = "Bayer 16x16"
+
+[node name="Minimise" type="Button" parent="Controls/Control"]
+layout_mode = 0
+offset_left = 231.0
+offset_top = -1.0
+offset_right = 259.0
+offset_bottom = 21.0
+icon = ExtResource("3")
+
+[node name="Move" type="Button" parent="Controls/Control"]
+layout_mode = 0
+offset_left = 199.0
+offset_top = -1.0
+offset_right = 227.0
+offset_bottom = 21.0
+icon = ExtResource("7")
+
+[connection signal="pressed" from="Controls/Control/TabContainer/Params/Palette/HBoxContainer/Checkbox" to="." method="_on_Checkbox_pressed"]
+[connection signal="pressed" from="Controls/Control/TabContainer/Params/Palette/HBoxContainer/Checkbox2" to="." method="_on_Checkbox2_pressed"]
+[connection signal="pressed" from="Controls/Control/TabContainer/Params/Palette/HBoxContainer/Checkbox3" to="." method="_on_Checkbox3_pressed"]
+[connection signal="pressed" from="Controls/Control/TabContainer/Params/Palette/HBoxContainer/Checkbox4" to="." method="_on_Checkbox4_pressed"]
+[connection signal="pressed" from="Controls/Control/TabContainer/Params/Palette/HBoxContainer/Checkbox5" to="." method="_on_Checkbox5_pressed"]
+[connection signal="pressed" from="Controls/Control/TabContainer/Params/Dither/MarginContainer/Dither1" to="." method="_on_Dither1_pressed"]
+[connection signal="pressed" from="Controls/Control/TabContainer/Params/Dither/MarginContainer/Dither2" to="." method="_on_Dither2_pressed"]
+[connection signal="pressed" from="Controls/Control/TabContainer/Params/Dither/MarginContainer/Dither3" to="." method="_on_Dither3_pressed"]
+[connection signal="pressed" from="Controls/Control/TabContainer/Params/Dither/MarginContainer/Dither4" to="." method="_on_Dither4_pressed"]
+[connection signal="pressed" from="Controls/Control/TabContainer/Params/Dither/MarginContainer/Dither5" to="." method="_on_Dither5_pressed"]
+[connection signal="pressed" from="Controls/Control/Minimise" to="." method="_on_Minimise_pressed"]
+[connection signal="button_down" from="Controls/Control/Move" to="." method="_on_Move_button_down"]
+[connection signal="button_up" from="Controls/Control/Move" to="." method="_on_Move_button_up"]

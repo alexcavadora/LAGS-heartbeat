@@ -21,13 +21,10 @@ var _temp_velocity: Vector3 = Vector3.ZERO
 const _zero_threshold: float = 0.01
 
 func _physics_process(delta: float) -> void:
-	# Update hitbox state based on movement
+	to_target = global_position - follow.global_position
 	active(linear_velocity.length_squared() > _zero_threshold)
 	if follow:
-		to_target = global_position - follow.global_position
 		distance = to_target.length()
-		
-		# Handle string physics
 		if distance > string_max_distance:
 			_apply_string_force(delta)
 		elif !pulled:

@@ -4,6 +4,7 @@ extends Area3D
 @export var contact_damage: float = 10.0
 @export var damage_interval: float = 0.5
 
+signal attacked
 var target = null
 var timer: Timer
 
@@ -16,7 +17,7 @@ func _ready() -> void:
 	add_child(timer)
 
 func _on_body_entered(body: Node3D) -> void:
-	if body.is_class("CharacterBody3D"):
+	if body is Eye:
 		target = body
 		timer.start()
 		_apply_damage()
@@ -32,3 +33,5 @@ func _on_timer_timeout() -> void:
 func _apply_damage() -> void:
 	if target != null:
 		target.health.hit(contact_damage)
+		attacked.emit()
+		
