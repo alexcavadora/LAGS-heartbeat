@@ -4,6 +4,11 @@ class_name HexTemplate
 
 @export var Animations: HexAnimComponent
 
+const SPAWENR_3 = preload("res://spawner/spawenr3.tscn")
+const SPAWNER_1 = preload("res://spawner/spawner1.tscn")
+const SPAWNER_2 = preload("res://spawner/spawner2.tscn")
+const SPAWNER_4 = preload("res://spawner/spawner4.tscn")
+const SPAWNER_5 = preload("res://spawner/spawner5.tscn")
 
 @onready var walls = $Hex/Wall/Walls
 signal AnimToggle(NextAnim)
@@ -32,8 +37,13 @@ var instance
 signal finished(idx)
 
 var finish_status = false
+var spawnerarray : Array = [SPAWNER_1, SPAWNER_2,SPAWENR_3,SPAWNER_4,SPAWNER_5]
+@export var override = false
 
 func _ready():
+	if override == false:
+		spawn_scene = spawnerarray[randi_range(0,4)]
+
 	#print(is_outer, idx)
 	if ui != null:
 		connect("finished", ui._update_minimap)
