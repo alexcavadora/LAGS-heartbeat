@@ -25,11 +25,16 @@ signal AnimToggle(NextAnim)
 @onready var currenttarget : HexTemplate
 var touched_area : Area3D
 
+@onready var idx = int(name.substr(8,-1))
+@onready var is_outer = idx > 6
+
 signal finished(idx)
 
 func _ready():
+	#print(is_outer, idx)
 	if ui != null:
 		connect("finished", ui._update_minimap)
+		ui.connect("berlin_drop", _on_berlin_free)
 	check()
 
 func check ():
@@ -70,16 +75,11 @@ func _on_animation_player_animation_finished(anim_name):
 		Downed = false
 		Up = true
 		check()
-		finished.emit(int(name.substr(8,-1)))
-	
-		
+		finished.emit(idx)
 
 	elif anim_name == "Up":
 		if detector != null:
 			detector.queue_free()
-		
-		
-
 
 func _on_area_3d_body_entered(body):
 	if body is Eye and Deactivate == false:
@@ -93,3 +93,13 @@ func _on_area_3d_body_exited(body):
 		#print(str("Exiting:", self.name))
 		if animationp.current_animation == "GoUp":
 			animationp.pause()
+
+func _on_berlin_free():
+	if not is_outer:
+		return
+	print("freeing ", idx)
+	Deactivate = false
+	Up = false
+	GoUp = false
+	Downed = true
+	check()
