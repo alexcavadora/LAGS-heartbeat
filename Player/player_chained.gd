@@ -27,6 +27,8 @@ class_name Eye extends CharacterBody3D
 @onready var upgrades : UpgradeComponent = $Upgrades
 
 
+
+
 #cache
 var pulled = false
 var pulled_n = 0
@@ -133,9 +135,11 @@ func _handle_collisions() -> void:
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_pressed("pull_spring"):
+		print("Pull pressed still")
 		corazon.pulled = true
 		is_pulling = true
 	elif Input.is_action_just_released("pull_spring"):
+		print("Pull released")
 		is_pulling = false
 		corazon.pulled = false
 

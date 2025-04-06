@@ -14,9 +14,14 @@ func Upgrade(UpArray:Array ,tryup : int):
 	match tryup:
 		0:
 			player.s_max_distance += 2
-			print("Succesful!")
+			
 		1:
 			if player.corazon != null:
-				player.corazon.scale *= 2
+				player.corazon.scale *= 1.2
 		2:
-			pass
+			player.c_regen_speed += 0.001
+		3:
+			player.p_move_speed += 1
+		4:
+			player.c_max += 1
+			

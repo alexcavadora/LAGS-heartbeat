@@ -124,13 +124,13 @@ _data = {
 
 [node name="Heart" type="RigidBody3D"]
 top_level = true
-collision_layer = 66
-collision_mask = 192
+collision_layer = 194
+collision_mask = 0
 axis_lock_linear_y = true
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 mass = 5.0
-gravity_scale = 0.0
+gravity_scale = -1.0
 can_sleep = false
 script = ExtResource("1_ecjjo")
 
