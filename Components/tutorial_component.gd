@@ -4,7 +4,8 @@ class_name TutorialComponent
 @onready var Buttonspressed : Array = ["Up", "Down", "Left", "Right"]
 
 func _process(delta):
-	print(Buttonspressed, Buttonspressed.size())
+	pass
+	#print(Buttonspressed, Buttonspressed.size())
 
 func _input(event):
 	if Dialog.linecount >= 1:

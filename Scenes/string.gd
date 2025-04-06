@@ -29,7 +29,7 @@ func _physics_process(delta:float)->void:
 	#Making the bones move as the rigidbodies move. 
 	for i in skeleton.get_bone_count():
 		var bone_name =skeleton.get_bone_name(i)
-		print(bone_name)
+		#print(bone_name)
 		var id = skeleton.find_bone(bone_name)
 		skeleton_movement= ROPE_BODIES[i].transform
 		skeleton.set_bone_global_pose_override(id, skeleton_movement, 1)

@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://chepsv0f7l1ac"]
+
+[ext_resource type="Shader" uid="uid://c2vrqvunenxjb" path="res://Scenes/post_process.gdshader" id="1_1mi1w"]
+[ext_resource type="Script" uid="uid://dr1bgu22fdcxa" path="res://Scenes/shader.gd" id="1_rjkk8"]
+
+[sub_resource type="Gradient" id="Gradient_gs7ah"]
+offsets = PackedFloat32Array(0, 0.343434, 0.686869, 1)
+colors = PackedColorArray(0, 0.188235, 0.231373, 1, 0.5, 0.235, 0.235, 1, 1, 0.807843, 0.588235, 1, 0.945098, 0.94902, 0.854902, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3on5e"]
+gradient = SubResource("Gradient_gs7ah")
+
+[sub_resource type="Environment" id="Environment_53w0m"]
+background_mode = 1
+volumetric_fog_enabled = true
+adjustment_enabled = true
+adjustment_color_correction = SubResource("GradientTexture1D_3on5e")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4fplf"]
+shader = ExtResource("1_1mi1w")
+shader_parameter/u_bit_depth = 0
+shader_parameter/u_contrast = 0.0
+shader_parameter/u_offset = 0.0
+shader_parameter/u_dither_size = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_1mi1w"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="SphereMesh" id="SphereMesh_4fplf"]
+
+[node name="Post-Process" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_53w0m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.768261, 0.640136, 0, -0.640136, 0.768261, 0, 7.20663, 0)
+light_energy = 0.5
+shadow_enabled = true
+shadow_transmittance_bias = -1.9
+shadow_opacity = 0.25
+
+[node name="Shader" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_4fplf")
+mesh = SubResource("BoxMesh_1mi1w")
+script = ExtResource("1_rjkk8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_4fplf")

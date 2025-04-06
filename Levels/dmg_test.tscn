@@ -26,7 +26,7 @@ volumetric_fog_enabled = true
 adjustment_enabled = true
 adjustment_color_correction = SubResource("GradientTexture1D_3on5e")
 
-[node name="test_level" type="Node3D"]
+[node name="test_level2" type="Node3D"]
 script = ExtResource("1_s105c")
 
 [node name="Player" parent="." node_paths=PackedStringArray("corazon") groups=["Player"] instance=ExtResource("2_o2oq2")]

@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://bumwcljyyl83x"]
+[gd_scene load_steps=10 format=3 uid="uid://bumwcljyyl83x"]
 
 [ext_resource type="Script" uid="uid://bbgg47aoc0e30" path="res://Scenes/hex_template.gd" id="1_xiguj"]
 [ext_resource type="ArrayMesh" uid="uid://dtox841xh5uxq" path="res://assets/Hexagons/untitled.obj" id="2_1ov2o"]
 [ext_resource type="Script" uid="uid://bleawlaewp1wf" path="res://Scenes/HexAnimationComponent.gd" id="3_1ov2o"]
 [ext_resource type="PackedScene" uid="uid://v0oj5afjxrn8" path="res://Scenes/animation_player_Hex.tscn" id="3_88adk"]
 [ext_resource type="Script" uid="uid://dw4lnwe5u1hdq" path="res://Scenes/WallComponent.gd" id="3_jtwai"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b35dy"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_j4cnv"]
 points = PackedVector3Array(-0.000169575, 5, 1, 0.866025, 5, 0.499804, -0.866025, 5, 0.499804, -0.000169575, -5, 1, 0.866025, -5, 0.499804, 0.866025, 5, -0.500196, -0.866025, 5, -0.500196, -0.866025, -5, 0.499804, 0.866025, -5, -0.500196, -0.000169575, 5, -1, -0.866025, -5, -0.500196, -0.000169575, -5, -1)
@@ -33,6 +35,7 @@ collision_mask = 65
 
 [node name="Model" type="MeshInstance3D" parent="Hex"]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -30, 0)
+material_override = SubResource("ShaderMaterial_b35dy")
 mesh = ExtResource("2_1ov2o")
 skeleton = NodePath("../..")
 

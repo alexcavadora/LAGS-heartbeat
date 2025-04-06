@@ -1,0 +1,112 @@
+[gd_scene load_steps=12 format=3 uid="uid://be8hl4weaft7d"]
+
+[ext_resource type="Script" uid="uid://bydtmfnv5gj6u" path="res://Levels/level.gd" id="1_fjysl"]
+[ext_resource type="PackedScene" uid="uid://bx0msm0hagnj0" path="res://Player/player.tscn" id="2_y6c2c"]
+[ext_resource type="PackedScene" uid="uid://buiitvt4ugobf" path="res://Player/heart.tscn" id="4_3xsl5"]
+[ext_resource type="PackedScene" uid="uid://bumwcljyyl83x" path="res://Scenes/fixed_hex.tscn" id="5_qbn24"]
+[ext_resource type="PackedScene" uid="uid://cqk5n14hafk01" path="res://Components/dialog_box.tscn" id="6_j4cnv"]
+[ext_resource type="Script" uid="uid://05wfyw363rdi" path="res://Components/tutorial_component.gd" id="6_l2662"]
+[ext_resource type="PackedScene" uid="uid://deo5mpbd2emu5" path="res://Scenes/string.tscn" id="8_fjysl"]
+[ext_resource type="PackedScene" uid="uid://biwv0g0bia05s" path="res://UI/ui.tscn" id="8_ugyuv"]
+[ext_resource type="PackedScene" uid="uid://bnvofq8o46gga" path="res://shaders/DitherShit/src/demo.tscn" id="10_jffph"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qbn24"]
+
+[sub_resource type="Environment" id="Environment_ugyuv"]
+background_mode = 1
+
+[node name="test_level2" type="Node3D"]
+script = ExtResource("1_fjysl")
+
+[node name="Player" parent="." node_paths=PackedStringArray("corazon") instance=ExtResource("2_y6c2c")]
+corazon = NodePath("Heart")
+
+[node name="Camera3D" type="Marker3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 8, 7.85)
+
+[node name="UI" parent="Player/Camera3D" instance=ExtResource("8_ugyuv")]
+
+[node name="Heart" parent="Player" node_paths=PackedStringArray("follow") instance=ExtResource("4_3xsl5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.91436, 0.75, 5.4977)
+mass = 10.0
+follow = NodePath("..")
+string_max_distance = 16.0
+s_force = 1000.0
+s_damping = 0.2
+p_deceleration = 45.0
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="tilesito" type="StaticBody3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.560677, 0, 0)
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/tilesito"]
+shape = SubResource("ConvexPolygonShape3D_qbn24")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="Environment/tilesito"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.56, 0)
+size = Vector3(29.2659, 1.11591, 30.2412)
+
+[node name="FixedHex0" parent="." node_paths=PackedStringArray("Targets") instance=ExtResource("5_qbn24")]
+Targets = {
+"Target1": NodePath("../FixedHex1"),
+"Target2": null,
+"Target3": null,
+"Target4": null,
+"Target5": null,
+"Target6": null
+}
+Up = true
+
+[node name="FixedHex2" parent="." node_paths=PackedStringArray("Targets") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4, 0, 0)
+Targets = {
+"Target1": null,
+"Target2": null,
+"Target3": null,
+"Target4": null,
+"Target5": null,
+"Target6": null
+}
+Downed = true
+
+[node name="FixedHex1" parent="." node_paths=PackedStringArray("Targets") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2, 0, -9.05)
+Targets = {
+"Target1": null,
+"Target2": null,
+"Target3": null,
+"Target4": null,
+"Target5": null,
+"Target6": null
+}
+Downed = true
+
+[node name="TutorialComponent" type="Node3D" parent="." node_paths=PackedStringArray("Dialog")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.36767, -1.48911, -1.51835)
+script = ExtResource("6_l2662")
+Dialog = NodePath("DialogBox")
+
+[node name="DialogBox" parent="TutorialComponent" instance=ExtResource("6_j4cnv")]
+InputEnable = true
+Typetime = 0.05
+Quickypetime = 0.005
+Dialog = PackedStringArray("Good, its working...", "Try moving with WASD", "Okay that looks about right...", "Now, you may have noticed that string pulling you", "Try pressing and holding the SPACEBAR to pull ", "That thing is your heart and you can hit enemies with it", "Start getting used to swinging that thing around, you will need it to survive", "You can also knock back enemies by pressing the Q button", "You learn quick...", "Now, lets see you hack some stuff", "Get close to the edge and your heart will take it from there", "Wait for it...", "See? Now you can keep trying to hack the whole system", "")
+
+[node name="String" parent="." instance=ExtResource("8_fjysl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.278732, 5.38965, 0.62126)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ugyuv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 0.184758, 0.982784, 0, -0.982784, 0.184758, 0, 3.46257, 6.79005)
+shadow_enabled = true
+shadow_opacity = 0.2
+
+[node name="Demo" parent="." node_paths=PackedStringArray("Camera_To_Follow") instance=ExtResource("10_jffph")]
+Camera_To_Follow = NodePath("../Player/Camera3D")
+
+[connection signal="Done" from="TutorialComponent/DialogBox" to="TutorialComponent" method="_on_dialog_box_done"]
