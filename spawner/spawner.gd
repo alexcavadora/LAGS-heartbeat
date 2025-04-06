@@ -8,7 +8,7 @@ signal tile_finished()
 
 func _ready() -> void:
 	amount = get_child_count()
-	print("ready:", amount)
+	#print("ready:", amount)
 
 func dead_counter():
 	amount -= 1

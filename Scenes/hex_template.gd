@@ -28,7 +28,7 @@ var touched_area : Area3D
 @export var spawn_scene : PackedScene = null
 @onready var idx = int(name.substr(8,-1))
 @onready var is_outer = idx > 6
-
+var instance
 signal finished(idx)
 
 var finish_status = false
@@ -112,22 +112,23 @@ func _on_berlin_free():
 
 func spawn(indexes):
 	if idx in indexes and spawn_scene != null:
-		var instance = spawn_scene.instantiate()
+		instance = spawn_scene.instantiate()
 		instance.position.x = position.x
 		instance.position.z = position.z
 		instance.position.y = 1.5
 		get_parent().get_parent().add_child(instance)
+		instance.connect("tile_finished", hex_cleared)
 
 func fighting(indexes):
 	if idx in indexes:
 		Deactivate = true
 		
 func hex_cleared():
-	ui.fighting_cells.erase(idx)
-	print(ui.fighting_cells)
-	if ui.fighting_cells.is_empty():
+	ui.fighting.erase(idx)
+	if ui.fighting.size() == 1:
 		ui.unlock.emit(ui.available)
 
 func all_clear(indexes):
+	print(indexes, idx)
 	if idx in indexes:
 		Deactivate = false

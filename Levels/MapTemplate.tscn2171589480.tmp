@@ -1,0 +1,528 @@
+[gd_scene load_steps=40 format=3 uid="uid://be8hl4weaft7d"]
+
+[ext_resource type="Script" uid="uid://bydtmfnv5gj6u" path="res://Levels/level.gd" id="1_fjysl"]
+[ext_resource type="PackedScene" uid="uid://bx0msm0hagnj0" path="res://Player/player.tscn" id="2_y6c2c"]
+[ext_resource type="Script" uid="uid://b4dcvgbfo7smn" path="res://shaders/DitherShit/src/demo.gd" id="3_ji4js"]
+[ext_resource type="PackedScene" uid="uid://buiitvt4ugobf" path="res://Player/heart.tscn" id="4_3xsl5"]
+[ext_resource type="Texture2D" uid="uid://bm33o2mq42so" path="res://shaders/DitherShit/assets/Lemera.png" id="4_i2x8d"]
+[ext_resource type="PackedScene" uid="uid://bumwcljyyl83x" path="res://Scenes/fixed_hex.tscn" id="5_qbn24"]
+[ext_resource type="Texture2D" uid="uid://dqlyigbkxe85w" path="res://shaders/DitherShit/assets/nanner-pancakes-32x.png" id="5_tgvk1"]
+[ext_resource type="PackedScene" uid="uid://cqk5n14hafk01" path="res://Components/dialog_box.tscn" id="6_j4cnv"]
+[ext_resource type="Script" uid="uid://05wfyw363rdi" path="res://Components/tutorial_component.gd" id="6_l2662"]
+[ext_resource type="Texture2D" uid="uid://ifudk5fs05y3" path="res://shaders/DitherShit/assets/fading-16-1x.png" id="6_va345"]
+[ext_resource type="Texture2D" uid="uid://bmdqmb84r3hlb" path="res://shaders/DitherShit/assets/bayer16tile2.png" id="7_2qfil"]
+[ext_resource type="PackedScene" uid="uid://deo5mpbd2emu5" path="res://Scenes/string.tscn" id="8_fjysl"]
+[ext_resource type="Texture2D" uid="uid://d4lxk5iuxi0kg" path="res://shaders/DitherShit/assets/bayer8tile4.png" id="8_ju5dc"]
+[ext_resource type="PackedScene" uid="uid://biwv0g0bia05s" path="res://UI/ui.tscn" id="8_ugyuv"]
+[ext_resource type="Texture2D" uid="uid://bxwrvbyeq5lgc" path="res://shaders/DitherShit/assets/bayer4tile8.png" id="9_1bl6v"]
+[ext_resource type="Material" uid="uid://jbpqhrul7rwc" path="res://particles/DeathParticles.tres" id="10_j5ndp"]
+[ext_resource type="Texture2D" uid="uid://mjhkwgtnuv3q" path="res://shaders/DitherShit/assets/bayer2tile16.png" id="10_vfya4"]
+[ext_resource type="Texture2D" uid="uid://o4jjiicjhqv8" path="res://shaders/DitherShit/assets/blue_noise.png" id="11_0j4nn"]
+[ext_resource type="SphereMesh" uid="uid://p8je7wniikho" path="res://Enemies/enemy-particles.tres" id="11_lfaom"]
+[ext_resource type="Shader" uid="uid://dlgi1g374bynp" path="res://shaders/DitherShit/shader/dither.gdshader" id="12_3hh45"]
+[ext_resource type="Material" uid="uid://b20kp3df7i6xe" path="res://Scenes/upgrade_system.tres" id="12_bpm5m"]
+[ext_resource type="Texture2D" uid="uid://3ubxu0a54p0i" path="res://shaders/DitherShit/assets/tnr-8-32x.png" id="13_5tbvh"]
+[ext_resource type="SphereMesh" uid="uid://cy1mumbix3e3" path="res://Scenes/upgrade_system-pass.tres" id="13_qhatl"]
+[ext_resource type="Texture2D" uid="uid://k3nrakg6avci" path="res://shaders/DitherShit/assets/test.png" id="14_67dm0"]
+[ext_resource type="Theme" uid="uid://bfp08hmhenri4" path="res://themes/Elmero.tres" id="14_j5ndp"]
+[ext_resource type="PackedScene" uid="uid://k1wl2nar0cd6" path="res://shaders/DitherShit/src/control_slider.tscn" id="15_uubsr"]
+[ext_resource type="Script" uid="uid://d2pvhwovdcqtg" path="res://shaders/DitherShit/src/control_slider.gd" id="16_gm3kh"]
+[ext_resource type="Texture2D" uid="uid://43rag6hbij3x" path="res://shaders/DitherShit/assets/commodore64-32x.png" id="17_3mcje"]
+[ext_resource type="Texture2D" uid="uid://diykkg68yoxxl" path="res://shaders/DitherShit/assets/min.png" id="18_g2hb7"]
+[ext_resource type="Texture2D" uid="uid://duim0ay8gc051" path="res://shaders/DitherShit/assets/move.png" id="19_y0qqd"]
+[ext_resource type="PackedScene" uid="uid://3lf0jrm8po55" path="res://spawner/spawner1.tscn" id="25_tgvk1"]
+[ext_resource type="PackedScene" uid="uid://3qevbhnxt5xg" path="res://Enemies/box.tscn" id="31_i2x8d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ji4js"]
+shader = ExtResource("12_3hh45")
+shader_parameter/u_dither_tex = ExtResource("7_2qfil")
+shader_parameter/u_color_tex = ExtResource("13_5tbvh")
+shader_parameter/u_bit_depth = 15
+shader_parameter/u_contrast = 1.1
+shader_parameter/u_offset = -1.0
+shader_parameter/u_dither_size = 2
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_y6c2c"]
+viewport_path = NodePath("Player/UI3D/SubViewport")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qbn24"]
+
+[sub_resource type="Animation" id="Animation_la4wg"]
+resource_name = "Intro"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Player/Demo/SubViewportContainer:material:shader_parameter/u_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_7htqj"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Player/Demo/SubViewportContainer:material:shader_parameter/u_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gsmdy"]
+_data = {
+&"Intro": SubResource("Animation_la4wg"),
+&"RESET": SubResource("Animation_7htqj")
+}
+
+[sub_resource type="Environment" id="Environment_ugyuv"]
+background_mode = 1
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 3.0
+volumetric_fog_albedo = Color(0, 0, 0, 1)
+
+[node name="test_level2" type="Node3D"]
+script = ExtResource("1_fjysl")
+
+[node name="Player" parent="." node_paths=PackedStringArray("corazon") instance=ExtResource("2_y6c2c")]
+corazon = NodePath("Heart")
+
+[node name="Demo" type="Node3D" parent="Player" node_paths=PackedStringArray("Camera_To_Follow")]
+script = ExtResource("3_ji4js")
+Camera_To_Follow = NodePath("../Camera3D")
+palettes = [ExtResource("4_i2x8d"), ExtResource("5_tgvk1"), ExtResource("6_va345")]
+dither_patterns = [ExtResource("7_2qfil"), ExtResource("8_ju5dc"), ExtResource("9_1bl6v"), ExtResource("10_vfya4"), ExtResource("11_0j4nn")]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Player/Demo"]
+material = SubResource("ShaderMaterial_ji4js")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Player/Demo/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1280, 720)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Gradient" type="TextureRect" parent="Player/Demo/SubViewportContainer/SubViewport"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("14_67dm0")
+expand_mode = 1
+
+[node name="Camera3D" type="Camera3D" parent="Player/Demo/SubViewportContainer/SubViewport"]
+
+[node name="Controls" type="CanvasLayer" parent="Player/Demo"]
+visible = false
+
+[node name="Control" type="Control" parent="Player/Demo/Controls"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 952.0
+offset_top = 11.0
+offset_right = 992.0
+offset_bottom = 51.0
+
+[node name="TabContainer" type="TabContainer" parent="Player/Demo/Controls/Control"]
+layout_mode = 0
+offset_right = 288.0
+offset_bottom = 196.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+current_tab = 0
+
+[node name="Params" type="VBoxContainer" parent="Player/Demo/Controls/Control/TabContainer"]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+metadata/_tab_index = 0
+
+[node name="BitDepth" parent="Player/Demo/Controls/Control/TabContainer/Params" instance=ExtResource("15_uubsr")]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="Player/Demo/Controls/Control/TabContainer/Params"]
+layout_mode = 2
+
+[node name="DitherSize" parent="Player/Demo/Controls/Control/TabContainer/Params" instance=ExtResource("15_uubsr")]
+layout_mode = 2
+
+[node name="HSeparator3" type="HSeparator" parent="Player/Demo/Controls/Control/TabContainer/Params"]
+layout_mode = 2
+
+[node name="Contrast" parent="Player/Demo/Controls/Control/TabContainer/Params" instance=ExtResource("15_uubsr")]
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="Player/Demo/Controls/Control/TabContainer/Params"]
+layout_mode = 2
+
+[node name="Offset" parent="Player/Demo/Controls/Control/TabContainer/Params" instance=ExtResource("15_uubsr")]
+layout_mode = 2
+
+[node name="HSeparator4" type="HSeparator" parent="Player/Demo/Controls/Control/TabContainer/Params"]
+layout_mode = 2
+
+[node name="Palette" type="HBoxContainer" parent="Player/Demo/Controls/Control/TabContainer/Params"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("16_gm3kh")
+
+[node name="Label" type="Label" parent="Player/Demo/Controls/Control/TabContainer/Params/Palette"]
+layout_mode = 2
+text = "Palette"
+horizontal_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Player/Demo/Controls/Control/TabContainer/Params/Palette"]
+layout_mode = 2
+
+[node name="Checkbox" type="CheckBox" parent="Player/Demo/Controls/Control/TabContainer/Params/Palette/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Checkbox2" type="CheckBox" parent="Player/Demo/Controls/Control/TabContainer/Params/Palette/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Checkbox3" type="CheckBox" parent="Player/Demo/Controls/Control/TabContainer/Params/Palette/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Checkbox4" type="CheckBox" parent="Player/Demo/Controls/Control/TabContainer/Params/Palette/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Checkbox5" type="CheckBox" parent="Player/Demo/Controls/Control/TabContainer/Params/Palette/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PalettePreview" type="TextureRect" parent="Player/Demo/Controls/Control/TabContainer/Params"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("17_3mcje")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HSeparator5" type="HSeparator" parent="Player/Demo/Controls/Control/TabContainer/Params"]
+layout_mode = 2
+
+[node name="Dither" type="HBoxContainer" parent="Player/Demo/Controls/Control/TabContainer/Params"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("16_gm3kh")
+
+[node name="Label" type="Label" parent="Player/Demo/Controls/Control/TabContainer/Params/Dither"]
+layout_mode = 2
+text = "Dither Pattern"
+horizontal_alignment = 2
+
+[node name="MarginContainer" type="HBoxContainer" parent="Player/Demo/Controls/Control/TabContainer/Params/Dither"]
+layout_mode = 2
+
+[node name="Dither1" type="CheckBox" parent="Player/Demo/Controls/Control/TabContainer/Params/Dither/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Dither2" type="CheckBox" parent="Player/Demo/Controls/Control/TabContainer/Params/Dither/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Dither3" type="CheckBox" parent="Player/Demo/Controls/Control/TabContainer/Params/Dither/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Dither4" type="CheckBox" parent="Player/Demo/Controls/Control/TabContainer/Params/Dither/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Dither5" type="CheckBox" parent="Player/Demo/Controls/Control/TabContainer/Params/Dither/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DitherPreview" type="TextureRect" parent="Player/Demo/Controls/Control/TabContainer/Params"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("7_2qfil")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DitherLabel" type="Label" parent="Player/Demo/Controls/Control/TabContainer/Params"]
+layout_mode = 2
+text = "Bayer 16x16"
+
+[node name="Minimise" type="Button" parent="Player/Demo/Controls/Control"]
+layout_mode = 0
+offset_left = 231.0
+offset_top = -1.0
+offset_right = 259.0
+offset_bottom = 21.0
+icon = ExtResource("18_g2hb7")
+
+[node name="Move" type="Button" parent="Player/Demo/Controls/Control"]
+layout_mode = 0
+offset_left = 199.0
+offset_top = -1.0
+offset_right = 227.0
+offset_bottom = 21.0
+icon = ExtResource("19_y0qqd")
+
+[node name="Camera3D" type="Marker3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 8, 7.85)
+
+[node name="Heart" parent="Player" node_paths=PackedStringArray("follow") instance=ExtResource("4_3xsl5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.91436, 0.75, 5.4977)
+mass = 10.0
+follow = NodePath("..")
+string_max_distance = 16.0
+s_force = 1000.0
+s_damping = 0.2
+p_deceleration = 45.0
+
+[node name="DialogBox" parent="Player" instance=ExtResource("6_j4cnv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -1.518)
+InputEnable = false
+Timerstart = false
+Dialog = PackedStringArray("It seems its working, Press Enter or the A Button to advance dialogs", "Try moving with WASD or with the Left Stick", "Ok Good.", "Now, you might notice you are tied to that thing over there.", "Try moving it as well, hold the Space Bar or the Left Trigger while moving.", "When you start swinging, if you are low on health, it will start regenerating.", "You catching up fast.", "Master swinging that thing around and you might have a chance at surviving.", "Now, lets hack some stuff.", "Get close to the edge of a hexagon to hack it and expand your map.", "Thats it.", "You are on your own from now on. You need to hack the whole system to win.", "Best of luck.", "")
+
+[node name="UI3D" type="Sprite3D" parent="Player"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_y6c2c")
+
+[node name="SubViewport" type="SubViewport" parent="Player/UI3D"]
+transparent_bg = true
+size = Vector2i(1280, 720)
+
+[node name="UI" parent="Player/UI3D/SubViewport" instance=ExtResource("8_ugyuv")]
+
+[node name="String" parent="Player" node_paths=PackedStringArray("PointA", "PointB") instance=ExtResource("8_fjysl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.278732, 5.38965, 0.62126)
+PointA = NodePath("..")
+PointB = NodePath("../Heart")
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="tilesito" type="StaticBody3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.560677, 0, 0)
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/tilesito"]
+shape = SubResource("ConvexPolygonShape3D_qbn24")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="Environment/tilesito"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.56, 0)
+size = Vector3(29.2659, 1.11591, 30.2412)
+
+[node name="PrimerHex" type="Node3D" parent="."]
+
+[node name="FixedHex0" parent="PrimerHex" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+Up = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="FirstRing" type="Node3D" parent="."]
+
+[node name="FixedHex1" parent="FirstRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2, 0, -9.05)
+Downed = true
+Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+spawn_scene = ExtResource("25_tgvk1")
+
+[node name="FixedHex2" parent="FirstRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4, 0, 0)
+Downed = true
+Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+spawn_scene = ExtResource("25_tgvk1")
+
+[node name="FixedHex3" parent="FirstRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2, 0, 9.05)
+Downed = true
+Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+spawn_scene = ExtResource("25_tgvk1")
+
+[node name="FixedHex4" parent="FirstRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2, 0, 9.05)
+Downed = true
+Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+spawn_scene = ExtResource("25_tgvk1")
+
+[node name="FixedHex5" parent="FirstRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4, 0, 0)
+Downed = true
+Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+spawn_scene = ExtResource("25_tgvk1")
+
+[node name="FixedHex6" parent="FirstRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2, 0, -9.05)
+Downed = true
+Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+spawn_scene = ExtResource("25_tgvk1")
+
+[node name="SecondRing" type="Node3D" parent="."]
+
+[node name="FixedHex7" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6, 0, -9.05)
+Downed = true
+Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="FixedHex8" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.8, 0, 0)
+Downed = true
+Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="FixedHex9" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6, 0, 9.05)
+Downed = true
+Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="FixedHex10" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4, 0, 18.1)
+Downed = true
+Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="FixedHex11" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18.1)
+Downed = true
+Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="FixedHex12" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4, 0, 18.1)
+Downed = true
+Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="FixedHex13" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.6, 0, 9.05)
+Downed = true
+Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="FixedHex14" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.8, 0, 0)
+Downed = true
+Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="FixedHex15" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.6, 0, -9.05)
+Downed = true
+Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="FixedHex16" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4, 0, -18.1)
+Downed = true
+Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="FixedHex17" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.1)
+Downed = true
+Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="FixedHex18" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4, 0, -18.1)
+Downed = true
+Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="BegginingStugg" type="Node" parent="."]
+
+[node name="TutorialComponent" type="Node3D" parent="BegginingStugg" node_paths=PackedStringArray("Dialog")]
+process_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.36767, -1.48911, -1.51835)
+script = ExtResource("6_l2662")
+Dialog = NodePath("../../Player/DialogBox")
+tutoskip = true
+
+[node name="EnemyParts" type="GPUParticles3D" parent="BegginingStugg"]
+emitting = false
+one_shot = true
+process_material = ExtResource("10_j5ndp")
+draw_pass_1 = ExtResource("11_lfaom")
+
+[node name="Stuffparts" type="GPUParticles3D" parent="BegginingStugg"]
+emitting = false
+one_shot = true
+process_material = ExtResource("12_bpm5m")
+draw_pass_1 = ExtResource("13_qhatl")
+
+[node name="Loading" type="RichTextLabel" parent="BegginingStugg"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("14_j5ndp")
+theme_override_font_sizes/normal_font_size = 31
+bbcode_enabled = true
+text = "[center]
+
+
+
+
+
+
+
+
+
+
+
+LOADTIMES ARE BETTER ON THE DOWNLOADED VERSION ;)[/center]"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BegginingStugg"]
+process_mode = 3
+libraries = {
+&"": SubResource("AnimationLibrary_gsmdy")
+}
+
+[node name="Box" parent="BegginingStugg" instance=ExtResource("31_i2x8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.94785, 1, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ugyuv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 0.184758, 0.982784, 0, -0.982784, 0.184758, 0, 3.46257, 6.79005)
+shadow_enabled = true
+shadow_opacity = 0.2
+
+[connection signal="updated_energy" from="Player" to="Player/UI3D/SubViewport/UI" method="_on_player_cooldown_changed"]
+[connection signal="updated_health" from="Player" to="Player/UI3D/SubViewport/UI" method="_on_player_health_changed"]
+[connection signal="pressed" from="Player/Demo/Controls/Control/TabContainer/Params/Palette/HBoxContainer/Checkbox" to="Player/Demo" method="_on_Checkbox_pressed"]
+[connection signal="pressed" from="Player/Demo/Controls/Control/TabContainer/Params/Palette/HBoxContainer/Checkbox2" to="Player/Demo" method="_on_Checkbox2_pressed"]
+[connection signal="pressed" from="Player/Demo/Controls/Control/TabContainer/Params/Palette/HBoxContainer/Checkbox3" to="Player/Demo" method="_on_Checkbox3_pressed"]
+[connection signal="pressed" from="Player/Demo/Controls/Control/TabContainer/Params/Palette/HBoxContainer/Checkbox4" to="Player/Demo" method="_on_Checkbox4_pressed"]
+[connection signal="pressed" from="Player/Demo/Controls/Control/TabContainer/Params/Palette/HBoxContainer/Checkbox5" to="Player/Demo" method="_on_Checkbox5_pressed"]
+[connection signal="pressed" from="Player/Demo/Controls/Control/TabContainer/Params/Dither/MarginContainer/Dither1" to="Player/Demo" method="_on_Dither1_pressed"]
+[connection signal="pressed" from="Player/Demo/Controls/Control/TabContainer/Params/Dither/MarginContainer/Dither2" to="Player/Demo" method="_on_Dither2_pressed"]
+[connection signal="pressed" from="Player/Demo/Controls/Control/TabContainer/Params/Dither/MarginContainer/Dither3" to="Player/Demo" method="_on_Dither3_pressed"]
+[connection signal="pressed" from="Player/Demo/Controls/Control/TabContainer/Params/Dither/MarginContainer/Dither4" to="Player/Demo" method="_on_Dither4_pressed"]
+[connection signal="pressed" from="Player/Demo/Controls/Control/TabContainer/Params/Dither/MarginContainer/Dither5" to="Player/Demo" method="_on_Dither5_pressed"]
+[connection signal="pressed" from="Player/Demo/Controls/Control/Minimise" to="Player/Demo" method="_on_Minimise_pressed"]
+[connection signal="button_down" from="Player/Demo/Controls/Control/Move" to="Player/Demo" method="_on_Move_button_down"]
+[connection signal="button_up" from="Player/Demo/Controls/Control/Move" to="Player/Demo" method="_on_Move_button_up"]
+[connection signal="Done" from="Player/DialogBox" to="BegginingStugg/TutorialComponent" method="_on_dialog_box_done"]
+[connection signal="animation_finished" from="BegginingStugg/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

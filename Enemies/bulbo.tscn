@@ -122,6 +122,7 @@ vis_range = 0.0
 
 [node name="Attacker" parent="." instance=ExtResource("6_447tv")]
 visible = false
+contact_damage = 30.0
 
 [node name="AnimatedSprite" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, 0, 0.203121, 0)

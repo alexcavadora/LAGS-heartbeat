@@ -23,7 +23,6 @@ signal killed()
 
 func _ready() -> void:
 	if get_parent() is Spawner3D:
-		print("parent is spawner")
 		connect("killed", get_parent().dead_counter)
 	set_physics_process(false)
 	animated_sprite = find_child("AnimatedSprite")

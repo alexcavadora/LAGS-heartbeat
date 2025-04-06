@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bumwcljyyl83x"]
+[gd_scene load_steps=13 format=3 uid="uid://bumwcljyyl83x"]
 
 [ext_resource type="Script" uid="uid://bbgg47aoc0e30" path="res://Scenes/hex_template.gd" id="1_xiguj"]
 [ext_resource type="ArrayMesh" uid="uid://4m7c7h4erxwh" path="res://assets/Hexagons/untitled.obj" id="2_1ov2o"]
+[ext_resource type="PackedScene" uid="uid://3lf0jrm8po55" path="res://spawner/spawner1.tscn" id="2_b35dy"]
 [ext_resource type="Script" uid="uid://bleawlaewp1wf" path="res://Scenes/HexAnimationComponent.gd" id="3_1ov2o"]
 [ext_resource type="PackedScene" uid="uid://v0oj5afjxrn8" path="res://Scenes/animation_player_Hex.tscn" id="3_88adk"]
 [ext_resource type="Script" path="res://Scenes/progress_count.gd" id="5_ctvrp"]
@@ -24,6 +25,7 @@ viewport_path = NodePath("ProgressCount/SubViewport")
 [node name="FixedHex" type="Node3D" node_paths=PackedStringArray("Animations")]
 script = ExtResource("1_xiguj")
 Animations = NodePath("AnimationHex")
+spawn_scene = ExtResource("2_b35dy")
 
 [node name="Hex" type="StaticBody3D" parent="."]
 collision_layer = 79
