@@ -28,7 +28,11 @@ var touched_area : Area3D
 signal finished(idx)
 
 func _ready():
-	connect("finished", ui._update_minimap)
+	if ui != null:
+		connect("finished", ui._update_minimap)
+	check()
+
+func check ():
 	match Downed:
 		true:
 			AnimToggle.emit("Downed")
@@ -59,18 +63,21 @@ func _ready():
 
 
 
-
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "GoUp":
 		progress_count.visible = false
 		await progress_count.visible
-		animationp.play("Up")
-		await animationp.animation_finished
+		Downed = false
+		Up = true
+		check()
 		finished.emit(int(name.substr(8,-1)))
+	
+		
 
 	elif anim_name == "Up":
 		if detector != null:
 			detector.queue_free()
+		
 		
 
 

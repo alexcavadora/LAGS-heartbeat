@@ -33,7 +33,7 @@ func _on_button_1_pressed():
 	get_tree().paused = false
 	self.queue_free()
 	if player != null:
-		player.upgrades.Upgrade(UpgradeArray)
+		pass
 
 
 func _on_button_2_pressed():
