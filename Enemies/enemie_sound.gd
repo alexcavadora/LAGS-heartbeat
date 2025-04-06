@@ -20,4 +20,4 @@ func _on_health_just_hit(health):
 
 
 func _on_attacker_attacked():
-	pass # Replace with function body.
+	play_sound(ENEMIE_ATTACK)

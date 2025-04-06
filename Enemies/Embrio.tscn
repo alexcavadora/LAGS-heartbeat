@@ -182,6 +182,7 @@ script = ExtResource("13_5sfr7")
 [connection signal="finish_hit" from="Hitbox" to="." method="_on_hitbox_finish_hit"]
 [connection signal="finish_hit" from="Hitbox" to="Health" method="_on_hitbox_finish_hit"]
 [connection signal="finish_hit" from="Hitbox" to="Movement" method="_on_hit_ended"]
+[connection signal="attacked" from="Attacker" to="EnemieSound" method="_on_attacker_attacked"]
 [connection signal="tethered" from="tetherer" to="Movement" method="_on_tetherer_tethered"]
 
 [editable path="Hitbox"]
