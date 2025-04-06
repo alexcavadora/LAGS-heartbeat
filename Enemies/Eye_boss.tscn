@@ -284,8 +284,8 @@ damage_interval = 1.0
 shape = SubResource("SphereShape3D_6fm3h")
 
 [node name="AnimatedSprite" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
-offset = Vector2(0, 500)
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 0, 0)
+offset = Vector2(0, 33)
 pixel_size = 0.001
 billboard = 1
 alpha_cut = 1
@@ -296,7 +296,6 @@ autoplay = "Moving"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.643287)
-visible = false
 shadow_enabled = true
 omni_range = 2.0
 

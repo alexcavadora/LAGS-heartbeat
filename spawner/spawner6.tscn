@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkce4sngspa65"]
+
+[ext_resource type="Script" uid="uid://x5fnuin6nspy" path="res://spawner/spawner.gd" id="1_rhkou"]
+[ext_resource type="PackedScene" uid="uid://b407b2xs8ym88" path="res://Enemies/Heart_boss.tscn" id="2_rhkou"]
+
+[node name="Spawner" type="Node3D"]
+script = ExtResource("1_rhkou")
+
+[node name="FINAL_BOSS" parent="." instance=ExtResource("2_rhkou")]

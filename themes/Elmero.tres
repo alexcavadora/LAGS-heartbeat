@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=7 format=3 uid="uid://bfp08hmhenri4"]
 
-[ext_resource type="FontFile" uid="uid://dww4hvkxoaa6i" path="res://assets/fonts/ROGLyonsTypeRegular3.ttf" id="1_8jd2q"]
+[ext_resource type="FontFile" uid="uid://vtd8endt3lj1" path="res://assets/fonts/ROGLyonsTypeRegular3.ttf" id="1_8jd2q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8jd2q"]
 content_margin_left = 4.0
