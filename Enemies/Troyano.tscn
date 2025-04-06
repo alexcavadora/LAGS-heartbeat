@@ -202,6 +202,7 @@ texture = SubResource("ViewportTexture_578ye")
 enemy = ExtResource("13_7vi88")
 
 [connection signal="dead" from="Health" to="." method="_on_health_dead"]
+[connection signal="dead" from="Health" to="Movement" method="_on_dead"]
 [connection signal="just_hit" from="Health" to="." method="_on_health_just_hit"]
 [connection signal="just_hit" from="Health" to="Movement" method="_on_hit_received"]
 [connection signal="body_entered" from="Hitbox" to="Hitbox" method="_on_body_entered"]

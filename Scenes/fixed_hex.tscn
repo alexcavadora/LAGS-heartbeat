@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://bumwcljyyl83x"]
 
 [ext_resource type="Script" uid="uid://bbgg47aoc0e30" path="res://Scenes/hex_template.gd" id="1_xiguj"]
-[ext_resource type="ArrayMesh" uid="uid://dtox841xh5uxq" path="res://assets/Hexagons/untitled.obj" id="2_1ov2o"]
+[ext_resource type="ArrayMesh" uid="uid://4m7c7h4erxwh" path="res://assets/Hexagons/untitled.obj" id="2_1ov2o"]
 [ext_resource type="Script" uid="uid://bleawlaewp1wf" path="res://Scenes/HexAnimationComponent.gd" id="3_1ov2o"]
 [ext_resource type="PackedScene" uid="uid://v0oj5afjxrn8" path="res://Scenes/animation_player_Hex.tscn" id="3_88adk"]
-[ext_resource type="Script" uid="uid://b0kjkh2ooa0ke" path="res://Scenes/progress_count.gd" id="5_ctvrp"]
+[ext_resource type="Script" path="res://Scenes/progress_count.gd" id="5_ctvrp"]
 [ext_resource type="Theme" uid="uid://bfp08hmhenri4" path="res://themes/Elmero.tres" id="5_jtwai"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b35dy"]

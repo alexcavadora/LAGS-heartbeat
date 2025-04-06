@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dexm7xls8s1fj" path="res://assets/Enemies/Mantis/Idle_Mantis_2.png" id="7_dgrtn"]
 [ext_resource type="Texture2D" uid="uid://dlxl05i5lb3ss" path="res://assets/Enemies/Mantis/Mantis_Attack_1.png" id="7_qa3c4"]
 [ext_resource type="Texture2D" uid="uid://dig71j2sqqt01" path="res://assets/Enemies/Mantis/Mantis_Muerte.png" id="8_kq5jf"]
-[ext_resource type="Texture2D" uid="uid://dkyecp62h34g7" path="res://assets/Enemies/Mantis/Mantis.png" id="11_qa3c4"]
+[ext_resource type="Texture2D" uid="uid://8h3v2la6vshn" path="res://assets/Enemies/Mantis/Mantis_stunned.png" id="12_kq5jf"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5q8ye"]
 
@@ -80,7 +80,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("11_qa3c4")
+"texture": ExtResource("12_kq5jf")
 }],
 "loop": true,
 "name": &"Stun",
@@ -91,8 +91,8 @@ animations = [{
 viewport_path = NodePath("SubViewport")
 
 [node name="Chaser" type="RigidBody3D" groups=["enemy"]]
-collision_layer = 7
-collision_mask = 7
+collision_layer = 71
+collision_mask = 71
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
@@ -155,13 +155,15 @@ vis_range = 10.0
 shape = SubResource("SphereShape3D_kq5jf")
 
 [node name="AnimatedSprite" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+offset = Vector2(0, 100)
 pixel_size = 0.0025
 billboard = 1
 shaded = true
 alpha_cut = 1
 texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_dgrtn")
-animation = &"Stun"
+animation = &"Moving"
 autoplay = "Moving"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
@@ -171,11 +173,12 @@ shadow_enabled = true
 omni_range = 1.0
 
 [node name="HealthBar" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00450627, 0.715643, 0.0318122)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.87945, 0)
 cast_shadow = 0
 billboard = 1
 texture = SubResource("ViewportTexture_dgrtn")
 
+[connection signal="dead" from="Health" to="Movement" method="_on_dead"]
 [connection signal="just_hit" from="Health" to="." method="_on_health_just_hit"]
 [connection signal="just_hit" from="Health" to="Movement" method="_on_hit_received"]
 [connection signal="finish_hit" from="Hitbox" to="." method="_on_hitbox_finish_hit"]

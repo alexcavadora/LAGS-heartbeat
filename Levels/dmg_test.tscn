@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bx0msm0hagnj0" path="res://Player/player.tscn" id="2_o2oq2"]
 [ext_resource type="PackedScene" uid="uid://biwv0g0bia05s" path="res://UI/ui.tscn" id="3_s105c"]
 [ext_resource type="PackedScene" uid="uid://buiitvt4ugobf" path="res://Player/heart.tscn" id="4_3k01p"]
-[ext_resource type="PackedScene" uid="uid://r3yjw3cm0pv6" path="res://Enemies/Bulbo.tscn" id="6_s105c"]
+[ext_resource type="PackedScene" uid="uid://r3yjw3cm0pv6" path="res://Enemies/bulbo.tscn" id="6_s105c"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_g22v7"]
 

@@ -1197,7 +1197,9 @@ resource_local_to_scene = true
 [sub_resource type="SphereShape3D" id="SphereShape3D_1x3f0"]
 radius = 5.0
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
+collision_layer = 65
+collision_mask = 65
 axis_lock_linear_y = true
 axis_lock_angular_x = true
 axis_lock_angular_y = true

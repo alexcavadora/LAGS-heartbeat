@@ -85,8 +85,8 @@ anti_aliasing_size = 5.0
 viewport_path = NodePath("SubViewport")
 
 [node name="Bulbo" type="RigidBody3D" groups=["enemy"]]
-collision_layer = 7
-collision_mask = 7
+collision_layer = 71
+collision_mask = 71
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
@@ -172,6 +172,7 @@ texture = SubResource("ViewportTexture_wtllu")
 
 [node name="Monitor_detector" parent="." instance=ExtResource("12_xehaw")]
 
+[connection signal="dead" from="Health" to="Movement" method="_on_dead"]
 [connection signal="just_hit" from="Health" to="." method="_on_health_just_hit"]
 [connection signal="just_hit" from="Health" to="Movement" method="_on_hit_received"]
 [connection signal="finish_hit" from="Hitbox" to="." method="_on_hitbox_finish_hit"]

@@ -37,10 +37,10 @@ volumetric_fog_albedo = Color(0, 0, 0, 1)
 points = PackedVector3Array(-0.000169575, 5, 1, 0.866025, 5, 0.499804, -0.866025, 5, 0.499804, -0.000169575, -5, 1, 0.866025, -5, 0.499804, 0.866025, 5, -0.500196, -0.866025, 5, -0.500196, -0.866025, -5, 0.499804, 0.866025, -5, -0.500196, -0.000169575, 5, -1, -0.866025, -5, -0.500196, -0.000169575, -5, -1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_24y5s"]
-size = Vector3(12, 150, 0.244)
+size = Vector3(12, 150, 1.019)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_88adk"]
-size = Vector3(12, 20, 4)
+size = Vector3(12, 32.785, 4)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_5dqjb"]
 viewport_path = NodePath("ProgressCount/SubViewport")
@@ -54,8 +54,44 @@ viewport_path = NodePath("ProgressCount/SubViewport")
 [node name="test_level2" type="Node3D"]
 script = ExtResource("1_at1qm")
 
+[node name="Chaser" parent="." instance=ExtResource("17_0xgx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.63886, 0)
+mass = 5.0
+
+[node name="Chaser2" parent="." instance=ExtResource("17_0xgx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.58268, 5.63886, 1.5092)
+mass = 5.0
+
+[node name="Chaser3" parent="." instance=ExtResource("17_0xgx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.58268, 5.63886, 2.5092)
+mass = 5.0
+
+[node name="Chaser4" parent="." instance=ExtResource("17_0xgx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.40451, 5.63886, 1.1915)
+mass = 5.0
+
+[node name="Chaser5" parent="." instance=ExtResource("17_0xgx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52109, 5.63886, 4.6127)
+mass = 5.0
+
+[node name="Chaser6" parent="." instance=ExtResource("17_0xgx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52109, 5.63886, 4.6127)
+mass = 5.0
+
+[node name="Chaser7" parent="." instance=ExtResource("17_0xgx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.379, 5.63886, 5.141)
+mass = 5.0
+
+[node name="Chaser8" parent="." instance=ExtResource("17_0xgx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3298, 5.63886, 11.2736)
+mass = 5.0
+
+[node name="Chaser9" parent="." instance=ExtResource("17_0xgx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.3298, 5.63886, 5.2735)
+mass = 5.0
+
 [node name="Player" parent="." node_paths=PackedStringArray("corazon") instance=ExtResource("2_wxfap")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.50501, 0, 17.4405)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.30242, 0.0229573, 3.68249)
 corazon = NodePath("Heart")
 
 [node name="Demo" parent="Player" node_paths=PackedStringArray("Camera_To_Follow") instance=ExtResource("3_kmljm")]
@@ -65,7 +101,7 @@ Camera_To_Follow = NodePath("../Camera3D")
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 8, 7.85)
 
 [node name="Heart" parent="Player" node_paths=PackedStringArray("follow") instance=ExtResource("4_cg3js")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.91436, 0.75, 5.4977)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.91436, 0.237122, 5.4977)
 mass = 10.0
 follow = NodePath("..")
 string_max_distance = 16.0
@@ -93,33 +129,6 @@ size = Vector2i(1280, 720)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.278732, 5.38965, 0.62126)
 PointA = NodePath("..")
 PointB = NodePath("../Heart")
-
-[node name="Chaser" parent="Player" instance=ExtResource("17_0xgx3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.50501, 5.63886, -17.4405)
-
-[node name="Chaser2" parent="Player" instance=ExtResource("17_0xgx3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.92233, 5.63886, -15.9313)
-
-[node name="Chaser3" parent="Player" instance=ExtResource("17_0xgx3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.92233, 5.63886, -14.9313)
-
-[node name="Chaser4" parent="Player" instance=ExtResource("17_0xgx3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.90952, 5.63886, -16.249)
-
-[node name="Chaser5" parent="Player" instance=ExtResource("17_0xgx3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0261, 5.63886, -12.8278)
-
-[node name="Chaser6" parent="Player" instance=ExtResource("17_0xgx3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0261, 5.63886, -12.8278)
-
-[node name="Chaser7" parent="Player" instance=ExtResource("17_0xgx3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.884, 5.63886, -12.2995)
-
-[node name="Chaser8" parent="Player" instance=ExtResource("17_0xgx3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8348, 5.63886, -6.16695)
-
-[node name="Chaser9" parent="Player" instance=ExtResource("17_0xgx3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.8348, 5.63886, -12.167)
 
 [node name="Environment" type="Node" parent="."]
 
@@ -230,25 +239,25 @@ shadow_enabled = true
 shadow_opacity = 0.2
 
 [node name="Eye_boss" parent="." instance=ExtResource("11_kmljm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2655, 8.5807, 56.7214)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.865, 8.5807, -25.2755)
 
 [node name="Eye_boss2" parent="." instance=ExtResource("11_kmljm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.2655, 8.5807, 56.7214)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.865, 8.5807, -25.2755)
 
 [node name="Eye_boss3" parent="." instance=ExtResource("11_kmljm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.2655, 8.5807, 63.7214)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.865, 8.5807, -18.2755)
 
 [node name="Eye_boss4" parent="." instance=ExtResource("11_kmljm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.4655, 8.5807, 71.5179)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.665, 8.5807, -10.479)
 
 [node name="Eye_boss5" parent="." instance=ExtResource("11_kmljm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5868, 8.5807, 72.0019)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.5437, 8.5807, -9.99498)
 
 [node name="Eye_boss6" parent="." instance=ExtResource("11_kmljm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.37269, 8.5807, 63.2973)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.7578, 8.5807, -18.6996)
 
 [node name="Eye_boss7" parent="." instance=ExtResource("11_kmljm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.37269, 8.5807, 63.2973)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.7578, 8.5807, -18.6996)
 
 [node name="walls" type="Node" parent="."]
 
@@ -278,6 +287,8 @@ debug_fill = false
 
 [node name="Walls" type="StaticBody3D" parent="walls/wallstatic/Hex/Wall"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+collision_layer = 64
+collision_mask = 64
 
 [node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic/Hex/Wall/Walls"]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
@@ -405,6 +416,8 @@ debug_fill = false
 
 [node name="Walls" type="StaticBody3D" parent="walls/wallstatic4/Hex/Wall"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+collision_layer = 64
+collision_mask = 64
 
 [node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic4/Hex/Wall/Walls"]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
@@ -532,6 +545,8 @@ debug_fill = false
 
 [node name="Walls" type="StaticBody3D" parent="walls/wallstatic5/Hex/Wall"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+collision_layer = 64
+collision_mask = 64
 
 [node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic5/Hex/Wall/Walls"]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
@@ -659,6 +674,8 @@ debug_fill = false
 
 [node name="Walls" type="StaticBody3D" parent="walls/wallstatic6/Hex/Wall"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+collision_layer = 64
+collision_mask = 64
 
 [node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic6/Hex/Wall/Walls"]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
@@ -786,6 +803,8 @@ debug_fill = false
 
 [node name="Walls" type="StaticBody3D" parent="walls/wallstatic7/Hex/Wall"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+collision_layer = 64
+collision_mask = 64
 
 [node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic7/Hex/Wall/Walls"]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
@@ -913,6 +932,8 @@ debug_fill = false
 
 [node name="Walls" type="StaticBody3D" parent="walls/wallstatic11/Hex/Wall"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+collision_layer = 64
+collision_mask = 64
 
 [node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic11/Hex/Wall/Walls"]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
@@ -1040,6 +1061,8 @@ debug_fill = false
 
 [node name="Walls" type="StaticBody3D" parent="walls/wallstatic12/Hex/Wall"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+collision_layer = 64
+collision_mask = 64
 
 [node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic12/Hex/Wall/Walls"]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
@@ -1167,6 +1190,8 @@ debug_fill = false
 
 [node name="Walls" type="StaticBody3D" parent="walls/wallstatic13/Hex/Wall"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+collision_layer = 64
+collision_mask = 64
 
 [node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic13/Hex/Wall/Walls"]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
@@ -1294,6 +1319,8 @@ debug_fill = false
 
 [node name="Walls" type="StaticBody3D" parent="walls/wallstatic14/Hex/Wall"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+collision_layer = 64
+collision_mask = 64
 
 [node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic14/Hex/Wall/Walls"]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
@@ -1421,6 +1448,8 @@ debug_fill = false
 
 [node name="Walls" type="StaticBody3D" parent="walls/wallstatic15/Hex/Wall"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+collision_layer = 64
+collision_mask = 64
 
 [node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic15/Hex/Wall/Walls"]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
@@ -1548,6 +1577,8 @@ debug_fill = false
 
 [node name="Walls" type="StaticBody3D" parent="walls/wallstatic16/Hex/Wall"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+collision_layer = 64
+collision_mask = 64
 
 [node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic16/Hex/Wall/Walls"]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
@@ -1675,6 +1706,8 @@ debug_fill = false
 
 [node name="Walls" type="StaticBody3D" parent="walls/wallstatic17/Hex/Wall"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+collision_layer = 64
+collision_mask = 64
 
 [node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic17/Hex/Wall/Walls"]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
@@ -1802,6 +1835,8 @@ debug_fill = false
 
 [node name="Walls" type="StaticBody3D" parent="walls/wallstatic19/Hex/Wall"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+collision_layer = 64
+collision_mask = 64
 
 [node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic19/Hex/Wall/Walls"]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
@@ -1929,6 +1964,8 @@ debug_fill = false
 
 [node name="Walls" type="StaticBody3D" parent="walls/wallstatic20/Hex/Wall"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+collision_layer = 64
+collision_mask = 64
 
 [node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic20/Hex/Wall/Walls"]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
@@ -2056,6 +2093,8 @@ debug_fill = false
 
 [node name="Walls" type="StaticBody3D" parent="walls/wallstatic18/Hex/Wall"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+collision_layer = 64
+collision_mask = 64
 
 [node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic18/Hex/Wall/Walls"]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
@@ -2183,6 +2222,8 @@ debug_fill = false
 
 [node name="Walls" type="StaticBody3D" parent="walls/wallstatic8/Hex/Wall"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+collision_layer = 64
+collision_mask = 64
 
 [node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic8/Hex/Wall/Walls"]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
@@ -2310,6 +2351,8 @@ debug_fill = false
 
 [node name="Walls" type="StaticBody3D" parent="walls/wallstatic9/Hex/Wall"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+collision_layer = 64
+collision_mask = 64
 
 [node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic9/Hex/Wall/Walls"]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
@@ -2437,6 +2480,8 @@ debug_fill = false
 
 [node name="Walls" type="StaticBody3D" parent="walls/wallstatic10/Hex/Wall"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+collision_layer = 64
+collision_mask = 64
 
 [node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic10/Hex/Wall/Walls"]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
@@ -2564,6 +2609,8 @@ debug_fill = false
 
 [node name="Walls" type="StaticBody3D" parent="walls/wallstatic2/Hex/Wall"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+collision_layer = 64
+collision_mask = 64
 
 [node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic2/Hex/Wall/Walls"]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
@@ -2691,6 +2738,8 @@ debug_fill = false
 
 [node name="Walls" type="StaticBody3D" parent="walls/wallstatic3/Hex/Wall"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+collision_layer = 64
+collision_mask = 64
 
 [node name="WallUpR" type="CollisionShape3D" parent="walls/wallstatic3/Hex/Wall/Walls"]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
