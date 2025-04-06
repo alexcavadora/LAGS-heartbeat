@@ -81,96 +81,115 @@ size = Vector3(29.2659, 1.11591, 30.2412)
 
 [node name="PrimerHex" type="Node3D" parent="."]
 
-[node name="FixedHex0" parent="PrimerHex" instance=ExtResource("5_qbn24")]
+[node name="FixedHex0" parent="PrimerHex" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
 Up = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
 
 [node name="FirstRing" type="Node3D" parent="."]
 
-[node name="FixedHex1" parent="FirstRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex1" parent="FirstRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2, 0, -9.05)
 Downed = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
 
-[node name="FixedHex2" parent="FirstRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex2" parent="FirstRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4, 0, 0)
 Downed = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
 
-[node name="FixedHex3" parent="FirstRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex3" parent="FirstRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2, 0, 9.05)
 Downed = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
 
-[node name="FixedHex4" parent="FirstRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex4" parent="FirstRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2, 0, 9.05)
 Downed = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
 
-[node name="FixedHex5" parent="FirstRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex5" parent="FirstRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4, 0, 0)
 Downed = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
 
-[node name="FixedHex6" parent="FirstRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex6" parent="FirstRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2, 0, -9.05)
 Downed = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
 
 [node name="SecondRing" type="Node3D" parent="."]
 
-[node name="FixedHex7" parent="SecondRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex7" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6, 0, -9.05)
 Downed = true
 Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
 
-[node name="FixedHex8" parent="SecondRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex8" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.8, 0, 0)
 Downed = true
 Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
 
-[node name="FixedHex9" parent="SecondRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex9" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6, 0, 9.05)
 Downed = true
 Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
 
-[node name="FixedHex10" parent="SecondRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex10" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4, 0, 18.1)
 Downed = true
 Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
 
-[node name="FixedHex11" parent="SecondRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex11" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18.1)
 Downed = true
 Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
 
-[node name="FixedHex12" parent="SecondRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex12" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4, 0, 18.1)
 Downed = true
 Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
 
-[node name="FixedHex13" parent="SecondRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex13" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.6, 0, 9.05)
 Downed = true
 Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
 
-[node name="FixedHex14" parent="SecondRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex14" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.8, 0, 0)
 Downed = true
 Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
 
-[node name="FixedHex15" parent="SecondRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex15" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.6, 0, -9.05)
 Downed = true
 Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
 
-[node name="FixedHex16" parent="SecondRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex16" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4, 0, -18.1)
 Downed = true
 Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
 
-[node name="FixedHex17" parent="SecondRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex17" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.1)
 Downed = true
 Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
 
-[node name="FixedHex18" parent="SecondRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex18" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4, 0, -18.1)
 Downed = true
 Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
 
 [node name="TutorialComponent" type="Node3D" parent="." node_paths=PackedStringArray("Dialog")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.36767, -1.48911, -1.51835)

@@ -1,4 +1,3 @@
-
 extends Node3D
 class_name HexTemplate
 @onready var animationp : AnimationPlayer = $AnimationPlayer
@@ -22,12 +21,14 @@ signal AnimToggle(NextAnim)
 @onready var wall_mid_l = $Hex/Wall/Walls/WallMidL
 @onready var wall_up_l = $Hex/Wall/Walls/WallUpL
 @onready var progress_count = $ProgressCount
-
+@export var ui: Control
 @onready var currenttarget : HexTemplate
 var touched_area : Area3D
 
+signal finished(idx)
+
 func _ready():
-		
+	connect("finished", ui._update_minimap)
 	match Downed:
 		true:
 			AnimToggle.emit("Downed")
@@ -65,6 +66,7 @@ func _on_animation_player_animation_finished(anim_name):
 		await progress_count.visible
 		animationp.play("Up")
 		await animationp.animation_finished
+		finished.emit(int(name.substr(8,-1)))
 
 	elif anim_name == "Up":
 		if detector != null:

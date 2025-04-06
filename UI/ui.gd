@@ -17,7 +17,7 @@ var inner_ring_complete = false
 
 
 func _ready() -> void:
-	_update_minimap(-1)
+	_update_minimap(0)
 
 func _update_minimap(idx):
 	if idx == 0:
