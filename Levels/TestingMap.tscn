@@ -1,14 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://be8hl4weaft7d"]
+[gd_scene load_steps=13 format=3 uid="uid://cnhcumyvhe17e"]
 
-[ext_resource type="Script" uid="uid://bydtmfnv5gj6u" path="res://Levels/level.gd" id="1_fjysl"]
-[ext_resource type="PackedScene" uid="uid://bx0msm0hagnj0" path="res://Player/player.tscn" id="2_y6c2c"]
-[ext_resource type="PackedScene" uid="uid://buiitvt4ugobf" path="res://Player/heart.tscn" id="4_3xsl5"]
-[ext_resource type="PackedScene" uid="uid://bumwcljyyl83x" path="res://Scenes/fixed_hex.tscn" id="5_qbn24"]
-[ext_resource type="PackedScene" uid="uid://cqk5n14hafk01" path="res://Components/dialog_box.tscn" id="6_j4cnv"]
-[ext_resource type="Script" uid="uid://05wfyw363rdi" path="res://Components/tutorial_component.gd" id="6_l2662"]
-[ext_resource type="PackedScene" uid="uid://deo5mpbd2emu5" path="res://Scenes/string.tscn" id="8_fjysl"]
-[ext_resource type="PackedScene" uid="uid://biwv0g0bia05s" path="res://UI/ui.tscn" id="8_ugyuv"]
-[ext_resource type="PackedScene" uid="uid://bnvofq8o46gga" path="res://shaders/DitherShit/src/demo.tscn" id="10_jffph"]
+[ext_resource type="Script" uid="uid://bydtmfnv5gj6u" path="res://Levels/level.gd" id="1_at1qm"]
+[ext_resource type="PackedScene" uid="uid://bx0msm0hagnj0" path="res://Player/player.tscn" id="2_wxfap"]
+[ext_resource type="PackedScene" uid="uid://bnvofq8o46gga" path="res://shaders/DitherShit/src/demo.tscn" id="3_kmljm"]
+[ext_resource type="PackedScene" uid="uid://buiitvt4ugobf" path="res://Player/heart.tscn" id="4_cg3js"]
+[ext_resource type="PackedScene" uid="uid://cqk5n14hafk01" path="res://Components/dialog_box.tscn" id="5_nlofp"]
+[ext_resource type="PackedScene" uid="uid://biwv0g0bia05s" path="res://UI/ui.tscn" id="6_2cm18"]
+[ext_resource type="PackedScene" uid="uid://deo5mpbd2emu5" path="res://Scenes/string.tscn" id="7_brjha"]
+[ext_resource type="PackedScene" uid="uid://bumwcljyyl83x" path="res://Scenes/fixed_hex.tscn" id="8_ovnb0"]
+[ext_resource type="Script" uid="uid://05wfyw363rdi" path="res://Components/tutorial_component.gd" id="9_0xgx3"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_y6c2c"]
 viewport_path = NodePath("Player/UI3D/SubViewport")
@@ -24,18 +24,18 @@ fog_density = 3.0
 volumetric_fog_albedo = Color(0, 0, 0, 1)
 
 [node name="test_level2" type="Node3D"]
-script = ExtResource("1_fjysl")
+script = ExtResource("1_at1qm")
 
-[node name="Player" parent="." node_paths=PackedStringArray("corazon") instance=ExtResource("2_y6c2c")]
+[node name="Player" parent="." node_paths=PackedStringArray("corazon") instance=ExtResource("2_wxfap")]
 corazon = NodePath("Heart")
 
-[node name="Demo" parent="Player" node_paths=PackedStringArray("Camera_To_Follow") instance=ExtResource("10_jffph")]
+[node name="Demo" parent="Player" node_paths=PackedStringArray("Camera_To_Follow") instance=ExtResource("3_kmljm")]
 Camera_To_Follow = NodePath("../Camera3D")
 
 [node name="Camera3D" type="Marker3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 8, 7.85)
 
-[node name="Heart" parent="Player" node_paths=PackedStringArray("follow") instance=ExtResource("4_3xsl5")]
+[node name="Heart" parent="Player" node_paths=PackedStringArray("follow") instance=ExtResource("4_cg3js")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.91436, 0.75, 5.4977)
 mass = 10.0
 follow = NodePath("..")
@@ -44,7 +44,7 @@ s_force = 1000.0
 s_damping = 0.2
 p_deceleration = 45.0
 
-[node name="DialogBox" parent="Player" instance=ExtResource("6_j4cnv")]
+[node name="DialogBox" parent="Player" instance=ExtResource("5_nlofp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.908, -1.518)
 Typetime = 0.01
 Dialog = PackedStringArray("It seems its working", "Hello Alex", "", "")
@@ -58,9 +58,9 @@ texture = SubResource("ViewportTexture_y6c2c")
 transparent_bg = true
 size = Vector2i(1280, 720)
 
-[node name="UI" parent="Player/UI3D/SubViewport" instance=ExtResource("8_ugyuv")]
+[node name="UI" parent="Player/UI3D/SubViewport" instance=ExtResource("6_2cm18")]
 
-[node name="String" parent="Player" node_paths=PackedStringArray("PointA", "PointB") instance=ExtResource("8_fjysl")]
+[node name="String" parent="Player" node_paths=PackedStringArray("PointA", "PointB") instance=ExtResource("7_brjha")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.278732, 5.38965, 0.62126)
 PointA = NodePath("..")
 PointB = NodePath("../Heart")
@@ -81,100 +81,88 @@ size = Vector3(29.2659, 1.11591, 30.2412)
 
 [node name="PrimerHex" type="Node3D" parent="."]
 
-[node name="FixedHex0" parent="PrimerHex" instance=ExtResource("5_qbn24")]
+[node name="FixedHex0" parent="PrimerHex" instance=ExtResource("8_ovnb0")]
 Up = true
 
 [node name="FirstRing" type="Node3D" parent="."]
 
-[node name="FixedHex1" parent="FirstRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex1" parent="FirstRing" instance=ExtResource("8_ovnb0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2, 0, -9.05)
-Downed = true
+Up = true
 
-[node name="FixedHex2" parent="FirstRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex2" parent="FirstRing" instance=ExtResource("8_ovnb0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4, 0, 0)
-Downed = true
+Up = true
 
-[node name="FixedHex3" parent="FirstRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex3" parent="FirstRing" instance=ExtResource("8_ovnb0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2, 0, 9.05)
-Downed = true
+Up = true
 
-[node name="FixedHex4" parent="FirstRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex4" parent="FirstRing" instance=ExtResource("8_ovnb0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2, 0, 9.05)
-Downed = true
+Up = true
 
-[node name="FixedHex5" parent="FirstRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex5" parent="FirstRing" instance=ExtResource("8_ovnb0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4, 0, 0)
-Downed = true
+Up = true
 
-[node name="FixedHex6" parent="FirstRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex6" parent="FirstRing" instance=ExtResource("8_ovnb0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2, 0, -9.05)
-Downed = true
+Up = true
 
 [node name="SecondRing" type="Node3D" parent="."]
 
-[node name="FixedHex7" parent="SecondRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex7" parent="SecondRing" instance=ExtResource("8_ovnb0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6, 0, -9.05)
-Downed = true
-Deactivate = true
+Up = true
 
-[node name="FixedHex8" parent="SecondRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex8" parent="SecondRing" instance=ExtResource("8_ovnb0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.8, 0, 0)
-Downed = true
-Deactivate = true
+Up = true
 
-[node name="FixedHex9" parent="SecondRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex9" parent="SecondRing" instance=ExtResource("8_ovnb0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6, 0, 9.05)
-Downed = true
-Deactivate = true
+Up = true
 
-[node name="FixedHex10" parent="SecondRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex10" parent="SecondRing" instance=ExtResource("8_ovnb0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4, 0, 18.1)
-Downed = true
-Deactivate = true
+Up = true
 
-[node name="FixedHex11" parent="SecondRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex11" parent="SecondRing" instance=ExtResource("8_ovnb0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18.1)
-Downed = true
-Deactivate = true
+Up = true
 
-[node name="FixedHex12" parent="SecondRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex12" parent="SecondRing" instance=ExtResource("8_ovnb0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4, 0, 18.1)
-Downed = true
-Deactivate = true
+Up = true
 
-[node name="FixedHex13" parent="SecondRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex13" parent="SecondRing" instance=ExtResource("8_ovnb0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.6, 0, 9.05)
-Downed = true
-Deactivate = true
+Up = true
 
-[node name="FixedHex14" parent="SecondRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex14" parent="SecondRing" instance=ExtResource("8_ovnb0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.8, 0, 0)
-Downed = true
-Deactivate = true
+Up = true
 
-[node name="FixedHex15" parent="SecondRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex15" parent="SecondRing" instance=ExtResource("8_ovnb0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.6, 0, -9.05)
-Downed = true
-Deactivate = true
+Up = true
 
-[node name="FixedHex16" parent="SecondRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex16" parent="SecondRing" instance=ExtResource("8_ovnb0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4, 0, -18.1)
-Downed = true
-Deactivate = true
+Up = true
 
-[node name="FixedHex17" parent="SecondRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex17" parent="SecondRing" instance=ExtResource("8_ovnb0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.1)
-Downed = true
-Deactivate = true
+Up = true
 
-[node name="FixedHex18" parent="SecondRing" instance=ExtResource("5_qbn24")]
+[node name="FixedHex18" parent="SecondRing" instance=ExtResource("8_ovnb0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4, 0, -18.1)
-Downed = true
-Deactivate = true
+Up = true
 
 [node name="TutorialComponent" type="Node3D" parent="." node_paths=PackedStringArray("Dialog")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.36767, -1.48911, -1.51835)
-script = ExtResource("6_l2662")
+script = ExtResource("9_0xgx3")
 Dialog = NodePath("../Player/DialogBox")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

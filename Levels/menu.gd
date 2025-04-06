@@ -2,7 +2,8 @@ extends Node3D
 @onready var play_s = $Control/Play/PlayS
 @onready var options_s = $Control/Options/OptionsS
 @onready var quit_s = $Control/Quit/QuitS
-@onready var options : OptionsMenu = $Sprite2D
+const MAP_TEMPLATE = preload("res://Levels/MapTemplate.tscn")
+@onready var options : OptionsMenu = $Control/Sprite2D
 @onready var animation : AnimationPlayer = $AnimationPlayer
 @onready var as3d : AnimatedSprite3D = $AnimatedSprite3D
 
@@ -14,7 +15,7 @@ func _input(event):
 
 
 func _on_play_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene_to_packed(MAP_TEMPLATE)
 
 
 func _on_options_pressed():

@@ -1,6 +1,6 @@
 extends Node3D
 class_name TutorialComponent
-@export var Dialog : DialogComponent
+@export var Dialog : DialogComponent3D
 @onready var Buttonspressed : Array = ["Up", "Down", "Left", "Right"]
 
 func _process(delta):

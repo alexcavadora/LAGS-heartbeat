@@ -1,7 +1,8 @@
-[gd_scene load_steps=414 format=3 uid="uid://iys4geik8l7j"]
+[gd_scene load_steps=415 format=3 uid="uid://iys4geik8l7j"]
 
 [ext_resource type="Texture2D" uid="uid://bdpggr7a5xvtl" path="res://assets/menu/menu animation/menu_00000.png" id="1_ornas"]
 [ext_resource type="Script" uid="uid://dpxqcnb53yvqn" path="res://Levels/menu.gd" id="1_sdlp8"]
+[ext_resource type="PackedScene" uid="uid://bnvofq8o46gga" path="res://shaders/DitherShit/src/demo.tscn" id="2_iacf4"]
 [ext_resource type="Texture2D" uid="uid://bmv2h7r4mb5hh" path="res://assets/menu/menu animation/menu_00001.png" id="2_xs8vn"]
 [ext_resource type="Texture2D" uid="uid://bf6w3fmirn22h" path="res://assets/menu/menu animation/menu_00002.png" id="3_sdlp8"]
 [ext_resource type="Texture2D" uid="uid://bmlm72tmf10ro" path="res://assets/menu/menu animation/menu_00003.png" id="4_myjhd"]
@@ -1769,6 +1770,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_iacf4")
 }
 autoplay = "ButtonFade"
+
+[node name="Demo" parent="." node_paths=PackedStringArray("Camera_To_Follow") instance=ExtResource("2_iacf4")]
+Camera_To_Follow = NodePath("../Camera3D")
 
 [node name="Control" type="Control" parent="."]
 modulate = Color(1, 1, 1, 0)

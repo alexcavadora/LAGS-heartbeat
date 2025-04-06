@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://3qevbhnxt5xg"]
+[gd_scene load_steps=41 format=3 uid="uid://3qevbhnxt5xg"]
 
 [ext_resource type="PackedScene" uid="uid://2rx00tnl0vje" path="res://Components/health.tscn" id="1_7ushe"]
 [ext_resource type="Script" uid="uid://chx5k8fykuvl5" path="res://Enemies/enemy.gd" id="1_xbarb"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://wrwnw8nc0dwa" path="res://assets/powerup/Data/Data_19.png" id="24_hnfno"]
 [ext_resource type="ArrayMesh" uid="uid://enr7cbexekv1" path="res://assets/powerup/Data/folder.obj" id="25_1150l"]
 [ext_resource type="Script" uid="uid://8rl72386f2ly" path="res://Components/attacker.gd" id="26_liiu3"]
+[ext_resource type="Script" uid="uid://j4jplmm05snu" path="res://Enemies/power_up.gd" id="27_uehd1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6q36a"]
 
@@ -297,6 +298,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_7m377")
 }
 autoplay = "Idle"
+
+[node name="PowerUp" type="Node" parent="."]
+script = ExtResource("27_uehd1")
 
 [connection signal="dead" from="Health" to="Movement" method="_on_dead"]
 [connection signal="just_hit" from="Health" to="." method="_on_health_just_hit"]
