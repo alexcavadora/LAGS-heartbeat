@@ -1,17 +1,18 @@
-[gd_scene load_steps=21 format=3 uid="uid://dwhxov4hp4hhg"]
+[gd_scene load_steps=22 format=3 uid="uid://dnddv5qv6kycy"]
 
-[ext_resource type="Script" uid="uid://chx5k8fykuvl5" path="res://Enemies/enemy.gd" id="1_5q8ye"]
-[ext_resource type="PackedScene" uid="uid://2rx00tnl0vje" path="res://Components/health.tscn" id="2_wb176"]
-[ext_resource type="PackedScene" uid="uid://c700l20getk" path="res://Components/hitbox.tscn" id="3_dljoa"]
-[ext_resource type="PackedScene" uid="uid://bwle4a3xvat5g" path="res://Components/movement.tscn" id="4_dgrtn"]
-[ext_resource type="Material" uid="uid://jbpqhrul7rwc" path="res://particles/DeathParticles.tres" id="4_kq5jf"]
-[ext_resource type="PackedScene" uid="uid://d2j44bib6ji13" path="res://Components/attacker.tscn" id="5_wb176"]
-[ext_resource type="Texture2D" uid="uid://bkh50qo03hymq" path="res://assets/Enemies/Mantis/Mantis_Attack.png" id="6_0bmwx"]
-[ext_resource type="Texture2D" uid="uid://bn7hpnuu0lmpm" path="res://assets/Enemies/Mantis/Idle_Mantis_1.png" id="6_dljoa"]
-[ext_resource type="Texture2D" uid="uid://dexm7xls8s1fj" path="res://assets/Enemies/Mantis/Idle_Mantis_2.png" id="7_dgrtn"]
-[ext_resource type="Texture2D" uid="uid://dlxl05i5lb3ss" path="res://assets/Enemies/Mantis/Mantis_Attack_1.png" id="7_qa3c4"]
-[ext_resource type="Texture2D" uid="uid://dig71j2sqqt01" path="res://assets/Enemies/Mantis/Mantis_Muerte.png" id="8_kq5jf"]
-[ext_resource type="Texture2D" uid="uid://dkyecp62h34g7" path="res://assets/Enemies/Mantis/Mantis.png" id="11_qa3c4"]
+[ext_resource type="Script" uid="uid://chx5k8fykuvl5" path="res://Enemies/enemy.gd" id="1_wuovc"]
+[ext_resource type="PackedScene" uid="uid://2rx00tnl0vje" path="res://Components/health.tscn" id="2_htnpq"]
+[ext_resource type="PackedScene" uid="uid://c700l20getk" path="res://Components/hitbox.tscn" id="3_xx1jq"]
+[ext_resource type="Material" uid="uid://jbpqhrul7rwc" path="res://particles/DeathParticles.tres" id="4_ft5t5"]
+[ext_resource type="PackedScene" uid="uid://bwle4a3xvat5g" path="res://Components/movement.tscn" id="5_vv78x"]
+[ext_resource type="PackedScene" uid="uid://d2j44bib6ji13" path="res://Components/attacker.tscn" id="6_vslt0"]
+[ext_resource type="Texture2D" uid="uid://bo572tpexsn6b" path="res://assets/Enemies/Troyano/caballito_attack_1.png" id="7_htnpq"]
+[ext_resource type="Texture2D" uid="uid://bntmoa2llfsj1" path="res://assets/Enemies/Troyano/caballito_attack_2.png" id="8_xx1jq"]
+[ext_resource type="Texture2D" uid="uid://dk78wqgg6glax" path="res://assets/Enemies/Troyano/caballito_attack_3.png" id="9_ft5t5"]
+[ext_resource type="Texture2D" uid="uid://da5q3ssg30apm" path="res://assets/Enemies/Troyano/caballito_death.png" id="10_vv78x"]
+[ext_resource type="Texture2D" uid="uid://dine17aic33ql" path="res://assets/Enemies/Troyano/caballito.png" id="11_vslt0"]
+[ext_resource type="Texture2D" uid="uid://dqvpopo02lwwj" path="res://assets/Enemies/Troyano/caballito_.png" id="12_jrrxn"]
+[ext_resource type="Texture2D" uid="uid://b031fvy01ksyy" path="res://assets/Enemies/Troyano/caballito_stunned.png" id="13_0sw3y"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5q8ye"]
 
@@ -36,7 +37,7 @@ anti_aliasing_size = 5.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xbarb"]
 shading_mode = 0
-albedo_color = Color(0.109193, 0.36384, 0.514162, 1)
+albedo_color = Color(0.513726, 0.364706, 0.360784, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_pm8q8"]
 material = SubResource("StandardMaterial3D_xbarb")
@@ -46,14 +47,17 @@ height = 0.05
 [sub_resource type="SphereShape3D" id="SphereShape3D_kq5jf"]
 radius = 0.55
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_dgrtn"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_wuovc"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_0bmwx")
+"texture": ExtResource("7_htnpq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_qa3c4")
+"texture": ExtResource("8_xx1jq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ft5t5")
 }],
 "loop": false,
 "name": &"Attack",
@@ -61,7 +65,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_kq5jf")
+"texture": ExtResource("10_vv78x")
 }],
 "loop": true,
 "name": &"Die",
@@ -69,18 +73,18 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_dljoa")
+"texture": ExtResource("11_vslt0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_dgrtn")
+"texture": ExtResource("12_jrrxn")
 }],
 "loop": true,
 "name": &"Moving",
-"speed": 10.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("11_qa3c4")
+"texture": ExtResource("13_0sw3y")
 }],
 "loop": true,
 "name": &"Stun",
@@ -90,23 +94,25 @@ animations = [{
 [sub_resource type="ViewportTexture" id="ViewportTexture_dgrtn"]
 viewport_path = NodePath("SubViewport")
 
-[node name="Chaser" type="RigidBody3D" groups=["enemy"]]
+[node name="Troyanito" type="RigidBody3D" groups=["enemy"]]
 collision_layer = 7
 collision_mask = 7
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
 mass = 4.0
-script = ExtResource("1_5q8ye")
+script = ExtResource("1_wuovc")
 metadata/_custom_type_script = "uid://chx5k8fykuvl5"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.72, 0, 0, 0, 0.72, 0, 0, 0, 0.72, 0, 0, 0)
 shape = SubResource("SphereShape3D_5q8ye")
 
-[node name="Health" parent="." instance=ExtResource("2_wb176")]
-health = 60
+[node name="Health" parent="." instance=ExtResource("2_htnpq")]
+health = 20
 
-[node name="Hitbox" parent="." instance=ExtResource("3_dljoa")]
+[node name="Hitbox" parent="." instance=ExtResource("3_xx1jq")]
+transform = Transform3D(0.72, 0, 0, 0, 0.72, 0, 0, 0, 0.72, 0, 0, 0)
 visible = false
 
 [node name="SubViewport" type="SubViewport" parent="."]
@@ -133,7 +139,6 @@ value = 54.0
 show_percentage = false
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0133696, -0.00199164, 0.00657907)
 cast_shadow = 0
 emitting = false
 amount = 4
@@ -142,26 +147,29 @@ one_shot = true
 explosiveness = 0.6
 fixed_fps = 60
 collision_base_size = 0.1
-process_material = ExtResource("4_kq5jf")
+process_material = ExtResource("4_ft5t5")
 draw_pass_1 = SubResource("SphereMesh_pm8q8")
 
-[node name="Movement" parent="." instance=ExtResource("4_dgrtn")]
-speed = 50.0
+[node name="Movement" parent="." instance=ExtResource("5_vv78x")]
+speed = 60.0
 vis_range = 10.0
 
-[node name="Attacker" parent="." instance=ExtResource("5_wb176")]
+[node name="Attacker" parent="." instance=ExtResource("6_vslt0")]
+transform = Transform3D(0.72, 0, 0, 0, 0.72, 0, 0, 0, 0.72, 0, 0, 0)
 
 [node name="CollisionShape3D" parent="Attacker" index="0"]
 shape = SubResource("SphereShape3D_kq5jf")
 
 [node name="AnimatedSprite" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+offset = Vector2(-80.765, 250)
 pixel_size = 0.0025
 billboard = 1
 shaded = true
 alpha_cut = 1
 texture_filter = 2
-sprite_frames = SubResource("SpriteFrames_dgrtn")
-animation = &"Stun"
+sprite_frames = SubResource("SpriteFrames_wuovc")
+animation = &"Attack"
 autoplay = "Moving"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
@@ -171,7 +179,7 @@ shadow_enabled = true
 omni_range = 1.0
 
 [node name="HealthBar" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00450627, 0.715643, 0.0318122)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00450627, 1.00279, 0.0318122)
 cast_shadow = 0
 billboard = 1
 texture = SubResource("ViewportTexture_dgrtn")

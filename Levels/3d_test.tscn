@@ -288,3 +288,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4944, 1, -6.84501)
 
 [connection signal="updated_energy" from="Player" to="Player/Camera3D/UI" method="_on_player_cooldown_changed"]
 [connection signal="updated_health" from="Player" to="Player/Camera3D/UI" method="_on_player_health_changed"]
+[connection signal="using_energy" from="Player" to="Player/Camera3D/UI" method="_on_player_using_energy"]

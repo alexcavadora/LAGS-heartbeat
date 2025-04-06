@@ -27,6 +27,7 @@ func heal(hp: float):
 func _on_hitbox_finish_hit() -> void:
 	if health == 0:
 		get_parent().queue_free()
+		
 
 func _on_timer_timeout() -> void:
 	hit_ready = true

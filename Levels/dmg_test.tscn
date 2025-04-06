@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://c2wgsvsk5r4re"]
+[gd_scene load_steps=12 format=3 uid="uid://c2wgsvsk5r4re"]
 
 [ext_resource type="Script" uid="uid://bydtmfnv5gj6u" path="res://Levels/level.gd" id="1_s105c"]
 [ext_resource type="PackedScene" uid="uid://bx0msm0hagnj0" path="res://Player/player.tscn" id="2_o2oq2"]
 [ext_resource type="PackedScene" uid="uid://biwv0g0bia05s" path="res://UI/ui.tscn" id="3_s105c"]
 [ext_resource type="PackedScene" uid="uid://buiitvt4ugobf" path="res://Player/heart.tscn" id="4_3k01p"]
 [ext_resource type="PackedScene" uid="uid://biknk72swbsc2" path="res://Enemies/Troyano.tscn" id="5_e04oe"]
-[ext_resource type="PackedScene" uid="uid://dwhxov4hp4hhg" path="res://Enemies/chasing_enemy.tscn" id="6_s105c"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_g22v7"]
 
@@ -61,14 +60,8 @@ p_deceleration = 45.0
 
 [node name="Troyano" type="Node" parent="."]
 
-[node name="Chaser" parent="Troyano" instance=ExtResource("5_e04oe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.51005, 0.58634, -5.96777)
-
-[node name="Chaser2" parent="Troyano" instance=ExtResource("5_e04oe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.29743, 0.58634, -7.50276)
-
-[node name="Chaser3" parent="Troyano" instance=ExtResource("6_s105c")]
-transform = Transform3D(1, 0, 0, 0, 0.999928, 0.0120076, 0, -0.0120076, 0.999928, 2.63845, 0.94389, 2.78026)
+[node name="Troyano6" parent="Troyano" instance=ExtResource("5_e04oe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.39019, 2.62651, -2.53604)
 
 [node name="Environment" type="Node" parent="."]
 
