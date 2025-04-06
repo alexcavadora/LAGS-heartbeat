@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cu6wie6jtoqpx"]
+
+[ext_resource type="Script" uid="uid://dynre33rcrnrf" path="res://Enemies/enemie_sound.gd" id="1_sgh45"]
+
+[node name="EnemieSound" type="Node3D"]
+script = ExtResource("1_sgh45")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+unit_size = 100.0
+max_polyphony = 3
+bus = &"SFX"
+area_mask = 255
+emission_angle_enabled = true

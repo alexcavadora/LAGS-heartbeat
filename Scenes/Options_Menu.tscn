@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://fnvs7y1btss0"]
+[gd_scene load_steps=3 format=3 uid="uid://fnvs7y1btss0"]
 
 [ext_resource type="Script" uid="uid://dv1tyb5i3nsus" path="res://Scenes/options_menu.gd" id="1_5qxbs"]
+[ext_resource type="Theme" uid="uid://bfp08hmhenri4" path="res://themes/Elmero.tres" id="2_i4nd1"]
 
 [node name="Sprite2D" type="CanvasLayer"]
 process_mode = 3
@@ -12,6 +13,7 @@ offset_top = 100.0
 offset_right = 568.0
 offset_bottom = 155.0
 size_flags_horizontal = 4
+theme = ExtResource("2_i4nd1")
 min_value = -1.0
 max_value = 2.0
 step = 0.05
@@ -31,6 +33,7 @@ offset_right = 265.0
 offset_bottom = 26.5
 grow_horizontal = 0
 grow_vertical = 2
+theme = ExtResource("2_i4nd1")
 theme_override_font_sizes/normal_font_size = 25
 text = "Brightness"
 
@@ -40,6 +43,7 @@ offset_top = 183.0
 offset_right = 568.0
 offset_bottom = 238.0
 size_flags_horizontal = 4
+theme = ExtResource("2_i4nd1")
 min_value = -1.0
 max_value = 2.0
 step = 0.05
@@ -59,6 +63,7 @@ offset_right = 196.0
 offset_bottom = 26.5
 grow_horizontal = 0
 grow_vertical = 2
+theme = ExtResource("2_i4nd1")
 theme_override_font_sizes/normal_font_size = 25
 text = "Contrast
 "
@@ -69,6 +74,7 @@ offset_top = 275.0
 offset_right = 570.0
 offset_bottom = 330.0
 size_flags_horizontal = 4
+theme = ExtResource("2_i4nd1")
 min_value = -1.0
 max_value = 2.0
 step = 0.05
@@ -88,6 +94,7 @@ offset_right = 256.0
 offset_bottom = 26.5
 grow_horizontal = 0
 grow_vertical = 2
+theme = ExtResource("2_i4nd1")
 theme_override_font_sizes/normal_font_size = 25
 text = "Saturation"
 
@@ -96,6 +103,7 @@ offset_left = 841.0
 offset_top = 179.0
 offset_right = 1082.0
 offset_bottom = 247.0
+theme = ExtResource("2_i4nd1")
 theme_override_font_sizes/font_size = 25
 text = "RESET VALUES"
 
@@ -104,6 +112,7 @@ offset_left = 145.0
 offset_top = 415.0
 offset_right = 252.0
 offset_bottom = 446.0
+theme = ExtResource("2_i4nd1")
 theme_override_font_sizes/font_size = 25
 text = "Fullscreen"
 
@@ -113,14 +122,17 @@ offset_left = 405.0
 offset_top = 415.0
 offset_right = 799.0
 offset_bottom = 455.0
+theme = ExtResource("2_i4nd1")
 theme_override_font_sizes/font_size = 25
 text = "Exclusive Fullscreen"
 
 [node name="CRT" type="CheckBox" parent="."]
+visible = false
 offset_left = 145.0
 offset_top = 473.0
 offset_right = 252.0
 offset_bottom = 513.0
+theme = ExtResource("2_i4nd1")
 theme_override_font_sizes/font_size = 25
 button_pressed = true
 text = "Shader
@@ -132,6 +144,7 @@ offset_left = 867.0
 offset_top = 481.0
 offset_right = 1004.0
 offset_bottom = 536.0
+theme = ExtResource("2_i4nd1")
 theme_override_font_sizes/font_size = 25
 text = "Back"
 
@@ -140,6 +153,7 @@ offset_left = 670.0
 offset_top = 484.0
 offset_right = 807.0
 offset_bottom = 539.0
+theme = ExtResource("2_i4nd1")
 theme_override_font_sizes/font_size = 25
 text = "QUIT"
 

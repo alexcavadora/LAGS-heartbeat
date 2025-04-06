@@ -14,6 +14,7 @@ class_name TutorialComponent
 @onready var donehacking : bool = false
 
 @export var tutoskip : bool
+signal tutorialdone()
 
 func _ready():
 	if SavedVars.tutodone == true:
@@ -101,12 +102,13 @@ func _on_dialog_box_done():
 			Dialog.InputSTOP = true
 			startattack = true
 			print("StartCounting")
-		9:
+		10:
 			Dialog.InputSTOP = true
 			unlockring()
 			
-		12:
+		13:
 			SavedVars.tutodone = true
+			tutorialdone.emit()
 			
 			
 		

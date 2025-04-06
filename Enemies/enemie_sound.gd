@@ -8,16 +8,19 @@ const ENEMY_DEATH = preload("res://assets/SFX/Enemy Death.mp3")
 @onready var audios : AudioStreamPlayer3D = $AudioStreamPlayer3D
 
 func play_sound(sound):
-	audios.play(sound)
-
+	audios.stream = sound
+	audios.playing = true
 
 func _on_health_dead():
+	print("Sounding Death")
 	play_sound(ENEMY_DEATH)
 
 
 func _on_health_just_hit(health):
+	print("Sounding Hit")
 	play_sound(ENEMIE_STUN)
 
 
 func _on_attacker_attacked():
+	print("Sounding Attack")
 	play_sound(ENEMIE_ATTACK)

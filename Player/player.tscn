@@ -1269,6 +1269,9 @@ omni_shadow_mode = 0
 [node name="Upgrades" type="Node" parent="."]
 script = ExtResource("149_fm5nm")
 
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+current = true
+
 [connection signal="attack" from="." to="Pusher" method="_on_player_attack"]
 [connection signal="just_hit" from="Health" to="." method="_on_health_just_hit"]
 [connection signal="body_entered" from="Pusher" to="." method="_on_pusher_body_entered"]

@@ -13,7 +13,9 @@ var inner_ring = range(1,7,1)
 var outer_ring = range(7, 19, 1)
 
 var first_complete = false
+signal firstcomplete
 var inner_ring_complete = false
+signal secondcomplete
 
 signal berlin_drop()
 
@@ -23,12 +25,14 @@ func _ready() -> void:
 func _update_minimap(idx):
 	if idx == 0:
 		first_complete = true
+		firstcomplete.emit()
 	elif idx < 7:
 		inner_ring.erase(idx)
 	else:
 		outer_ring.erase(idx)
 	if inner_ring.size() == 0 and not inner_ring_complete:
 		inner_ring_complete = true
+		secondcomplete.emit()
 		berlin_drop.emit()
 		print("berlin_dropped")
 	

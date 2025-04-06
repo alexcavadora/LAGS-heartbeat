@@ -173,6 +173,8 @@ texture = SubResource("ViewportTexture_wtllu")
 script = ExtResource("13_5sfr7")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="EnemieSound"]
+max_polyphony = 3
+bus = &"SFX"
 
 [connection signal="dead" from="Health" to="Movement" method="_on_dead"]
 [connection signal="dead" from="Health" to="EnemieSound" method="_on_health_dead"]

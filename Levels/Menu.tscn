@@ -1,4 +1,4 @@
-[gd_scene load_steps=666 format=3 uid="uid://iys4geik8l7j"]
+[gd_scene load_steps=667 format=3 uid="uid://iys4geik8l7j"]
 
 [ext_resource type="Script" uid="uid://dpxqcnb53yvqn" path="res://Levels/menu.gd" id="1_sdlp8"]
 [ext_resource type="Texture2D" uid="uid://lbyaxo0l7cf6" path="res://assets/menu/menu animation/menuanima_00000.png" id="3_li4ub"]
@@ -656,6 +656,7 @@
 [ext_resource type="Texture2D" uid="uid://cwipu6vve5ml" path="res://Scenes/Intro/LOCOLOGO247.png" id="653_uw52n"]
 [ext_resource type="Texture2D" uid="uid://bdg5ped8mx118" path="res://Scenes/Intro/LOCOLOGO248.png" id="654_fu008"]
 [ext_resource type="Texture2D" uid="uid://qlen5bxelhu6" path="res://Scenes/Intro/LOCOLOGO249.png" id="655_rgmud"]
+[ext_resource type="AudioStream" uid="uid://2jvbrdc4uil5" path="res://assets/musics/menu-pausa.mp3" id="657_51iqq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lioxo"]
 animations = [{
@@ -2864,6 +2865,13 @@ billboard = 1
 texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_bnedc")
 autoplay = "default"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("657_51iqq")
+volume_db = -10.0
+autoplay = true
+bus = &"Music"
 
 [connection signal="mouse_entered" from="Control/Play" to="." method="_on_play_mouse_entered"]
 [connection signal="mouse_exited" from="Control/Play" to="." method="_on_play_mouse_exited"]
