@@ -1,51 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://bbls7m2phko18"]
+[gd_scene load_steps=14 format=3 uid="uid://bbls7m2phko18"]
 
 [ext_resource type="PackedScene" uid="uid://bx0msm0hagnj0" path="res://Player/player.tscn" id="1_6q36a"]
 [ext_resource type="Script" uid="uid://bydtmfnv5gj6u" path="res://Levels/level.gd" id="1_c2igh"]
-[ext_resource type="Script" uid="uid://bdd3erwlvffxt" path="res://UI/ui.gd" id="2_c2igh"]
+[ext_resource type="PackedScene" uid="uid://biwv0g0bia05s" path="res://UI/ui.tscn" id="3_f784a"]
 [ext_resource type="PackedScene" uid="uid://3qevbhnxt5xg" path="res://Enemies/box.tscn" id="4_kgbxp"]
 [ext_resource type="PackedScene" uid="uid://buiitvt4ugobf" path="res://Player/heart.tscn" id="4_usu0y"]
 [ext_resource type="PackedScene" uid="uid://dwhxov4hp4hhg" path="res://Enemies/chasing_enemy.tscn" id="6_gs7ah"]
 [ext_resource type="ArrayMesh" uid="uid://bedr3ao35l02s" path="res://assets/Hexagons/untitled.obj" id="7_3on5e"]
 [ext_resource type="PackedScene" uid="uid://tf7en6eqi5no" path="res://Enemies/Embrio.tscn" id="8_53w0m"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_53w0m"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mac0m"]
-bg_color = Color(0.0583, 0.144778, 0.53, 0.34902)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-expand_margin_left = 3.0
-expand_margin_top = 3.0
-expand_margin_right = 3.0
-expand_margin_bottom = 3.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5o3kl"]
-bg_color = Color(0.278431, 0.831373, 0.780392, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gs7ah"]
-bg_color = Color(0, 0.252889, 0.154017, 0.34902)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-expand_margin_left = 3.0
-expand_margin_top = 3.0
-expand_margin_right = 3.0
-expand_margin_bottom = 3.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3on5e"]
-bg_color = Color(0.390005, 0.861767, 0, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_g22v7"]
 
@@ -78,82 +40,7 @@ c_regen_speed = 0.1
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 8, 7.85)
 fov = 54.7
 
-[node name="UI" type="Control" parent="Player/Camera3D"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 6
-size_flags_vertical = 3
-script = ExtResource("2_c2igh")
-
-[node name="Panel" type="Panel" parent="Player/Camera3D/UI"]
-layout_mode = 1
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 340.0
-offset_bottom = 90.0
-theme_override_styles/panel = SubResource("StyleBoxTexture_53w0m")
-
-[node name="Cooldown" type="ProgressBar" parent="Player/Camera3D/UI/Panel"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -158.0
-offset_top = 77.0
-offset_right = 162.0
-offset_bottom = 104.0
-grow_horizontal = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_mac0m")
-theme_override_styles/fill = SubResource("StyleBoxFlat_5o3kl")
-max_value = 2.0
-value = 2.0
-show_percentage = false
-
-[node name="Label" type="Label" parent="Player/Camera3D/UI/Panel/Cooldown"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -39.0
-offset_top = 3.0
-offset_right = 39.0
-offset_bottom = 26.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Energy"
-horizontal_alignment = 1
-
-[node name="Health" type="ProgressBar" parent="Player/Camera3D/UI/Panel"]
-layout_mode = 1
-offset_left = 6.0
-offset_top = 12.0
-offset_right = 326.0
-offset_bottom = 39.0
-theme_override_styles/background = SubResource("StyleBoxFlat_gs7ah")
-theme_override_styles/fill = SubResource("StyleBoxFlat_3on5e")
-value = 100.0
-
-[node name="Label" type="Label" parent="Player/Camera3D/UI/Panel/Health"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -39.0
-offset_top = 3.0
-offset_right = 39.0
-offset_bottom = 26.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Health"
-horizontal_alignment = 1
+[node name="UI" parent="Player/Camera3D" instance=ExtResource("3_f784a")]
 
 [node name="Heart" parent="Player" node_paths=PackedStringArray("follow") instance=ExtResource("4_usu0y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.91436, 0.75, 5.4977)

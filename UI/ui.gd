@@ -1,11 +1,12 @@
 extends Control
 
 @onready var player: CharacterBody3D = %Player
-@onready var hp_bar: ProgressBar = $Panel/Health 
-@onready var cooldown_bar: ProgressBar = $Panel/Cooldown
+@onready var hp_bar: TextureProgressBar = $Panel/Health 
+@onready var cooldown_bar: TextureProgressBar = $Panel/Cooldown
 
 func _ready() -> void:
-	_update_ui_colors()
+	pass
+	#_update_ui_colors()
 
 func _update_ui_colors() -> void:
 	if cooldown_bar.value < cooldown_bar.max_value * 0.25:
@@ -22,8 +23,8 @@ func _update_ui_colors() -> void:
 
 func _on_player_health_changed(new_health: float) -> void:
 	hp_bar.value = new_health
-	_update_ui_colors()
+	#_update_ui_colors()
 
 func _on_player_cooldown_changed(new_cooldown: float) -> void:
 	cooldown_bar.value = new_cooldown
-	_update_ui_colors()
+	#_update_ui_colors()
