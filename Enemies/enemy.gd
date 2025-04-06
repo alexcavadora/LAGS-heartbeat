@@ -8,6 +8,7 @@ extends RigidBody3D
 @export var enemy_name = ""
 @onready var attacker: Attacker = $Attacker
 var player_node: Eye
+@onready var gpu_particles_3d: GPUParticles3D = $GPUParticles3D
 
 var max_health: float = 0.0
 var is_stunned: bool = false

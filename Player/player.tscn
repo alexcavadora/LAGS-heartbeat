@@ -1217,7 +1217,7 @@ position = Vector2(100, 75)
 sprite_frames = SubResource("SpriteFrames_cq5v8")
 animation = &"use"
 autoplay = "normal"
-frame_progress = 0.995094
+frame_progress = 0.57162
 
 [node name="pivot" type="Node3D" parent="."]
 
