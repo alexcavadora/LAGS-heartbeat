@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://k1wl2nar0cd6"]
+
+[ext_resource type="Script" uid="uid://d2pvhwovdcqtg" path="res://shaders/DitherShit/src/control_slider.gd" id="2"]
+
+[node name="Slider" type="HBoxContainer"]
+offset_right = 280.0
+offset_bottom = 22.0
+size_flags_horizontal = 3
+script = ExtResource("2")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "default"
+horizontal_alignment = 2
+
+[node name="ValueSlider" type="HSlider" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+value = 1.0
+
+[node name="ValueLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+text = "0"
+horizontal_alignment = 2
+
+[connection signal="value_changed" from="ValueSlider" to="." method="_on_ValueSlider_value_changed"]

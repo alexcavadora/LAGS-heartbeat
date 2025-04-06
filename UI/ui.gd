@@ -1,7 +1,7 @@
 extends Control
 
 @onready var player: CharacterBody3D = %Player
-@onready var hp_bar: TextureProgressBar = $Panel/Health 
+@onready var hp_bar: TextureProgressBar = $Panel/Health
 @onready var cooldown_bar: TextureProgressBar = $Panel/Cooldown
 @onready var sprite: AnimatedSprite2D = $SubViewport/AnimatedSprite2D
 

@@ -1,10 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqk5n14hafk01"]
+[gd_scene load_steps=3 format=3 uid="uid://cqk5n14hafk01"]
 
-[ext_resource type="FontFile" uid="uid://dww4hvkxoaa6i" path="res://assets/fonts/ROGLyonsTypeRegular3.ttf" id="1_bxjcs"]
-[ext_resource type="Script" uid="uid://biiel0w4i5f6d" path="res://components/Dialog_Component.gd" id="2_c38jr"]
-
-[sub_resource type="Theme" id="Theme_e5glt"]
-default_font = ExtResource("1_bxjcs")
+[ext_resource type="Theme" uid="uid://bfp08hmhenri4" path="res://themes/Elmero.tres" id="1_bxjcs"]
+[ext_resource type="Script" uid="uid://biiel0w4i5f6d" path="res://Components/Dialog_Component.gd" id="2_c38jr"]
 
 [node name="DialogBox" type="RichTextLabel"]
 anchors_preset = 8
@@ -20,7 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = SubResource("Theme_e5glt")
+theme = ExtResource("1_bxjcs")
 theme_override_constants/line_separation = 25
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true

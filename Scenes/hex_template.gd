@@ -22,8 +22,9 @@ signal AnimToggle(NextAnim)
 @onready var wall_mid_l = $Hex/Wall/Walls/WallMidL
 @onready var wall_up_l = $Hex/Wall/Walls/WallUpL
 @onready var lastwalltouched : CollisionShape3D
-@onready var currenttarget : HexTemplate
 
+@onready var currenttarget : HexTemplate
+var touched_area : Area3D
 
 func _ready():
 	for target : HexTemplate in Targets.values()  :
@@ -53,6 +54,8 @@ func _ready():
 		false:
 			pass
 
+func _process(delta):
+	print(touched_area)
 
 func shithappened():
 	print("Done")
@@ -73,19 +76,24 @@ func deactivate(targetwall:CollisionShape3D):
 
 func _on_up_r_body_entered(body):
 	if Targets["Target1"] != null:
-		print("Entering1")
-		currenttarget = Targets["Target1"]
-		currenttarget.animationp.play("GoUp")
-		TargetToWall.get_or_add(currenttarget, wall_up_r )
-		print(TargetToWall.get_or_add(currenttarget, wall_up_r ))
+		if body is Eye:
+			touched_area = wall_up_r.Detector
+			#print("Entering1")
+			currenttarget = Targets["Target1"]
+			currenttarget.animationp.play("GoUp")
+			TargetToWall.get_or_add(currenttarget, wall_up_r )
+			#print(TargetToWall.get_or_add(currenttarget, wall_up_r ))
 		
 
 
 func _on_up_r_body_exited(body):
 	if Targets["Target1"] != null:
-		print("Exiting1")
-		#currenttarget = Targets["Target1"]
-		currenttarget.animationp.pause()
+		if body is Eye:
+			#print("Exiting1")
+			#currenttarget = Targets["Target1"]
+			if animationp.current_animation == "Up":
+				wall_up_r.queue_free()
+			currenttarget.animationp.pause()
 
 
 func _on_mid_r_body_entered(body):
@@ -138,9 +146,10 @@ func _on_low_l_body_exited(body):
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "GoUp":
 		animationp.play("Up")
+		await animationp.animation_finished
 		
 	elif anim_name == "Up":
 		print("Acabao")
 		if lastwalltouched != null:
-			pass
+			touched_area.queue_free()
 		

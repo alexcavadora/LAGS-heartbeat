@@ -249,8 +249,4 @@ skin = SubResource("Skin_25p2u")
 
 [node name="Node3D" type="Node3D" parent="."]
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00146866, -3.41625, 7.94369)
-metadata/_edit_lock_ = true
-
 [node name="PinJoint3D" type="PinJoint3D" parent="."]
