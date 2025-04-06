@@ -215,7 +215,7 @@ script = ExtResource("1_xbarb")
 shape = SubResource("BoxShape3D_6q36a")
 
 [node name="Health" parent="." instance=ExtResource("1_7ushe")]
-health = 50
+health = 1
 
 [node name="Hitbox" parent="." instance=ExtResource("2_5gsve")]
 visible = false

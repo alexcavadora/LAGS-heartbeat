@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cnhcumyvhe17e"]
+[gd_scene load_steps=14 format=3 uid="uid://cnhcumyvhe17e"]
 
 [ext_resource type="Script" uid="uid://bydtmfnv5gj6u" path="res://Levels/level.gd" id="1_at1qm"]
 [ext_resource type="PackedScene" uid="uid://bx0msm0hagnj0" path="res://Player/player.tscn" id="2_wxfap"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://deo5mpbd2emu5" path="res://Scenes/string.tscn" id="7_brjha"]
 [ext_resource type="PackedScene" uid="uid://bumwcljyyl83x" path="res://Scenes/fixed_hex.tscn" id="8_ovnb0"]
 [ext_resource type="Script" uid="uid://05wfyw363rdi" path="res://Components/tutorial_component.gd" id="9_0xgx3"]
+[ext_resource type="PackedScene" uid="uid://3qevbhnxt5xg" path="res://Enemies/box.tscn" id="10_wxfap"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_y6c2c"]
 viewport_path = NodePath("Player/UI3D/SubViewport")
@@ -172,6 +173,9 @@ environment = SubResource("Environment_ugyuv")
 transform = Transform3D(1, 0, 0, 0, 0.184758, 0.982784, 0, -0.982784, 0.184758, 0, 3.46257, 6.79005)
 shadow_enabled = true
 shadow_opacity = 0.2
+
+[node name="Box" parent="." instance=ExtResource("10_wxfap")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.67269, 0.417239, 11.543)
 
 [connection signal="updated_energy" from="Player" to="Player/UI3D/SubViewport/UI" method="_on_player_cooldown_changed"]
 [connection signal="updated_health" from="Player" to="Player/UI3D/SubViewport/UI" method="_on_player_health_changed"]
