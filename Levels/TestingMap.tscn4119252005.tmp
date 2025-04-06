@@ -2901,10 +2901,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.63016, 0.417241, 9.02706)
 
 [node name="BegginingStugg" type="Node" parent="."]
 
-[node name="TutorialComponent" type="Node3D" parent="BegginingStugg"]
+[node name="TutorialComponent" type="Node3D" parent="BegginingStugg" node_paths=PackedStringArray("Dialog")]
 process_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.36767, -1.48911, -1.51835)
 script = ExtResource("9_0xgx3")
+Dialog = NodePath("")
 
 [node name="EnemyParts" type="GPUParticles3D" parent="BegginingStugg"]
 emitting = false

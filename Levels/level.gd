@@ -3,8 +3,10 @@ extends Node3D
 @onready var enemy_parts = $BegginingStugg/EnemyParts
 @onready var stuffparts = $BegginingStugg/Stuffparts
 @onready var loading = $BegginingStugg/Loading
-@onready var animation_player = $BegginingStugg/AnimationPlayer
+@onready var animation_player : AnimationPlayer = $BegginingStugg/AnimationPlayer
 @onready var dialog_box : DialogComponent3D = $Player/DialogBox
+
+
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("reset"):

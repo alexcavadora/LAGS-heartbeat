@@ -106,7 +106,6 @@ func _on_dialog_box_done():
 			unlockring()
 			
 		12:
-			Dialog.InputSTOP = true
 			SavedVars.tutodone = true
 			
 			

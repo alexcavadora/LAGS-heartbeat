@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://be8hl4weaft7d"]
+[gd_scene load_steps=39 format=3 uid="uid://be8hl4weaft7d"]
 
 [ext_resource type="Script" uid="uid://bydtmfnv5gj6u" path="res://Levels/level.gd" id="1_fjysl"]
 [ext_resource type="PackedScene" uid="uid://bx0msm0hagnj0" path="res://Player/player.tscn" id="2_y6c2c"]
@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://cqx367ybb114y" path="res://shaders/DitherShit/assets/commodore64-32x.png" id="17_3mcje"]
 [ext_resource type="Texture2D" uid="uid://dyuhwm46ougmi" path="res://shaders/DitherShit/assets/min.png" id="18_g2hb7"]
 [ext_resource type="Texture2D" uid="uid://nryq6myop1yc" path="res://shaders/DitherShit/assets/move.png" id="19_y0qqd"]
+[ext_resource type="PackedScene" uid="uid://3qevbhnxt5xg" path="res://Enemies/box.tscn" id="31_i2x8d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ji4js"]
 shader = ExtResource("12_3hh45")
@@ -290,7 +291,7 @@ p_deceleration = 45.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -1.518)
 InputEnable = false
 Timerstart = false
-Dialog = PackedStringArray("It seems its working, Press Enter or the A Button to advance dialogs", "Try moving with WASD or with the Left Stick", "Ok Good.", "Now, you might notice you are tied to that thing over there.", "Try moving it as well, hold the Space Bar or the Left Trigger while moving.", "When you start swinging, if you are low on health, it will start regenerating", "You learn quick. ", "Master swinging that thing around and you might have a chance at surviving.", "Now, lets hack some stuff.", "Get close to the edge of a hexagon to hack it and expand your map.", "Thats it.", "You are on your own from now on. You need to hack the whole system to win.", "Best of luck.")
+Dialog = PackedStringArray("It seems its working, Press Enter or the A Button to advance dialogs", "Try moving with WASD or with the Left Stick", "Ok Good.", "Now, you might notice you are tied to that thing over there.", "Try moving it as well, hold the Space Bar or the Left Trigger while moving.", "When you start swinging, if you are low on health, it will start regenerating.", "You catching up fast.", "Master swinging that thing around and you might have a chance at surviving.", "Now, lets hack some stuff.", "Get close to the edge of a hexagon to hack it and expand your map.", "Thats it.", "You are on your own from now on. You need to hack the whole system to win.", "Best of luck.", "")
 
 [node name="UI3D" type="Sprite3D" parent="Player"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 0)
@@ -488,6 +489,9 @@ process_mode = 3
 libraries = {
 &"": SubResource("AnimationLibrary_gsmdy")
 }
+
+[node name="Box" parent="BegginingStugg" instance=ExtResource("31_i2x8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.94785, 1, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ugyuv")
