@@ -59,15 +59,16 @@
 [sub_resource type="ViewportTexture" id="ViewportTexture_kcfoi"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="Gradient" id="Gradient_kcfoi"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0.43038, 0.987342)
-colors = PackedColorArray(0.3192, 0.57, 0.3192, 1, 0.3366, 0.99, 0.5544, 1)
+[sub_resource type="Gradient" id="Gradient_3552n"]
+offsets = PackedFloat32Array(0, 0.450704, 1)
+colors = PackedColorArray(0.345098, 0.152941, 0.211765, 1, 0.666667, 0.2, 0.188235, 1, 0.784314, 0.2, 0.188235, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_g15dv"]
-gradient = SubResource("Gradient_kcfoi")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5pycl"]
+gradient = SubResource("Gradient_3552n")
 width = 478
 height = 77
+fill_from = Vector2(0.553398, 1)
+fill_to = Vector2(0.543689, 0.391754)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kxtud"]
 animations = [{
@@ -251,7 +252,7 @@ offset_left = 10.0
 offset_top = 10.0
 offset_right = 340.0
 offset_bottom = 90.0
-scale = Vector2(0.8, 0.5)
+scale = Vector2(0.4, 0.2)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_7b7wc")
 
 [node name="Cooldown" type="TextureProgressBar" parent="Panel"]
@@ -289,7 +290,7 @@ offset_bottom = 320.0
 scale = Vector2(1.5, 1.5)
 value = 100.0
 texture_under = ExtResource("2_e6gg6")
-texture_progress = SubResource("GradientTexture2D_g15dv")
+texture_progress = SubResource("GradientTexture2D_5pycl")
 texture_progress_offset = Vector2(17, 19)
 
 [node name="Label" type="Label" parent="Panel/Health"]
@@ -312,6 +313,7 @@ transparent_bg = true
 size = Vector2i(500, 100)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SubViewport"]
+modulate = Color(0.17, 0.764833, 1, 1)
 position = Vector2(256.46, 57)
 scale = Vector2(0.96, 0.76)
 sprite_frames = SubResource("SpriteFrames_kxtud")
