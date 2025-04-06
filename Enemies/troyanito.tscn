@@ -184,6 +184,7 @@ cast_shadow = 0
 billboard = 1
 texture = SubResource("ViewportTexture_dgrtn")
 
+[connection signal="dead" from="Health" to="." method="_on_health_dead"]
 [connection signal="dead" from="Health" to="Movement" method="_on_dead"]
 [connection signal="just_hit" from="Health" to="." method="_on_health_just_hit"]
 [connection signal="just_hit" from="Health" to="Movement" method="_on_hit_received"]

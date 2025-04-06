@@ -14,24 +14,36 @@ var outer_ring = range(7, 19, 1)
 
 var first_complete = false
 var inner_ring_complete = false
+var unlocked_cells = []
+var fighting = []
+var available = []
 
 signal berlin_drop()
+signal spawn(cells)
+signal lock(unlocked_cells)
+signal unlock(unlocked_cells)
 
 func _ready() -> void:
 	_update_minimap(0)
 
+
 func _update_minimap(idx):
+	unlocked_cells.append(idx)
 	if idx == 0:
 		first_complete = true
+		available.append_array(range(1,7,1))
 	elif idx < 7:
 		inner_ring.erase(idx)
 	else:
 		outer_ring.erase(idx)
 	if inner_ring.size() == 0 and not inner_ring_complete:
 		inner_ring_complete = true
+		available.append_array(range(7,19,1))
 		berlin_drop.emit()
-		print("berlin_dropped")
-	
+		#print("berlin_dropped")
+	spawn.emit(unlocked_cells)
+	lock.emit(available)
+	fighting = unlocked_cells
 	for i in range(minimap.get_child_count()):
 		if i in inner_ring and first_complete:
 			minimap.get_child(i).modulate = READY
@@ -44,6 +56,8 @@ func _update_minimap(idx):
 		else:
 			minimap.get_child(i).modulate = UNLOCKED
 
+
+	
 func _update_ui_colors() -> void:
 	if cooldown_bar.value < cooldown_bar.max_value * 0.25:
 		cooldown_bar.modulate = Color(1, 0.3, 0.3) 
@@ -64,7 +78,6 @@ func _on_player_health_changed(new_health: float) -> void:
 func _on_player_cooldown_changed(new_cooldown: float) -> void:
 	cooldown_bar.value = new_cooldown
 	#_update_ui_colors()
-
 
 func _on_player_using_energy(status: Variant) -> void:
 	if status:

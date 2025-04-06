@@ -1,6 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://d8ut0msjyk48"]
+[gd_scene load_steps=27 format=3 uid="uid://d8ut0msjyk48"]
 
-[ext_resource type="Script" uid="uid://chx5k8fykuvl5" path="res://Enemies/enemy.gd" id="1_b7xar"]
+[ext_resource type="Script" uid="uid://djwaru828lc52" path="res://Enemies/eye_boss.gd" id="1_b7xar"]
 [ext_resource type="PackedScene" uid="uid://2rx00tnl0vje" path="res://Components/health.tscn" id="2_lcbr4"]
 [ext_resource type="PackedScene" uid="uid://c700l20getk" path="res://Components/hitbox.tscn" id="3_8q2sl"]
 [ext_resource type="Material" uid="uid://jbpqhrul7rwc" path="res://particles/DeathParticles.tres" id="4_6fm3h"]
@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://bf4murhgme12k" path="res://assets/Enemies/Boss/Eyes/Eye_death.png" id="10_4tapm"]
 [ext_resource type="Texture2D" uid="uid://cdjvp32aveen8" path="res://assets/Enemies/Boss/Eyes/Eye_idle_4.png" id="11_setd0"]
 [ext_resource type="Texture2D" uid="uid://bdiaowqi06alg" path="res://assets/Enemies/Boss/Eyes/Eye_stunned.png" id="12_icryn"]
-[ext_resource type="PackedScene" uid="uid://dx1ru13457o3r" path="res://Components/tetherer.tscn" id="12_oj8q8"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5q8ye"]
 radius = 1.0
@@ -110,10 +109,137 @@ anti_aliasing_size = 5.0
 [sub_resource type="ViewportTexture" id="ViewportTexture_wtllu"]
 viewport_path = NodePath("SubViewport")
 
+[sub_resource type="Animation" id="Animation_lcbr4"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-4, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_8q2sl"]
+resource_name = "new_animation"
+step = 0.00132802
+
+[sub_resource type="Animation" id="Animation_b7xar"]
+resource_name = "surround"
+length = 3.75
+loop_mode = 1
+step = 0.00132802
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-4, -0.25, 0, 0.46, 3, 0, -0.34, 20, 0.42, -21, 4, -0.25, 0, 0.39, 11, 0, -0.25, 0, 0.33, -11, 0, -0.25, 0, 0.25, 0, -4, -0.63, 15, 0.37, 43),
+"times": PackedFloat32Array(0, 0.75, 1.5, 2.25, 3, 3.75)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.75, 1.5, 2.25, 3, 3.75)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -4, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 4, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.75, 1.5, 2.25, 3, 3.75)
+}
+
+[sub_resource type="Animation" id="Animation_6fm3h"]
+resource_name = "surround_2"
+length = 3.75
+loop_mode = 1
+step = 0.00132802
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-4, -0.25, 0, 0.46, 3, 0, -0.41, -23, 0.52, 12, -8, -0.25, 0, 0.43, -6, 0, -0.25, 0, 0.42, 20, -6, -0.25, 0, 0.25, 0, -4, -0.63, 15, 0.37, 43),
+"times": PackedFloat32Array(0, 0.75, 1.45, 2.25, 2.94, 3.75)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.75, 1.5, 2.25, 3, 3.75)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -4, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 4, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.75, 1.5, 2.25, 3, 3.75)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lcbr4"]
+_data = {
+&"RESET": SubResource("Animation_lcbr4"),
+&"new_animation": SubResource("Animation_8q2sl"),
+&"surround": SubResource("Animation_b7xar"),
+&"surround_2": SubResource("Animation_6fm3h")
+}
+
 [node name="Eye_boss" type="RigidBody3D" groups=["enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 disable_mode = 1
-collision_layer = 7
-collision_mask = 7
+collision_layer = 71
+collision_mask = 71
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
@@ -126,7 +252,7 @@ metadata/_custom_type_script = "uid://chx5k8fykuvl5"
 shape = SubResource("SphereShape3D_5q8ye")
 
 [node name="Health" parent="." instance=ExtResource("2_lcbr4")]
-health = 300
+health = 1000
 
 [node name="Hitbox" parent="." instance=ExtResource("3_8q2sl")]
 
@@ -151,6 +277,8 @@ speed = 60.0
 
 [node name="Attacker" type="Area3D" parent="."]
 script = ExtResource("6_lcbr4")
+contact_damage = 33.0
+damage_interval = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Attacker"]
 shape = SubResource("SphereShape3D_6fm3h")
@@ -171,9 +299,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.643287)
 visible = false
 shadow_enabled = true
 omni_range = 2.0
-
-[node name="tetherer" parent="." instance=ExtResource("12_oj8q8")]
-tether_force = 2.0
 
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
@@ -199,11 +324,19 @@ value = 54.0
 show_percentage = false
 
 [node name="HealthBar" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.502306, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.13628, 0)
 cast_shadow = 0
 billboard = 1
 texture = SubResource("ViewportTexture_wtllu")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_lcbr4")
+}
+autoplay = "surround"
+
+[connection signal="dead" from="Health" to="." method="_on_health_dead"]
+[connection signal="dead" from="Health" to="Movement" method="_on_dead"]
 [connection signal="just_hit" from="Health" to="." method="_on_health_just_hit"]
 [connection signal="just_hit" from="Health" to="Movement" method="_on_hit_received"]
 [connection signal="finish_hit" from="Hitbox" to="." method="_on_hitbox_finish_hit"]
@@ -211,6 +344,5 @@ texture = SubResource("ViewportTexture_wtllu")
 [connection signal="finish_hit" from="Hitbox" to="Movement" method="_on_hit_ended"]
 [connection signal="body_entered" from="Attacker" to="Attacker" method="_on_body_entered"]
 [connection signal="body_exited" from="Attacker" to="Attacker" method="_on_body_exited"]
-[connection signal="tethered" from="tetherer" to="Movement" method="_on_tetherer_tethered"]
 
 [editable path="Hitbox"]

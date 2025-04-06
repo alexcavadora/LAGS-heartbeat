@@ -1,6 +1,5 @@
 extends RigidBody3D
-class_name Enemy
-
+class_name Boss
 @onready var health: Node = $Health
 @onready var hitbox: Area3D = $Hitbox
 @onready var enemy_health: ProgressBar = $SubViewport/Control/Enemy_health
@@ -11,22 +10,28 @@ class_name Enemy
 var player_node: Eye
 @onready var gpu_particles_3d: GPUParticles3D = $GPUParticles3D
 
+@export var anim = false
+
 var max_health: float = 0.0
 var is_stunned: bool = false
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 const ANIM_MOVING: String = "Moving"
 const ANIM_STUN: String = "Stun"
 const ANIM_DEATH: String = "Die"
 const ANIM_ATTACK: String = "Attack"
 
-signal killed()
+@export var player : Eye
+@export var heart_boss : Heart_boss
+
+@export_enum("Chasing", "Orbiting_Payer", "Orbiting_Heart") var state : int 
 
 func _ready() -> void:
-	if get_parent() is Spawner3D:
-		print("parent is spawner")
-		connect("killed", get_parent().dead_counter)
-	set_physics_process(false)
-	animated_sprite = find_child("AnimatedSprite")
+	if anim:
+		animation_player.play("surround_2")
+		animated_sprite.flip_h = true
+	else:
+		animation_player.play("surround")
 	player_node = get_tree().get_first_node_in_group("Player")
 	
 	if health:
@@ -90,6 +95,4 @@ func _on_attacker_attacked() -> void:
 	animated_sprite.play(ANIM_MOVING)
 
 func _on_health_dead() -> void:
-	killed.emit()
 	animated_sprite.play(ANIM_DEATH)
-	
