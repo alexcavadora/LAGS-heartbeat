@@ -70,9 +70,8 @@ func _on_hit_ended() -> void:
 	wander_direction = new_wander_direction()
 
 func _on_dead() -> void:
-	var mask = 0
-	enemy.collision_layer = mask
-	enemy.collision_mask = mask
+	enemy.set_collision_layer_value(7, false)
+	enemy.set_collision_mask_value(7, false)
 	timer.stop()
 	set_physics_process(false)
 

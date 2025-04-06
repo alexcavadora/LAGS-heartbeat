@@ -175,7 +175,7 @@ shadow_enabled = true
 shadow_opacity = 0.2
 
 [node name="Box" parent="." instance=ExtResource("10_wxfap")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.67269, 0.417239, 11.543)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 14.27)
 
 [connection signal="updated_energy" from="Player" to="Player/UI3D/SubViewport/UI" method="_on_player_cooldown_changed"]
 [connection signal="updated_health" from="Player" to="Player/UI3D/SubViewport/UI" method="_on_player_health_changed"]
