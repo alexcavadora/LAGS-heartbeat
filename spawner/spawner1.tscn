@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://3lf0jrm8po55"]
+
+[ext_resource type="PackedScene" uid="uid://dwhxov4hp4hhg" path="res://Enemies/chasing_enemy.tscn" id="1_7eevy"]
+[ext_resource type="Script" uid="uid://x5fnuin6nspy" path="res://spawner/spawner.gd" id="1_cxgm1"]
+
+[node name="Spawner" type="Node3D"]
+script = ExtResource("1_cxgm1")
+
+[node name="Chaser" parent="." instance=ExtResource("1_7eevy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.9277)
+
+[node name="Chaser2" parent="." instance=ExtResource("1_7eevy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0956516, -9.53674e-07, -4.73712)
+
+[node name="Chaser3" parent="." instance=ExtResource("1_7eevy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.56857, 0, -2.67303)
+
+[node name="Chaser4" parent="." instance=ExtResource("1_7eevy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.36326, 9.53674e-07, 2.21584)
+
+[node name="Chaser5" parent="." instance=ExtResource("1_7eevy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3925, -9.53674e-07, 2.3917)
+
+[node name="Chaser6" parent="." instance=ExtResource("1_7eevy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.16766, -9.53674e-07, -2.44231)
+
+[connection signal="killed" from="Chaser" to="." method="dead_counter"]
+[connection signal="killed" from="Chaser2" to="." method="dead_counter"]
+[connection signal="killed" from="Chaser3" to="." method="dead_counter"]
+[connection signal="killed" from="Chaser4" to="." method="dead_counter"]
+[connection signal="killed" from="Chaser5" to="." method="dead_counter"]
+[connection signal="killed" from="Chaser6" to="." method="dead_counter"]

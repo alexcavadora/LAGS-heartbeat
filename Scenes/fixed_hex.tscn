@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://bumwcljyyl83x"]
 
 [ext_resource type="Script" uid="uid://bbgg47aoc0e30" path="res://Scenes/hex_template.gd" id="1_xiguj"]
-[ext_resource type="ArrayMesh" uid="uid://dtox841xh5uxq" path="res://assets/Hexagons/untitled.obj" id="2_1ov2o"]
+[ext_resource type="ArrayMesh" uid="uid://4m7c7h4erxwh" path="res://assets/Hexagons/untitled.obj" id="2_1ov2o"]
 [ext_resource type="Script" uid="uid://bleawlaewp1wf" path="res://Scenes/HexAnimationComponent.gd" id="3_1ov2o"]
 [ext_resource type="PackedScene" uid="uid://v0oj5afjxrn8" path="res://Scenes/animation_player_Hex.tscn" id="3_88adk"]
-[ext_resource type="Script" uid="uid://b0kjkh2ooa0ke" path="res://Scenes/progress_count.gd" id="5_ctvrp"]
+[ext_resource type="Script" path="res://Scenes/progress_count.gd" id="5_ctvrp"]
 [ext_resource type="Theme" uid="uid://bfp08hmhenri4" path="res://themes/Elmero.tres" id="5_jtwai"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b35dy"]
@@ -13,7 +13,7 @@
 points = PackedVector3Array(-0.000169575, 5, 1, 0.866025, 5, 0.499804, -0.866025, 5, 0.499804, -0.000169575, -5, 1, 0.866025, -5, 0.499804, 0.866025, 5, -0.500196, -0.866025, 5, -0.500196, -0.866025, -5, 0.499804, 0.866025, -5, -0.500196, -0.000169575, 5, -1, -0.866025, -5, -0.500196, -0.000169575, -5, -1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_24y5s"]
-size = Vector3(12, 150, 0.244)
+size = Vector3(12, 200, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_88adk"]
 size = Vector3(12, 20, 4)
@@ -47,35 +47,38 @@ size = Vector3(2, 6, 2)
 [node name="Wall" type="Node3D" parent="Hex"]
 
 [node name="Walls" type="StaticBody3D" parent="Hex/Wall"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -30, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -17.3363, 0)
+disable_mode = 1
+collision_layer = 65
+collision_mask = 65
 
 [node name="WallUpR" type="CollisionShape3D" parent="Hex/Wall/Walls"]
-transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 5, 140, -8.8)
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 2.65781, 140, -4.72185)
 shape = SubResource("BoxShape3D_24y5s")
 debug_color = Color(0.86, 0, 0.0143331, 0.419608)
 
 [node name="WallMidR" type="CollisionShape3D" parent="Hex/Wall/Walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.2, 140, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.38448, 140, -0.042678)
 shape = SubResource("BoxShape3D_24y5s")
 debug_color = Color(0.86, 0, 0.0143331, 0.419608)
 
 [node name="WallLowR" type="CollisionShape3D" parent="Hex/Wall/Walls"]
-transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 140, 8.8)
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 2.701, 140, 4.63546)
 shape = SubResource("BoxShape3D_24y5s")
 debug_color = Color(0.86, 0, 0.0143331, 0.419608)
 
 [node name="WallLowL" type="CollisionShape3D" parent="Hex/Wall/Walls"]
-transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5, 140, 8.8)
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -2.70152, 140, 4.67814)
 shape = SubResource("BoxShape3D_24y5s")
 debug_color = Color(0.86, 0, 0.0143331, 0.419608)
 
 [node name="WallMidL" type="CollisionShape3D" parent="Hex/Wall/Walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2, 140, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.43169, 140, -0.0431918)
 shape = SubResource("BoxShape3D_24y5s")
 debug_color = Color(0.86, 0, 0.0143331, 0.419608)
 
 [node name="WallUpL" type="CollisionShape3D" parent="Hex/Wall/Walls"]
-transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -5, 140, -8.8)
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -2.75895, 140, -4.68679)
 shape = SubResource("BoxShape3D_24y5s")
 debug_color = Color(0.86, 0, 0.0143331, 0.419608)
 

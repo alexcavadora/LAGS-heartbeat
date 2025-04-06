@@ -1206,6 +1206,7 @@ axis_lock_angular_z = true
 motion_mode = 1
 script = ExtResource("1_go726")
 health_regen = 10.0
+c_regen_speed = 0.1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

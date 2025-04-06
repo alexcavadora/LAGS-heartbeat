@@ -6,6 +6,7 @@ extends Node3D
 @onready var animation_player : AnimationPlayer = $BegginingStugg/AnimationPlayer
 @onready var dialog_box : DialogComponent3D = $Player/DialogBox
 
+@onready var ui: Control = $Player/UI3D/SubViewport/UI
 
 
 func _unhandled_input(_event: InputEvent) -> void:
@@ -23,7 +24,8 @@ func _ready():
 	animation_player.play("Intro")
 	enemy_parts.queue_free()
 	stuffparts.queue_free()
-	
+
+
 
 
 func _on_animation_player_animation_finished(anim_name):

@@ -104,7 +104,7 @@ func _process_chain_physics(delta: float) -> void:
 		corazon.pulled = false
 	elif is_pulling:
 		energy_use(true)
-		health.heal(health_regen)
+		health.heal(c_drain_speed*50)
 		updated_health.emit(health.health)
 		cooldown = max(cooldown - c_drain_speed, 0)
 		updated_energy.emit(cooldown)

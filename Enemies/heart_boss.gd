@@ -1,6 +1,5 @@
+class_name Heart_boss
 extends RigidBody3D
-class_name Enemy
-
 @onready var health: Node = $Health
 @onready var hitbox: Area3D = $Hitbox
 @onready var enemy_health: ProgressBar = $SubViewport/Control/Enemy_health
@@ -19,12 +18,8 @@ const ANIM_STUN: String = "Stun"
 const ANIM_DEATH: String = "Die"
 const ANIM_ATTACK: String = "Attack"
 
-signal killed()
-
 func _ready() -> void:
-	if get_parent() is Spawner3D:
-		print("parent is spawner")
-		connect("killed", get_parent().dead_counter)
+	animated_sprite = find_child("AnimatedSprite")
 	set_physics_process(false)
 	animated_sprite = find_child("AnimatedSprite")
 	player_node = get_tree().get_first_node_in_group("Player")
@@ -90,6 +85,4 @@ func _on_attacker_attacked() -> void:
 	animated_sprite.play(ANIM_MOVING)
 
 func _on_health_dead() -> void:
-	killed.emit()
 	animated_sprite.play(ANIM_DEATH)
-	

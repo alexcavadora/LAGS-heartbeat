@@ -25,16 +25,22 @@ signal AnimToggle(NextAnim)
 @onready var currenttarget : HexTemplate
 var touched_area : Area3D
 
+@export var spawn_scene : PackedScene = null
 @onready var idx = int(name.substr(8,-1))
 @onready var is_outer = idx > 6
 
 signal finished(idx)
+
+var finish_status = false
 
 func _ready():
 	#print(is_outer, idx)
 	if ui != null:
 		connect("finished", ui._update_minimap)
 		ui.connect("berlin_drop", _on_berlin_free)
+		ui.connect("spawn", spawn)
+		ui.connect("unlock", all_clear)
+		ui.connect("lock", fighting)
 	check()
 
 func check ():
@@ -49,6 +55,7 @@ func check ():
 		true:
 			AnimToggle.emit("Up")
 			detector.queue_free()
+			finish_status = true
 		false:
 			pass
 	
@@ -65,9 +72,6 @@ func check ():
 		false:
 			pass
 
-
-
-
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "GoUp":
 		progress_count.visible = false
@@ -76,6 +80,7 @@ func _on_animation_player_animation_finished(anim_name):
 		Up = true
 		check()
 		finished.emit(idx)
+		finish_status = true
 
 	elif anim_name == "Up":
 		if detector != null:
@@ -103,3 +108,26 @@ func _on_berlin_free():
 	GoUp = false
 	Downed = true
 	check()
+
+
+func spawn(indexes):
+	if idx in indexes and spawn_scene != null:
+		var instance = spawn_scene.instantiate()
+		instance.position.x = position.x
+		instance.position.z = position.z
+		instance.position.y = 1.5
+		get_parent().get_parent().add_child(instance)
+
+func fighting(indexes):
+	if idx in indexes:
+		Deactivate = true
+		
+func hex_cleared():
+	ui.fighting_cells.erase(idx)
+	print(ui.fighting_cells)
+	if ui.fighting_cells.is_empty():
+		ui.unlock.emit(ui.available)
+
+func all_clear(indexes):
+	if idx in indexes:
+		Deactivate = false

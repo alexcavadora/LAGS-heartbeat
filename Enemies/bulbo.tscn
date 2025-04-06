@@ -172,6 +172,7 @@ texture = SubResource("ViewportTexture_wtllu")
 
 [node name="Monitor_detector" parent="." instance=ExtResource("12_xehaw")]
 
+[connection signal="dead" from="Health" to="." method="_on_health_dead"]
 [connection signal="dead" from="Health" to="Movement" method="_on_dead"]
 [connection signal="just_hit" from="Health" to="." method="_on_health_just_hit"]
 [connection signal="just_hit" from="Health" to="Movement" method="_on_hit_received"]

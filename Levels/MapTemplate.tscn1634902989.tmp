@@ -1,0 +1,338 @@
+[gd_scene load_steps=18 format=3 uid="uid://be8hl4weaft7d"]
+
+[ext_resource type="Script" uid="uid://bydtmfnv5gj6u" path="res://Levels/level.gd" id="1_fjysl"]
+[ext_resource type="PackedScene" uid="uid://bx0msm0hagnj0" path="res://Player/player.tscn" id="2_y6c2c"]
+[ext_resource type="PackedScene" uid="uid://buiitvt4ugobf" path="res://Player/heart.tscn" id="4_3xsl5"]
+[ext_resource type="PackedScene" uid="uid://bumwcljyyl83x" path="res://Scenes/fixed_hex.tscn" id="5_qbn24"]
+[ext_resource type="PackedScene" uid="uid://cqk5n14hafk01" path="res://Components/dialog_box.tscn" id="6_j4cnv"]
+[ext_resource type="Script" uid="uid://05wfyw363rdi" path="res://Components/tutorial_component.gd" id="6_l2662"]
+[ext_resource type="PackedScene" uid="uid://deo5mpbd2emu5" path="res://Scenes/string.tscn" id="8_fjysl"]
+[ext_resource type="PackedScene" uid="uid://biwv0g0bia05s" path="res://UI/ui.tscn" id="8_ugyuv"]
+[ext_resource type="PackedScene" uid="uid://d8ut0msjyk48" path="res://Enemies/Eye_boss.tscn" id="10_0b23m"]
+[ext_resource type="PackedScene" uid="uid://bnvofq8o46gga" path="res://shaders/DitherShit/src/demo.tscn" id="10_jffph"]
+[ext_resource type="PackedScene" uid="uid://b407b2xs8ym88" path="res://Enemies/Heart_boss.tscn" id="11_3xsl5"]
+[ext_resource type="PackedScene" uid="uid://3qevbhnxt5xg" path="res://Enemies/box.tscn" id="12_ugyuv"]
+[ext_resource type="PackedScene" uid="uid://dwhxov4hp4hhg" path="res://Enemies/chasing_enemy.tscn" id="13_jffph"]
+[ext_resource type="Script" uid="uid://cyxj5uvfrdjty" path="res://Levels/bossfight_handler.gd" id="14_j5ndp"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_y6c2c"]
+viewport_path = NodePath("Player/UI3D/SubViewport")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qbn24"]
+
+[sub_resource type="Environment" id="Environment_ugyuv"]
+background_mode = 1
+fog_mode = 1
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 3.0
+volumetric_fog_albedo = Color(0, 0, 0, 1)
+
+[node name="test_level2" type="Node3D"]
+script = ExtResource("1_fjysl")
+
+[node name="Box" parent="." instance=ExtResource("12_ugyuv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.18709, 0.863398, -31.7913)
+
+[node name="Chaser" parent="." instance=ExtResource("13_jffph")]
+
+[node name="Chaser2" parent="." instance=ExtResource("13_jffph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.08127, 0, -2.14018)
+
+[node name="Chaser3" parent="." instance=ExtResource("13_jffph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.91873, 0, -0.140184)
+
+[node name="Chaser4" parent="." instance=ExtResource("13_jffph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.91873, 0, 1.85982)
+
+[node name="Chaser5" parent="." instance=ExtResource("13_jffph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.91873, 0, 1.85982)
+
+[node name="Player" parent="." node_paths=PackedStringArray("corazon") instance=ExtResource("2_y6c2c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.281939, 0, 3.59721)
+corazon = NodePath("Heart")
+
+[node name="Demo" parent="Player" node_paths=PackedStringArray("Camera_To_Follow") instance=ExtResource("10_jffph")]
+Camera_To_Follow = NodePath("../Camera3D")
+
+[node name="Camera3D" type="Marker3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 8, 7.85)
+
+[node name="Heart" parent="Player" node_paths=PackedStringArray("follow") instance=ExtResource("4_3xsl5")]
+transform = Transform3D(1, 0, 0, 0, 0.818561, 0, 0, 0, 1, 5.91436, 0.655197, 5.4977)
+mass = 10.0
+follow = NodePath("..")
+string_max_distance = 16.0
+s_force = 1000.0
+s_damping = 0.2
+p_deceleration = 45.0
+
+[node name="DialogBox" parent="Player" instance=ExtResource("6_j4cnv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.908, -1.518)
+Typetime = 0.01
+Dialog = PackedStringArray("It seems its working", "Hello Alex", "", "")
+
+[node name="UI3D" type="Sprite3D" parent="Player"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_y6c2c")
+
+[node name="SubViewport" type="SubViewport" parent="Player/UI3D"]
+transparent_bg = true
+size = Vector2i(1280, 720)
+
+[node name="UI" parent="Player/UI3D/SubViewport" instance=ExtResource("8_ugyuv")]
+
+[node name="String" parent="Player" node_paths=PackedStringArray("PointA", "PointB") instance=ExtResource("8_fjysl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.278732, 5.38965, 0.62126)
+PointA = NodePath("..")
+PointB = NodePath("../Heart")
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="tilesito" type="StaticBody3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.560677, 0, 0)
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/tilesito"]
+shape = SubResource("ConvexPolygonShape3D_qbn24")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="Environment/tilesito"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.56, 0)
+size = Vector3(29.2659, 1.11591, 30.2412)
+
+[node name="PrimerHex" type="Node3D" parent="."]
+
+[node name="FixedHex0" parent="PrimerHex" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+Up = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="FirstRing" type="Node3D" parent="."]
+
+[node name="FixedHex1" parent="FirstRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2, 0, -9.05)
+Up = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="FixedHex2" parent="FirstRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4, 0, 0)
+Up = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="FixedHex3" parent="FirstRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2, 0, 9.05)
+Up = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="FixedHex4" parent="FirstRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2, 0, 9.05)
+Up = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="FixedHex5" parent="FirstRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4, 0, 0)
+Up = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="FixedHex6" parent="FirstRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2, 0, -9.05)
+Up = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="SecondRing" type="Node3D" parent="."]
+
+[node name="FixedHex7" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6, 0, -9.05)
+Up = true
+Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="FixedHex8" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.8, 0, 0)
+Up = true
+Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="FixedHex9" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6, 0, 9.05)
+Up = true
+Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="FixedHex10" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4, 0, 18.1)
+Up = true
+Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="FixedHex11" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18.1)
+Up = true
+Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="FixedHex12" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4, 0, 18.1)
+Up = true
+Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="FixedHex13" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.6, 0, 9.05)
+Up = true
+Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="FixedHex14" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.8, 0, 0)
+Up = true
+Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="FixedHex15" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.6, 0, -9.05)
+Up = true
+Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="FixedHex16" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4, 0, -18.1)
+Up = true
+Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="FixedHex17" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.1)
+Up = true
+Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="FixedHex18" parent="SecondRing" node_paths=PackedStringArray("ui") instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4, 0, -18.1)
+Up = true
+Deactivate = true
+ui = NodePath("../../Player/UI3D/SubViewport/UI")
+
+[node name="FixedHex25" parent="SecondRing" instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.8373, 0.192497, 18.0984)
+Downed = true
+Deactivate = true
+
+[node name="FixedHex26" parent="SecondRing" instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.0373, 0.192497, 9.04838)
+Downed = true
+Deactivate = true
+
+[node name="FixedHex27" parent="SecondRing" instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.2373, 0.192497, -0.00162509)
+Downed = true
+Deactivate = true
+
+[node name="FixedHex28" parent="SecondRing" instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.0373, 0.00886536, -9.05163)
+Downed = true
+Deactivate = true
+
+[node name="FixedHex29" parent="SecondRing" instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.8373, 0.192497, -18.1016)
+Downed = true
+Deactivate = true
+
+[node name="FixedHex30" parent="SecondRing" instance=ExtResource("5_qbn24")]
+transform = Transform3D(-1, -8.74228e-08, -8.74228e-08, -8.74228e-08, 1, 8.74228e-08, -8.74228e-08, -8.74228e-08, 1, 20.7065, 0.34581, -18.238)
+Downed = true
+Deactivate = true
+
+[node name="FixedHex31" parent="SecondRing" instance=ExtResource("5_qbn24")]
+transform = Transform3D(-1, -8.74228e-08, -8.74228e-08, -8.74228e-08, 1, 8.74228e-08, -8.74228e-08, -8.74228e-08, 1, 25.9065, 0.34581, -9.18804)
+Downed = true
+Deactivate = true
+
+[node name="FixedHex32" parent="SecondRing" instance=ExtResource("5_qbn24")]
+transform = Transform3D(-1, -8.74228e-08, -8.74228e-08, -8.74228e-08, 1, 8.74228e-08, -8.74228e-08, -8.74228e-08, 1, 31.1065, 0.34581, -0.138037)
+Downed = true
+Deactivate = true
+
+[node name="FixedHex33" parent="SecondRing" instance=ExtResource("5_qbn24")]
+transform = Transform3D(-1, -8.74228e-08, -8.74228e-08, -8.74228e-08, 1, 8.74228e-08, -8.74228e-08, -8.74228e-08, 1, 25.9065, 0.34581, 8.91196)
+Downed = true
+Deactivate = true
+
+[node name="FixedHex34" parent="SecondRing" instance=ExtResource("5_qbn24")]
+transform = Transform3D(-1, -8.74228e-08, -8.74228e-08, -8.74228e-08, 1, 8.74228e-08, -8.74228e-08, -8.74228e-08, 1, 20.7065, 0.34581, 17.962)
+Downed = true
+Deactivate = true
+
+[node name="FixedHex19" parent="SecondRing" instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.80582, 0.192497, -26.7302)
+Downed = true
+Deactivate = true
+
+[node name="FixedHex20" parent="SecondRing" instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.59418, 0.192497, -26.7302)
+Downed = true
+Deactivate = true
+
+[node name="FixedHex21" parent="SecondRing" instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.9942, 0.192497, -26.7302)
+Downed = true
+Deactivate = true
+
+[node name="FixedHex22" parent="SecondRing" instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.17823, 59.9976, 27.1114)
+Downed = true
+Deactivate = true
+
+[node name="FixedHex35" parent="SecondRing" instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5622, 0.192497, 26.9851)
+Downed = true
+Deactivate = true
+
+[node name="FixedHex36" parent="SecondRing" instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4337, 0.192497, -27.1864)
+Downed = true
+Deactivate = true
+
+[node name="FixedHex23" parent="SecondRing" instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.22177, 0.192497, 27.1114)
+Downed = true
+Deactivate = true
+
+[node name="FixedHex24" parent="SecondRing" instance=ExtResource("5_qbn24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.6218, 0.192497, 27.1114)
+Downed = true
+Deactivate = true
+
+[node name="TutorialComponent" type="Node3D" parent="." node_paths=PackedStringArray("Dialog")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.36767, -1.48911, -1.51835)
+script = ExtResource("6_l2662")
+Dialog = NodePath("../Player/DialogBox")
+
+[node name="Left_eye" parent="." node_paths=PackedStringArray("player", "heart_boss") instance=ExtResource("10_0b23m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.56877, 9.42008, 0.401997)
+player = NodePath("../Player")
+heart_boss = NodePath("../FINAL_BOSS")
+state = 1
+
+[node name="Right_eye" parent="." node_paths=PackedStringArray("player", "heart_boss") instance=ExtResource("10_0b23m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.11233, 9.42008, -8.09556)
+player = NodePath("../Player")
+heart_boss = NodePath("../FINAL_BOSS")
+state = 1
+
+[node name="FINAL_BOSS" parent="." instance=ExtResource("11_3xsl5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.10179, 10.9819, 7.56123)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ugyuv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 0.184758, 0.982784, 0, -0.982784, 0.184758, 0, 3.46257, 6.79005)
+shadow_enabled = true
+shadow_opacity = 0.2
+
+[node name="Bossfight_handler" type="Node" parent="."]
+script = ExtResource("14_j5ndp")
+
+[connection signal="updated_energy" from="Player" to="Player/UI3D/SubViewport/UI" method="_on_player_cooldown_changed"]
+[connection signal="updated_health" from="Player" to="Player/UI3D/SubViewport/UI" method="_on_player_health_changed"]

@@ -17,9 +17,9 @@ func hit(damage: float):
 		timer.start(attack_cooldown)
 	
 	health = max(health - damage, 0)
+	just_hit.emit(health)
 	if health == 0:
 		dead.emit()
-	just_hit.emit(health)
 
 func heal(hp: float):
 	health = min(health + hp, max_health)
