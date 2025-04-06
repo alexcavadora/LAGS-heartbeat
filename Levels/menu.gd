@@ -5,12 +5,17 @@ extends Node3D
 const MAP_TEMPLATE = preload("res://Levels/MapTemplate.tscn")
 @onready var options : OptionsMenu = $Control/Sprite2D
 @onready var animation : AnimationPlayer = $AnimationPlayer
-@onready var as3d : AnimatedSprite3D = $AnimatedSprite3D
+@onready var as3d : AnimatedSprite3D = $OtherIntro
+@onready var other_intro : AnimatedSprite3D = $OtherIntro
+
+@onready var jelly_intro = $JellyIntro
 
 
 func _input(event):
 	if Input.is_anything_pressed():
+		jelly_intro.stop()
 		as3d.frame = 186
+		animation.play("ButtonFade")
 		animation.seek(8.0)
 
 
@@ -64,3 +69,10 @@ func _on_quit_mouse_exited():
 	quit_s.play("HoverOut")
 	await quit_s.animation_finished
 	quit_s.play("default")
+
+
+func _on_jelly_intro_animation_finished():
+	jelly_intro.stop()
+	other_intro.play("Intro")
+	animation.play("ButtonFade")
+	

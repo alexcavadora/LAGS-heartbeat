@@ -31,6 +31,11 @@ var _moving_debug_press_start = Vector2()
 @export var dither_patterns = []
 
 func _ready():
+	if Camera_To_Follow != null:
+		camera_3d.rotation = Camera_To_Follow.rotation
+		camera_3d.global_position = Camera_To_Follow.global_position
+	
+	
 	print(camera_3d.global_position)
 	_viewport.size = get_viewport().size
 	
