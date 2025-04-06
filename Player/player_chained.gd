@@ -135,11 +135,11 @@ func _handle_collisions() -> void:
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_pressed("pull_spring"):
-		print("Pull pressed still")
+		#print("Pull pressed still")
 		corazon.pulled = true
 		is_pulling = true
 	elif Input.is_action_just_released("pull_spring"):
-		print("Pull released")
+		#print("Pull released")
 		is_pulling = false
 		corazon.pulled = false
 
