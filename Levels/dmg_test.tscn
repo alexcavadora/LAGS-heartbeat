@@ -1,54 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://c2wgsvsk5r4re"]
+[gd_scene load_steps=13 format=3 uid="uid://c2wgsvsk5r4re"]
 
 [ext_resource type="Script" uid="uid://bydtmfnv5gj6u" path="res://Levels/level.gd" id="1_s105c"]
 [ext_resource type="PackedScene" uid="uid://bx0msm0hagnj0" path="res://Player/player.tscn" id="2_o2oq2"]
-[ext_resource type="Script" uid="uid://bdd3erwlvffxt" path="res://UI/ui.gd" id="3_hd1u5"]
+[ext_resource type="PackedScene" uid="uid://biwv0g0bia05s" path="res://UI/ui.tscn" id="3_s105c"]
 [ext_resource type="PackedScene" uid="uid://buiitvt4ugobf" path="res://Player/heart.tscn" id="4_3k01p"]
 [ext_resource type="PackedScene" uid="uid://biknk72swbsc2" path="res://Enemies/Troyano.tscn" id="5_e04oe"]
 [ext_resource type="PackedScene" uid="uid://dwhxov4hp4hhg" path="res://Enemies/chasing_enemy.tscn" id="6_s105c"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mac0m"]
-bg_color = Color(0.0583, 0.144778, 0.53, 0.34902)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-expand_margin_left = 3.0
-expand_margin_top = 3.0
-expand_margin_right = 3.0
-expand_margin_bottom = 3.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5o3kl"]
-bg_color = Color(0.278431, 0.831373, 0.780392, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_53w0m"]
-bg_color = Color(0, 0, 0, 0.142)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gs7ah"]
-bg_color = Color(0, 0.252889, 0.154017, 0.34902)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-expand_margin_left = 3.0
-expand_margin_top = 3.0
-expand_margin_right = 3.0
-expand_margin_bottom = 3.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3on5e"]
-bg_color = Color(0.390005, 0.861767, 0, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_g22v7"]
 
@@ -82,91 +39,12 @@ c_regen_speed = 0.1
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 8, 7.33)
 fov = 54.7
 
-[node name="UI" type="Control" parent="Player/Camera3D"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 6
-size_flags_vertical = 3
-script = ExtResource("3_hd1u5")
-
-[node name="Label" type="Label" parent="Player/Camera3D/UI"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -39.0
-offset_top = -669.0
-offset_right = 39.0
-offset_bottom = -646.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Energy"
-horizontal_alignment = 1
-
-[node name="Cooldown" type="ProgressBar" parent="Player/Camera3D/UI"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -160.0
-offset_top = 20.0
-offset_right = 160.0
-offset_bottom = 47.0
-grow_horizontal = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_mac0m")
-theme_override_styles/fill = SubResource("StyleBoxFlat_5o3kl")
-max_value = 2.0
-value = 2.0
-show_percentage = false
-
-[node name="Panel" type="Panel" parent="Player/Camera3D/UI"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = -79.0
-offset_right = 331.0
-offset_bottom = 1.0
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_53w0m")
-
-[node name="Label" type="Label" parent="Player/Camera3D/UI/Panel"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -38.0
-offset_top = -38.0
-offset_right = 40.0
-offset_bottom = -15.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Health"
-horizontal_alignment = 1
-
-[node name="Health" type="ProgressBar" parent="Player/Camera3D/UI/Panel"]
-layout_mode = 1
-offset_left = 6.0
-offset_top = 12.0
-offset_right = 326.0
-offset_bottom = 39.0
-theme_override_styles/background = SubResource("StyleBoxFlat_gs7ah")
-theme_override_styles/fill = SubResource("StyleBoxFlat_3on5e")
-value = 100.0
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Player/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 0.969872, -0.243615, 0, 0.243615, 0.969872, 0, 4.6221, -5.74409)
 light_energy = 0.5
 shadow_enabled = true
+
+[node name="UI" parent="Player/Camera3D" instance=ExtResource("3_s105c")]
 
 [node name="Heart" parent="Player" node_paths=PackedStringArray("follow") instance=ExtResource("4_3k01p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.91436, 0.75, 5.4977)
@@ -2842,3 +2720,4 @@ environment = SubResource("Environment_53w0m")
 
 [connection signal="updated_energy" from="Player" to="Player/Camera3D/UI" method="_on_player_cooldown_changed"]
 [connection signal="updated_health" from="Player" to="Player/Camera3D/UI" method="_on_player_health_changed"]
+[connection signal="using_energy" from="Player" to="Player/Camera3D/UI" method="_on_player_using_energy"]
