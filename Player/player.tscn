@@ -1204,8 +1204,7 @@ script = ExtResource("1_go726")
 health_regen = 10.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_1gj5y")
 
 [node name="SubViewport" type="SubViewport" parent="."]
