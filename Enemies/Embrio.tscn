@@ -100,7 +100,7 @@ metadata/_custom_type_script = "uid://chx5k8fykuvl5"
 shape = SubResource("SphereShape3D_5q8ye")
 
 [node name="Health" parent="." instance=ExtResource("2_d02l1")]
-health = 300
+health = 50
 
 [node name="Hitbox" parent="." instance=ExtResource("3_5sfr7")]
 

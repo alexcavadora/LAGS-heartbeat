@@ -215,7 +215,7 @@ script = ExtResource("1_xbarb")
 shape = SubResource("BoxShape3D_6q36a")
 
 [node name="Health" parent="." instance=ExtResource("1_7ushe")]
-health = 1
+health = 300
 IE_frames = true
 
 [node name="Hitbox" parent="." instance=ExtResource("2_5gsve")]
