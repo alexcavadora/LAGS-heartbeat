@@ -121,6 +121,7 @@ func _on_berlin_free():
 
 
 func spawn(indexes):
+	print("spawn", indexes)
 	if idx in indexes and spawn_scene != null:
 		instance = spawn_scene.instantiate()
 		instance.position.x = position.x
@@ -135,10 +136,11 @@ func fighting(indexes):
 		
 func hex_cleared():
 	ui.fighting.erase(idx)
-	if ui.fighting.size() == 1:
+	print(ui.fighting)
+	if ui.fighting.size() == 0:
 		ui.unlock.emit(ui.available)
 
 func all_clear(indexes):
-	print(indexes, idx)
 	if idx in indexes:
+		#print(indexes, idx)
 		Deactivate = false

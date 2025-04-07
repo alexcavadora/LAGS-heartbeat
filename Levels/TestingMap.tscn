@@ -15,12 +15,12 @@
 [ext_resource type="Material" uid="uid://jbpqhrul7rwc" path="res://particles/DeathParticles.tres" id="19_8tj0h"]
 [ext_resource type="Script" uid="uid://bbgg47aoc0e30" path="res://Scenes/hex_template.gd" id="19_r30sf"]
 [ext_resource type="SphereMesh" uid="uid://p8je7wniikho" path="res://Enemies/enemy-particles.tres" id="20_jnkna"]
-[ext_resource type="ArrayMesh" uid="uid://dtox841xh5uxq" path="res://assets/Hexagons/untitled.obj" id="20_n8v56"]
+[ext_resource type="ArrayMesh" uid="uid://4m7c7h4erxwh" path="res://assets/Hexagons/untitled.obj" id="20_n8v56"]
 [ext_resource type="PackedScene" uid="uid://v0oj5afjxrn8" path="res://Scenes/animation_player_Hex.tscn" id="21_dh1lx"]
 [ext_resource type="Material" uid="uid://b20kp3df7i6xe" path="res://Scenes/upgrade_system.tres" id="21_vircm"]
 [ext_resource type="Script" uid="uid://bleawlaewp1wf" path="res://Scenes/HexAnimationComponent.gd" id="22_2li3d"]
 [ext_resource type="SphereMesh" uid="uid://cy1mumbix3e3" path="res://Scenes/upgrade_system-pass.tres" id="22_udqh2"]
-[ext_resource type="Script" uid="uid://b0kjkh2ooa0ke" path="res://Scenes/progress_count.gd" id="23_57br2"]
+[ext_resource type="Script" path="res://Scenes/progress_count.gd" id="23_57br2"]
 [ext_resource type="Theme" uid="uid://bfp08hmhenri4" path="res://themes/Elmero.tres" id="24_bj8hu"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_y6c2c"]
@@ -279,25 +279,18 @@ shadow_enabled = true
 shadow_opacity = 0.2
 
 [node name="Eye_boss" parent="." instance=ExtResource("11_kmljm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.865, 8.5807, -25.2755)
 
 [node name="Eye_boss2" parent="." instance=ExtResource("11_kmljm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.865, 8.5807, -25.2755)
 
 [node name="Eye_boss3" parent="." instance=ExtResource("11_kmljm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.865, 8.5807, -18.2755)
 
 [node name="Eye_boss4" parent="." instance=ExtResource("11_kmljm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.665, 8.5807, -10.479)
 
 [node name="Eye_boss5" parent="." instance=ExtResource("11_kmljm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.5437, 8.5807, -9.99498)
 
 [node name="Eye_boss6" parent="." instance=ExtResource("11_kmljm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.7578, 8.5807, -18.6996)
 
 [node name="Eye_boss7" parent="." instance=ExtResource("11_kmljm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.7578, 8.5807, -18.6996)
 
 [node name="walls" type="Node" parent="."]
 

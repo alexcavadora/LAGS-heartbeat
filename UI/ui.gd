@@ -47,7 +47,7 @@ func _update_minimap(idx):
 		#print("berlin_dropped")
 	spawn.emit(unlocked_cells)
 	lock.emit(available)
-	fighting = unlocked_cells
+	fighting = unlocked_cells.duplicate()
 	for i in range(minimap.get_child_count()):
 		if i in inner_ring and first_complete:
 			minimap.get_child(i).modulate = READY

@@ -15,4 +15,3 @@ func dead_counter():
 	if amount == 0:
 		tile_finished.emit()
 		print(tile_finished)
-		queue_free()
